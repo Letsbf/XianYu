@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+    <resultMap id="postReply" type="com.ryan.xianyu.domain.Post">
+        <result column="id" property="id"/>
+        <result column="replier" property="replier"/>
+        <result column="text" property="text"/>
+        <result column="reply_post_id" property="replyPostId"/>
+        <result column="commodity_id" property="commodityId"/>
+        <result column="time" property="time"/>
+    </resultMap>
+
+
+    <select id="selectReply" parameterType="java.lang.Integer" resultMap="postReply" >
+        SELECT * FROM post WHERE commodity_id = #{id};
+    </select>
+
+    <insert id="insertReply" parameterType="java.util.Map" useGeneratedKeys="true">
+        insert into post (replier,text,reply_post_id,commodity_id,time)
+        values (#{replier},#{text},#{replyPostId},#{commodityId},UNIX_TIMESTAMP());
+    </insert>
+
+    <delete id="deleteReply" parameterType="java.lang.Integer">
+        DELETE FROM post WHERE id = #{id}
+    </delete>
+
+</mapper>
+
+

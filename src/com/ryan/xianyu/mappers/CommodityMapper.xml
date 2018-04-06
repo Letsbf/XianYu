@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commodity">
+    <select id="selectByPage" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.util.Map">
+        SELECT * FROM commodity WHERE classification = #{classficationId} AND status!=3
+        ORDER BY id DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+    </select>
+
+    <select id="selectById" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.lang.Integer">
+        SELECT * FROM commodity WHERE id = #{id}
+    </select>
+</mapper>

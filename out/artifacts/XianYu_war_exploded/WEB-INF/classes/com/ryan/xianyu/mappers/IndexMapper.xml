@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="index">
+
+    <resultMap id="notice" type="com.ryan.xianyu.domain.Notice">
+        <result column="publish_time" property="publishTime"/>
+        <result column="title" property="title"/>
+        <result column="text" property="text"/>
+        <result column="publisher" property="publisher"/>
+        <result column="id" property="id"/>
+    </resultMap>
+
+    <select id="selectInstitute" resultType="java.util.Map" >
+        SELECT * FROM institute ;
+    </select>
+    
+    
+    <select id="selectNotices" resultMap="notice" >
+        SELECT * FROM notice ORDER BY id DESC LIMIT 6 ;
+    </select>
+
+    <select id="selectNotice" resultMap="notice" parameterType="java.lang.Integer">
+        SELECT * FROM notice WHERE id = #{id};
+    </select>
+
+    <select id="selectClassification" resultType="com.ryan.xianyu.domain.Classification">
+        select * from classification;
+    </select>
+</mapper>
