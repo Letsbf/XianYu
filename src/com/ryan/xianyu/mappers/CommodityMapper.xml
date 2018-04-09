@@ -12,4 +12,18 @@
     <select id="selectById" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.lang.Integer">
         SELECT * FROM commodity WHERE id = #{id}
     </select>
+
+    <insert id="insertCommodity" parameterType="com.ryan.xianyu.domain.Commodity" useGeneratedKeys="true">
+      <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID() AS ID
+      </selectKey>
+        insert into commodity (title,price,classification,publisher,description,concater,time)
+        values (#{title},#{price},#{classification},#{publisher},#{description},#{concater},UNIX_TIMESTAMP());
+    </insert>
+    
+    
+    <update id="insertImages" parameterType="com.ryan.xianyu.domain.Commodity">
+        update commodity set images = #{images} where id = #{id};
+    </update>
+    
 </mapper>

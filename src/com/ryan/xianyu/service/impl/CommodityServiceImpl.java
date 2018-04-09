@@ -5,21 +5,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.dao.CommodityDao;
+import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.Commodity;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.CommodityService;
 import com.ryan.xianyu.vo.CommodityVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
+
+    private static Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
 
     @Autowired
     private CommodityDao commodityDao;
@@ -27,9 +29,12 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private PostDao postDao;
+
     @Override
-    public JSONObject getCommodityById(Integer id) {
-        Commodity commodity = commodityDao.getCommodityById(id);
+    public JSONObject getCommodityById(Integer commodityId, Integer pageSize) {
+        Commodity commodity = commodityDao.getCommodityById(commodityId);
         if (commodity == null) {
             return Util.constructResponse(0, "获取商品详情失败！", "");
         }
@@ -45,7 +50,32 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setTime(commodity.getTime());
         commodityVo.setPublisher(user.getUsername());
 
-        return Util.constructResponse(1, "获取商品详情成功", JSON.toJSON(commodityVo));
+        Integer total = postDao.countReply(commodityId);
+
+        JSONObject jsonObject = (JSONObject) JSON.toJSON(commodityVo);
+        jsonObject.put("pages", total / pageSize);
+        return Util.constructResponse(1, "获取商品详情成功", jsonObject);
+    }
+
+    @Override
+    public JSONObject publishCommodity(Commodity commodity) {
+        // TODO: 2018/4/8 发布人id校验
+        String images = commodity.getImages();
+        Integer id = commodityDao.publishCommodity(commodity);
+        if (id <= 0) {
+            return Util.constructResponse(0, "发布失败！", "");
+        }
+        commodity.setId(id);
+        try {
+            Util.saveImages(commodity);
+        } catch (Exception e) {
+            logger.error("保存图片时失败出现异常", e);
+        }
+        Integer i = commodityDao.insertImages(commodity);
+        if (i <= 0) {
+            return Util.constructResponse(0, "发布失败！", "");
+        }
+        return Util.constructResponse(1, "发布成功！", "");
     }
 
     @Override

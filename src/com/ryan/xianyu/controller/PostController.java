@@ -42,9 +42,10 @@ public class PostController {
         return postService.reply(replier, text, replyPostId, commodityId);
     }
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @ResponseBody
     public JSONObject delete(@RequestParam("postId") Integer postId) {
+        // TODO: 2018/4/6 校验管理员身份 禁止删除他人回复
         if (postId <= 0) {
             return Util.constructResponse(0, "删除失败略略略", "");
         }

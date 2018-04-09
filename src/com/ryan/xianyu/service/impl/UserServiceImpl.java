@@ -1,5 +1,6 @@
 package com.ryan.xianyu.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.dao.UserDao;
@@ -62,6 +63,26 @@ public class UserServiceImpl implements UserService {
         }
 
         return Util.constructResponse(0, "注册失败！", "");
+    }
+
+    @Override
+    public JSONObject detail(Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null) {
+            return Util.constructResponse(0, "获取用户个人信息失败！", "");
+        }
+        user.setPassword("");
+        return Util.constructResponse(1, "获取用户个人信息成功！", JSON.toJSON(user));
+    }
+
+    @Override
+    public JSONObject update(User user) {
+        Integer i = userDao.updateUser(user);
+        if (i > 0) {
+            return Util.constructResponse(1, "更新成功！", "");
+        }
+
+        return Util.constructResponse(0, "更新失败！", "");
     }
 
 }

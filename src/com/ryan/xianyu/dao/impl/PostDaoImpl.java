@@ -14,6 +14,13 @@ import java.util.Map;
 public class PostDaoImpl implements PostDao {
 
     @Override
+    public Integer countReply(Integer commodityId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer ls = sqlSession.selectOne("post.countReply", commodityId);
+        return ls;
+    }
+
+    @Override
     public List<Post> selectReply(Integer commodityId) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<Post> ls = sqlSession.selectList("post.selectReply", commodityId);

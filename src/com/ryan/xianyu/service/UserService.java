@@ -14,4 +14,8 @@ public interface UserService {
 
     JSONObject register(User user);
 
+    JSONObject detail(Integer userId);
+
+    JSONObject update(User user);
+
 }

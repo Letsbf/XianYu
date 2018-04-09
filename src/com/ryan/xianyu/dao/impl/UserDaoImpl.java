@@ -40,4 +40,11 @@ public class UserDaoImpl implements UserDao {
         List<User> s = sqlSession.selectList("user.selectByIds", ids);
         return s;
     }
+
+    @Override
+    public Integer updateUser(User user) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer s = sqlSession.update("user.updateUser", user);
+        return s;
+    }
 }

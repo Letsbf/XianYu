@@ -25,12 +25,25 @@ public class CommodityDaoImpl implements CommodityDao {
         return s;
     }
 
-    // TODO: 2018/4/5 加 个分页参数
     @Override
     public Commodity getCommodityById(Integer id) {
         SqlSession sqlSession = SQLFactory.getSession();
         Commodity commodity = sqlSession.selectOne("commodity.selectById", id);
         return commodity;
+    }
+
+    @Override
+    public Integer publishCommodity(Commodity commodity) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.insert("commodity.insertCommodity", commodity);
+        return i;
+    }
+
+    @Override
+    public Integer insertImages(Commodity commodity) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("commodity.insertImages", commodity);
+        return i;
     }
 
 }

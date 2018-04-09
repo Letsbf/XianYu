@@ -14,4 +14,6 @@ public interface UserDao {
     User selectById(Integer id);
 
     List<User> selectByIds(String ids);
+
+    Integer updateUser(User user);
 }

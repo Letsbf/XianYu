@@ -27,6 +27,10 @@
         DELETE FROM post WHERE id = #{id}
     </delete>
 
+    <select id="countReply" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT count(*) FROM post WHERE commodity_id = #{id}
+    </select>
+
 </mapper>
 
 

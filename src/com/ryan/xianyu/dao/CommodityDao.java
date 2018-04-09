@@ -10,4 +10,8 @@ public interface CommodityDao {
     List getCommoditiesByPage(Integer id, PageInfo pageInfo);
 
     Commodity getCommodityById(Integer id);
+
+    Integer publishCommodity(Commodity commodity);
+
+    Integer insertImages(Commodity commodity);
 }

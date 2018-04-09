@@ -12,4 +12,6 @@ public interface PostDao {
     Integer insertReply(Integer replier, String text, Integer replyPostId, Integer commodityId);
 
     Integer deleteReply(Integer postId);
+
+    Integer countReply(Integer commodityId);
 }

@@ -60,7 +60,7 @@ CREATE TABLE commodity (
   price FLOAT(16) NOT NULL COMMENT '价格',
   classification INT NOT NULL COMMENT '类别',
   publisher INT NOT NULL COMMENT '发布人id',
-  description VARCHAR(1024) NOT NULL ,
+  description VARCHAR(1024) NOT NULL COMMENT '描述',
   images VARCHAR(500) COMMENT '图片链接,分号隔开' ,
   contacter VARCHAR(30) NOT NULL COMMENT '联系方式',
   status TINYINT DEFAULT 0 COMMENT '交易状态 0未开始 1谈价中 2已谈成 3交易完成',
@@ -87,3 +87,11 @@ CREATE TABLE post (
 INSERT INTO post (text, replier, reply_post_id, time, commodity_id) VALUES (
   "测试帖子1的测试回复1", 1, 0, UNIX_TIMESTAMP(), 1
 );
+
+#?
+CREATE TABLE deal(
+  id INT PRIMARY KEY  AUTO_INCREMENT NOT NULL ,
+  buyer INT NOT NULL COMMENT '购买人',
+  commodity_id INT NOT NULL COMMENT '商品id',
+  time BIGINT NOT NULL DEFAULT 0 COMMENT '购买时间'
+)
