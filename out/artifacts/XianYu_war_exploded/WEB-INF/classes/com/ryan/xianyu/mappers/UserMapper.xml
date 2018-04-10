@@ -5,15 +5,30 @@
 
 <mapper namespace="user">
 
-    <select id="selectByUserName" resultType="User" parameterType="java.lang.String">
+    <resultMap id="userMap" type="User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="institute_id" property="instituteId"/>
+        <result column="sex" property="sex"/>
+        <result column="stu_id" property="stuId"/>
+        <result column="name" property="name"/>
+        <result column="time" property="time"/>
+        <result column="email" property="email"/>
+        <result column="avatar" property="avatar"/>
+        <result column="admin" property="admin"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+    <select id="selectByUserName" resultMap="userMap" parameterType="java.lang.String">
         SELECT * FROM user WHERE username = #{username};
     </select>
 
-    <select id="selectById" resultType="User" parameterType="java.lang.Integer">
+    <select id="selectById" resultMap="userMap" parameterType="java.lang.Integer">
         SELECT * FROM user WHERE id = #{id};
     </select>
 
-    <select id="selectByIds" resultType="User" parameterType="java.lang.String">
+    <select id="selectByIds" resultMap="userMap" parameterType="java.lang.String">
         SELECT * FROM user WHERE id in (#{id});
     </select>
 

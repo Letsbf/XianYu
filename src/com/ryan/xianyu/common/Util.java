@@ -99,7 +99,10 @@ public class Util {
             sb.append(new String(content) + ";");
         }
         System.out.println(sb.toString());
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        if (sb.length() > 0) {
+            return sb.deleteCharAt(sb.length() - 1).toString();
+        }
+        return "";
     }
 
 

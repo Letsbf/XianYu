@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="commodity">
+
     <select id="selectByPage" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.util.Map">
         SELECT * FROM commodity WHERE classification = #{classficationId} AND status!=3
         ORDER BY id DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
@@ -17,9 +18,17 @@
       <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID() AS ID
       </selectKey>
-        insert into commodity (title,price,classification,publisher,description,concater,time)
-        values (#{title},#{price},#{classification},#{publisher},#{description},#{concater},UNIX_TIMESTAMP());
+        insert into commodity (title,price,classification,publisherName,description,contact,time)
+        values (#{title},#{price},#{classification},#{publisherName},#{description},#{concater},UNIX_TIMESTAMP());
     </insert>
+
+    <select id="getCommodityCountByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM commodity WHERE publisher = #{id}
+    </select>
+
+    <select id="getCommoditiesByUserId" parameterType="java.util.Map" resultType="com.ryan.xianyu.domain.Commodity">
+        SELECT * FROM commodity WHERE publisher = #{userId} LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+    </select>
     
     
     <update id="insertImages" parameterType="com.ryan.xianyu.domain.Commodity">
@@ -34,16 +43,17 @@
         <if test="#{classification}!=null">
             AND classification in (SELECT CONCAT('(',#{classification},')'))
         </if>
-        AND publisher IN
+        AND publisherName IN
         (SELECT id FROM user WHERE 1 = 1
         <choose>
             <when test="#{instituteId}!=null">
                 AND institute_id in (SELECT CONCAT('(',#{instituteId},')'))
             </when>
-            <!--<otherwise>-->
-                <!---->
-            <!--</otherwise>-->
         </choose>)
+        ORDER BY time DESC
+        <if test='#{pageInfo}!=null'>
+            LIMIT #{pageInfo.start}, #{pageInfo.pageSize}
+        </if>;
     </select>
     
 </mapper>

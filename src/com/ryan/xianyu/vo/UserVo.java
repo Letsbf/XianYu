@@ -1,33 +1,25 @@
-package com.ryan.xianyu.domain;
+package com.ryan.xianyu.vo;
 
-public class User {
+public class UserVo {
 
-    //表id
     private Integer id;
 
     private String username;
-
-    private String password;
 
     private String name;
 
     private String phone;
 
-    //性别 0女1男
-    private Integer sex;
+    private String sex;
 
-    //学院
-    private Integer instituteId;
+    private String institute;
 
-    //学号
-    private String stuId;
+    private String stuID;
 
     private String email;
 
-    //头像
     private String avatar;
 
-    //管理员 1是 0不是
     private boolean admin;
 
     private Long time;
@@ -38,14 +30,6 @@ public class User {
 
     public void setTime(Long time) {
         this.time = time;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
     }
 
     public Integer getId() {
@@ -64,14 +48,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getName() {
         return name;
     }
@@ -88,20 +64,28 @@ public class User {
         this.phone = phone;
     }
 
-    public Integer getInstituteId() {
-        return instituteId;
+    public String getSex() {
+        return sex;
     }
 
-    public void setInstituteId(Integer instituteId) {
-        this.instituteId = instituteId;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getStuId() {
-        return stuId;
+    public String getInstitute() {
+        return institute;
     }
 
-    public void setStuId(String stuId) {
-        this.stuId = stuId;
+    public void setInstitute(String institute) {
+        this.institute = institute;
+    }
+
+    public String getStuID() {
+        return stuID;
+    }
+
+    public void setStuID(String stuID) {
+        this.stuID = stuID;
     }
 
     public String getEmail() {

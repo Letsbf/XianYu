@@ -14,8 +14,12 @@
     </resultMap>
 
 
-    <select id="selectReply" parameterType="java.lang.Integer" resultMap="postReply" >
-        SELECT * FROM post WHERE commodity_id = #{id};
+    <select id="selectReply" parameterType="java.util.Map" resultMap="postReply" >
+        SELECT * FROM post WHERE commodity_id = #{commodityId} ORDER BY time ASC
+        <if test="#{pageInfo}!=null">
+            LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+        </if>
+        ;
     </select>
 
     <insert id="insertReply" parameterType="java.util.Map" useGeneratedKeys="true">

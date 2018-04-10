@@ -2,14 +2,41 @@ package com.ryan.xianyu.vo;
 
 public class CommodityVo {
 
+    private Integer id;
     private String title;
     private Float price;
-    private String publisher;
+    private String publisherName;
+    private Integer publisherId;
     private String description;
     private String images;
-    private String contacter;
+    private String contact;
     private Integer status;
+    private Integer browse;
     private Long time;
+
+    public Integer getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Integer publisherId) {
+        this.publisherId = publisherId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getBrowse() {
+        return browse;
+    }
+
+    public void setBrowse(Integer browse) {
+        this.browse = browse;
+    }
 
     public String getTitle() {
         return title;
@@ -27,12 +54,12 @@ public class CommodityVo {
         this.price = price;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getPublisherName() {
+        return publisherName;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public String getDescription() {
@@ -51,12 +78,12 @@ public class CommodityVo {
         this.images = images;
     }
 
-    public String getContacter() {
-        return contacter;
+    public String getContact() {
+        return contact;
     }
 
-    public void setContacter(String contacter) {
-        this.contacter = contacter;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public Integer getStatus() {

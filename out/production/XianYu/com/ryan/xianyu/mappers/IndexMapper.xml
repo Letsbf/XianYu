@@ -9,7 +9,7 @@
         <result column="publish_time" property="publishTime"/>
         <result column="title" property="title"/>
         <result column="text" property="text"/>
-        <result column="publisher" property="publisher"/>
+        <result column="publisherName" property="publisherName"/>
         <result column="id" property="id"/>
     </resultMap>
 

@@ -3,15 +3,19 @@ package com.ryan.xianyu.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.Util;
+import com.ryan.xianyu.dao.IndexDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.User;
+import com.ryan.xianyu.service.IndexService;
 import com.ryan.xianyu.service.UserService;
+import com.ryan.xianyu.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.*;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,6 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private IndexService indexService;
 
     @Override
     public JSONObject login(String username, String password, HttpServletRequest request, HttpServletResponse response) {
@@ -65,19 +72,53 @@ public class UserServiceImpl implements UserService {
         return Util.constructResponse(0, "注册失败！", "");
     }
 
+    /**
+     * 根据用户id获取用户属性
+     * @param userId 用户id
+     * @return json
+     */
     @Override
     public JSONObject detail(Integer userId) {
         User user = userDao.selectById(userId);
+
+        if (user == null) {
+            logger.error("获取用户信息失败,userId:{}", userId);
+            return Util.constructResponse(0, "获取用户个人信息失败！", "");
+        }
+
         try {
             user.setAvatar(Util.readImages(user.getAvatar()));
         } catch (Exception e) {
-            logger.error("获取头像失败", e);
+            logger.error("获取头像失败，用户ID:{}", userId, e);
+            user.setAvatar("");
         }
-        if (user == null) {
-            return Util.constructResponse(0, "获取用户个人信息失败！", "");
+
+        UserVo userVo = new UserVo();
+        userVo.setId(user.getId());
+        userVo.setAvatar(user.getAvatar());
+        userVo.setAdmin(user.isAdmin());
+        userVo.setEmail(user.getEmail());
+        userVo.setName(user.getName());
+        userVo.setPhone(user.getPhone());
+        userVo.setTime(user.getTime());
+        userVo.setStuID(user.getStuId());
+        userVo.setUsername(user.getUsername());
+
+        if (user.getSex() == null) {
+            userVo.setSex("未知");
+        } else {
+            userVo.setSex(user.getSex() == 1 ? "男" : "女");
         }
-        user.setPassword("");
-        return Util.constructResponse(1, "获取用户个人信息成功！", JSON.toJSON(user));
+
+        Map l = indexService.getInstitute();
+        if (l != null && l.containsKey(user.getInstituteId())) {
+            userVo.setInstitute((String) l.get(user.getInstituteId()));
+        } else {
+            logger.error("学院map:{},用户学院ID:{}", l, user.getInstituteId());
+            userVo.setInstitute("某学院");
+        }
+
+        return Util.constructResponse(1, "获取用户个人信息成功！", JSON.toJSON(userVo));
     }
 
     @Override

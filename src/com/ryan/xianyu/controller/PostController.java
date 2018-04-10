@@ -1,6 +1,7 @@
 package com.ryan.xianyu.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,39 @@ public class PostController {
     private PostService postService;
 
 
+    /**
+     * 获取帖子当前回复
+     *
+     * @param commodityId
+     * @return
+     */
     @PostMapping("/detail")
     @ResponseBody
-    public JSONObject getReply(@RequestParam("commodityId") Integer commodityId) {
+    public JSONObject getReply(@RequestParam("commodityId") Integer commodityId,
+                               @RequestParam("pageSize") Integer pageSize,
+                               @RequestParam("pageStart") Integer pageStart,
+                               @RequestParam("total") Integer total) {
         if (commodityId <= 0) {
             return Util.constructResponse(0, "商品ID错误", "");
         }
-        return postService.getReply(commodityId);
-
+        if (pageSize < 0) {
+            pageSize = 10;
+        }
+        if (pageStart < 0) {
+            pageStart = 0;
+        }
+        PageInfo pageInfo = new PageInfo(pageStart, pageSize, total);
+        return postService.getReply(commodityId, pageInfo);
     }
 
+    /**
+     * 回复帖子
+     * @param replier
+     * @param text
+     * @param replyPostId
+     * @param commodityId
+     * @return
+     */
     @GetMapping("/reply")
     @ResponseBody
     public JSONObject reply(@RequestParam("replier") Integer replier,
@@ -42,6 +66,11 @@ public class PostController {
         return postService.reply(replier, text, replyPostId, commodityId);
     }
 
+    /**
+     * 删除当前回复
+     * @param postId
+     * @return
+     */
     @PostMapping("/delete")
     @ResponseBody
     public JSONObject delete(@RequestParam("postId") Integer postId) {

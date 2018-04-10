@@ -13,6 +13,7 @@ CREATE TABLE user(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
   username VARCHAR(20) NOT NULL ,
   password VARCHAR(16) NOT NULL ,
+  sex TINYINT(1) COMMENT '0女 1男',
   name VARCHAR(16) NOT NULL ,
   phone VARCHAR(11) NOT NULL ,
   institute_id TINYINT NOT NULL ,
@@ -20,28 +21,29 @@ CREATE TABLE user(
   email VARCHAR(32) DEFAULT '',
   avatar VARCHAR(128) DEFAULT '',
   admin TINYINT(1) DEFAULT 0 COMMENT '1管理员 0普通用户',
+  time BIGINT COMMENT '注册时间',
   INDEX (id),
   FOREIGN KEY(institute_id) REFERENCES institute(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin) VALUE (
-    "admin","admin","admin","12345678911",1,"12345","123@qwq.com","??",1
+INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin, time) VALUE (
+    "admin","admin","admin","12345678911",1,"12345","123@qwq.com","??",1,UNIX_TIMESTAMP()
 );
-INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin) VALUE (
-  "user1","admin","admin","12345678911",1,"12345","123@qwq.com","??",0
+INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin, time) VALUE (
+  "user1","user1","user1","12345678911",1,"12345","123@qwq.com","??",0,UNIX_TIMESTAMP()
 );
 
 CREATE TABLE notice(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
   title VARCHAR(100) NOT NULL COMMENT '标题',
   text VARCHAR(1024) NOT NULL COMMENT '正文',
-  publisher INT NOT NULL COMMENT '发布人',
+  publisherName INT NOT NULL COMMENT '发布人',
   publish_time BIGINT NOT NULL COMMENT '发布时间',
-  INDEX (publisher,id),
-  FOREIGN KEY(publisher) REFERENCES user(id) ON DELETE CASCADE
+  INDEX (publisherName,id),
+  FOREIGN KEY(publisherName) REFERENCES user(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '新闻公告';
 
-INSERT INTO notice (title, text, publisher, publish_time) VALUES (
+INSERT INTO notice (title, text, publisherName, publish_time) VALUES (
     "测试新闻1","这是新闻1的正文如果还有梦就追mavcipromacbookpro泰国新加坡印度尼西亚",1,UNIX_TIMESTAMP()
 );
 
@@ -63,26 +65,28 @@ CREATE TABLE commodity (
   COMMENT '价格',
   classification INT                             NOT NULL
   COMMENT '类别',
-  publisher      INT                             NOT NULL
+  publisherName      INT                             NOT NULL
   COMMENT '发布人id',
   description    VARCHAR(1024)                   NOT NULL
   COMMENT '描述',
   images         VARCHAR(500) COMMENT '图片链接,分号隔开',
-  contacter      VARCHAR(30)                     NOT NULL
+  contact      VARCHAR(30)                     NOT NULL
   COMMENT '联系方式',
   status         TINYINT DEFAULT 0
   COMMENT '交易状态 0未开始 1谈价中 2已谈成 3交易完成',
+  browse         INT     DEFAULT 0
+  COMMENT '浏览数',
   time           BIGINT COMMENT '发布时间',
-  INDEX (id, publisher),
-  FOREIGN KEY(publisher) REFERENCES user(id) ON DELETE CASCADE ,
+  INDEX (id, publisherName),
+  FOREIGN KEY(publisherName) REFERENCES user(id) ON DELETE CASCADE ,
   FOREIGN KEY(classification) REFERENCES classification(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '商品发布表,算是帖子头';
 
-INSERT INTO commodity (title, price, classification, publisher, description, images, contacter, status, time) VALUES (
+INSERT INTO commodity (title, price, classification, publisherName, description, images, contact, status, time) VALUES (
   "测试商品1", 999, 1, 1, "如果还有梦就追", "", "t@mt.com", 0, UNIX_TIMESTAMP()
 );
 
-INSERT INTO commodity (title, price, classification, publisher, description, images, contacter, status, time) VALUES (
+INSERT INTO commodity (title, price, classification, publisherName, description, images, contact, status, time) VALUES (
   "测试商品2", 999, 1, 2, "如果还有梦就追", "", "t@mt.com", 0, UNIX_TIMESTAMP()
 );
 

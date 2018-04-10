@@ -47,7 +47,7 @@ public class CommodityController {
         if (Util.isEmpty(commodity.getTitle())) {
             return Util.constructResponse(0, "标题不能为空", "");
         }
-        if (Util.isEmpty(commodity.getContacter())) {
+        if (Util.isEmpty(commodity.getContact())) {
             return Util.constructResponse(0, "联系方式不能为空", "");
         }
         if (Util.isEmpty(commodity.getDescription())) {

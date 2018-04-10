@@ -9,9 +9,18 @@ public class Commodity {
     private Integer publisher;
     private String description;
     private String images;
-    private String contacter;
+    private String contact;
     private Integer status;
+    private Integer browse;
     private Long time;
+
+    public Integer getBrowse() {
+        return browse;
+    }
+
+    public void setBrowse(Integer browse) {
+        this.browse = browse;
+    }
 
     public Long getTime() {
         return time;
@@ -77,12 +86,12 @@ public class Commodity {
         this.images = images;
     }
 
-    public String getContacter() {
-        return contacter;
+    public String getContact() {
+        return contact;
     }
 
-    public void setContacter(String contacter) {
-        this.contacter = contacter;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public Integer getStatus() {

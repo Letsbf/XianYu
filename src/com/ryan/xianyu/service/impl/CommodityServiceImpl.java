@@ -1,6 +1,7 @@
 package com.ryan.xianyu.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
@@ -42,7 +43,7 @@ public class CommodityServiceImpl implements CommodityService {
         CommodityVo commodityVo = new CommodityVo();
 
         commodityVo.setTitle(commodity.getTitle());
-        commodityVo.setContacter(commodity.getContacter());
+        commodityVo.setContact(commodity.getContact());
         commodityVo.setDescription(commodity.getDescription());
         try {
             commodityVo.setImages(Util.readImages(commodity.getImages()));
@@ -53,12 +54,12 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setPrice(commodity.getPrice());
         commodityVo.setStatus(commodity.getStatus());
         commodityVo.setTime(commodity.getTime());
-        commodityVo.setPublisher(user.getUsername());
+        commodityVo.setPublisherName(user.getUsername());
 
         Integer total = postDao.countReply(commodityId);
 
         JSONObject jsonObject = (JSONObject) JSON.toJSON(commodityVo);
-        jsonObject.put("pages", total / pageSize);
+        jsonObject.put("pages", total / pageSize + 1);
         return Util.constructResponse(1, "获取商品详情成功", jsonObject);
     }
 
@@ -84,23 +85,50 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public JSONObject searchCommodity(String search, String institute, String classification) {
+    public JSONObject searchCommodity(String search, String institute, String classification, PageInfo pageInfo) {
         // TODO: 2018/4/10 SQL 注入
-        // TODO: 2018/4/10 分页
-//        if (Util.isEmpty(search)) {
-//            search = "";
-//        }
-//        if (Util.isEmpty(institute)) {
-//            if (Util.isEmpty(classification)) {
-//
-//            } else {
-//
-//            }
-//        }
-        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute);
+        logger.error("参数：pageSize:{},pageStart:{},search:{},institute:{},classification:{}",
+                pageInfo.getPageSize(), pageInfo.getStart(), search, institute, classification);
+        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute, pageInfo);
         logger.error("----------- l长度:{} -----------", l.size());
-        // TODO: 2018/4/10 搜索结果相关度排序
-        return Util.constructResponse(0, "失败", "");
+        return Util.constructResponse(0, "失败", JSONArray.toJSON(l));
+    }
+
+    @Override
+    public JSONObject getSearchPages(String search, String institute, String classification, Integer pageSize) {
+        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute, null);
+        if (l == null || l.size() == 0) {
+            return Util.constructResponse(0, "失败", "");
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pages", l.size() / pageSize + 1);
+        return Util.constructResponse(1, "获取分页数成功！", jsonObject);
+    }
+
+    @Override
+    public Integer getPagesByUserId(Integer userId, Integer pageSize) {
+        Integer i = commodityDao.getCommodityCountByUserId(userId);
+        logger.error("该用户:{}共发布了:{}个商品", userId, i);
+        if (i == null || i == 0) {
+            return 0;
+        }
+        return i / pageSize + 1;
+    }
+
+    /**
+     * 分页获取"已发布的商品"
+     * @param userId 用户ID
+     * @param pageInfo 分页信息
+     * @return list
+     */
+    @Override
+    public List<CommodityVo> getCommoditiesByUserId(Integer userId, PageInfo pageInfo) {
+        List<Commodity> commodityList = commodityDao.getCommoditiesByUserId(userId, pageInfo);
+        if (commodityList == null) {
+            return null;
+        }
+        List res = convertCommodityList2VoList(commodityList);
+        return res;
     }
 
     @Override
@@ -109,6 +137,11 @@ public class CommodityServiceImpl implements CommodityService {
         if (s == null) {
             return Util.constructResponse(0, "获取该分类下商品失败！", "");
         }
+        List<CommodityVo> res = convertCommodityList2VoList(s);
+        return Util.constructResponse(1, "获取成功", JSON.toJSON(res));
+    }
+
+    private List<CommodityVo> convertCommodityList2VoList(List<Commodity> s){
         StringBuilder sb = new StringBuilder();
         for (Commodity commodity : s) {
             sb.append(commodity.getPublisher()).append(",");
@@ -124,17 +157,25 @@ public class CommodityServiceImpl implements CommodityService {
 
         List res = new ArrayList<CommodityVo>();
         for (Commodity commodity : s) {
-            CommodityVo commodityVo = new CommodityVo();
-            commodityVo.setTitle(commodity.getTitle());
-            commodityVo.setContacter(commodity.getContacter());
-            commodityVo.setDescription(commodity.getDescription());
-            commodityVo.setImages(commodity.getImages());
-            commodityVo.setPrice(commodity.getPrice());
-            commodityVo.setStatus(commodity.getStatus());
-            commodityVo.setTime(commodity.getTime());
-            commodityVo.setPublisher((String) id2Name.get(commodity.getId()));
+            CommodityVo commodityVo = convertCommodity2Vo(commodity, id2Name);
             res.add(commodityVo);
         }
-        return Util.constructResponse(1, "获取成功", JSON.toJSON(res));
+        return res;
+    }
+
+    private CommodityVo convertCommodity2Vo(Commodity commodity,Map id2Name) {
+        CommodityVo commodityVo = new CommodityVo();
+        commodityVo.setId(commodity.getId());
+        commodityVo.setTitle(commodity.getTitle());
+        commodityVo.setContact(commodity.getContact());
+        commodityVo.setDescription(commodity.getDescription());
+        commodityVo.setImages(commodity.getImages());
+        commodityVo.setPrice(commodity.getPrice());
+        commodityVo.setStatus(commodity.getStatus());
+        commodityVo.setTime(commodity.getTime());
+        commodityVo.setPublisherName((String) id2Name.get(commodity.getId()));
+        commodityVo.setPublisherId(commodity.getPublisher());
+        commodityVo.setBrowse(commodity.getBrowse());
+        return commodityVo;
     }
 }

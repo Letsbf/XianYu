@@ -1,5 +1,6 @@
 package com.ryan.xianyu.dao.impl;
 
+import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.SQLFactory;
 import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.domain.Post;
@@ -21,9 +22,12 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public List<Post> selectReply(Integer commodityId) {
+    public List<Post> selectReply(Integer commodityId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
-        List<Post> ls = sqlSession.selectList("post.selectReply", commodityId);
+        Map params = new HashMap<String, Object>();
+        params.put("commodityId", commodityId);
+        params.put("pageInfo", pageInfo);
+        List<Post> ls = sqlSession.selectList("post.selectReply", params);
         return ls;
     }
 

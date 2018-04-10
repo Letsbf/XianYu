@@ -54,7 +54,7 @@ public class LoginAndRegisterController {
             return Util.constructResponse(0, "姓名长度不正确！", "");
         }
 
-        if (Util.isEmpty(user.getStuID()) || user.getStuID().length() > 20) {
+        if (Util.isEmpty(user.getStuId()) || user.getStuId().length() > 20) {
             return Util.constructResponse(0, "学号长度不正确！", "");
         }
 

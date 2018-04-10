@@ -17,6 +17,7 @@ public class IndexDaoImpl implements IndexDao {
     public Map<Integer,String> getInstitute() {
         SqlSession sqlSession = SQLFactory.getSession();
         Map s = sqlSession.selectMap("index.selectInstitute", "id");
+
         return s;
     }
 

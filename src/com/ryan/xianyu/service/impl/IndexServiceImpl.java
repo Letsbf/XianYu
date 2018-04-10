@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -33,12 +34,17 @@ public class IndexServiceImpl implements IndexService{
     private UserDao userDao;
 
     @Override
-    public JSONObject getInstitute() {
+    public Map<String, Object> getInstitute() {
         Map ins = indexDao.getInstitute();
         if (ins == null) {
-            return Util.constructResponse(0, "获取学院信息失败", "");
+            return null;
         }
-        return Util.constructResponse(1, "获取成功", new JSONObject(ins));
+        Map res = new HashMap<String, Object>();
+        for (Object o : ins.values()) {
+            Map m = (HashMap<String, Object>) o;
+            res.put(m.get("id"), m.get("name"));
+        }
+        return res;
     }
 
 
