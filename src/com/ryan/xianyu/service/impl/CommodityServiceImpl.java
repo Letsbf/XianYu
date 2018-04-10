@@ -44,7 +44,12 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setTitle(commodity.getTitle());
         commodityVo.setContacter(commodity.getContacter());
         commodityVo.setDescription(commodity.getDescription());
-        commodityVo.setImages(commodity.getImages());
+        try {
+            commodityVo.setImages(Util.readImages(commodity.getImages()));
+        } catch (Exception e) {
+            logger.error("读取图片失败！", e);
+            commodityVo.setImages("");
+        }
         commodityVo.setPrice(commodity.getPrice());
         commodityVo.setStatus(commodity.getStatus());
         commodityVo.setTime(commodity.getTime());
@@ -76,6 +81,26 @@ public class CommodityServiceImpl implements CommodityService {
             return Util.constructResponse(0, "发布失败！", "");
         }
         return Util.constructResponse(1, "发布成功！", "");
+    }
+
+    @Override
+    public JSONObject searchCommodity(String search, String institute, String classification) {
+        // TODO: 2018/4/10 SQL 注入
+        // TODO: 2018/4/10 分页
+//        if (Util.isEmpty(search)) {
+//            search = "";
+//        }
+//        if (Util.isEmpty(institute)) {
+//            if (Util.isEmpty(classification)) {
+//
+//            } else {
+//
+//            }
+//        }
+        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute);
+        logger.error("----------- l长度:{} -----------", l.size());
+        // TODO: 2018/4/10 搜索结果相关度排序
+        return Util.constructResponse(0, "失败", "");
     }
 
     @Override

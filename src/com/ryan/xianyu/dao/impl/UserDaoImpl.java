@@ -47,4 +47,11 @@ public class UserDaoImpl implements UserDao {
         Integer s = sqlSession.update("user.updateUser", user);
         return s;
     }
+
+    @Override
+    public Integer deleteUser(Integer userId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer s = sqlSession.delete("user.deleteUser", userId);
+        return s;
+    }
 }

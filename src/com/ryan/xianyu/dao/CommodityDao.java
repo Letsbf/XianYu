@@ -14,4 +14,6 @@ public interface CommodityDao {
     Integer publishCommodity(Commodity commodity);
 
     Integer insertImages(Commodity commodity);
+
+    List searchCommodity(String search, String classification, String instituteId);
 }

@@ -68,6 +68,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public JSONObject detail(Integer userId) {
         User user = userDao.selectById(userId);
+        try {
+            user.setAvatar(Util.readImages(user.getAvatar()));
+        } catch (Exception e) {
+            logger.error("获取头像失败", e);
+        }
         if (user == null) {
             return Util.constructResponse(0, "获取用户个人信息失败！", "");
         }
@@ -77,12 +82,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JSONObject update(User user) {
+        try {
+            Util.saveAvatar(user);
+        } catch (Exception e) {
+            logger.error("保存头像失败!userId:{}", user.getId(), e);
+            return Util.constructResponse(0, "更新失败！", "");
+        }
         Integer i = userDao.updateUser(user);
         if (i > 0) {
             return Util.constructResponse(1, "更新成功！", "");
         }
-
         return Util.constructResponse(0, "更新失败！", "");
+    }
+
+    @Override
+    public JSONObject deleteUser(Integer userId) {
+        Integer i = userDao.deleteUser(userId);
+        if (i > 0) {
+            return Util.constructResponse(1, "删除成功！", "");
+        }
+        return Util.constructResponse(0, "删除失败！", "");
     }
 
 }

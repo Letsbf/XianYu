@@ -51,6 +51,10 @@
             </if>
         </trim>
         where id = #{user.id};
-    
     </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM user WHERE id = #{id};
+    </delete>
+
 </mapper>

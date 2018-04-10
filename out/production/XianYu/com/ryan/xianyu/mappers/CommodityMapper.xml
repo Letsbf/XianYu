@@ -25,5 +25,25 @@
     <update id="insertImages" parameterType="com.ryan.xianyu.domain.Commodity">
         update commodity set images = #{images} where id = #{id};
     </update>
+
+    <select id="searchCommodity" parameterType="java.util.Map" resultType="com.ryan.xianyu.domain.Commodity">
+        SELECT * FROM commodity WHERE 1 = 1
+        <if test="#{search}!=null">
+            AND title LIKE (SELECT CONCAT('%',#{search},'%')) OR description LIKE (SELECT CONCAT('%',#{search},'%'))
+        </if>
+        <if test="#{classification}!=null">
+            AND classification in (SELECT CONCAT('(',#{classification},')'))
+        </if>
+        AND publisher IN
+        (SELECT id FROM user WHERE 1 = 1
+        <choose>
+            <when test="#{instituteId}!=null">
+                AND institute_id in (SELECT CONCAT('(',#{instituteId},')'))
+            </when>
+            <!--<otherwise>-->
+                <!---->
+            <!--</otherwise>-->
+        </choose>)
+    </select>
     
 </mapper>

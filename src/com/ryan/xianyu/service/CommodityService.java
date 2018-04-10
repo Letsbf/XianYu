@@ -11,4 +11,6 @@ public interface CommodityService {
     JSONObject getCommodityById(Integer id, Integer pageSize);
 
     JSONObject publishCommodity(Commodity commodity);
+
+    JSONObject searchCommodity(String search, String institute, String classification);
 }

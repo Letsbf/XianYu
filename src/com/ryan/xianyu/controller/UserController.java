@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/detail")
+    @PostMapping("/detail")
     @ResponseBody
     public JSONObject detail(@RequestParam("userId") Integer userId) {
 
@@ -27,10 +27,9 @@ public class UserController {
     }
 
 
-    @GetMapping("/update")
+    @PostMapping("/update")
     @ResponseBody
     public JSONObject update(@RequestBody User user) {
-        // TODO: 2018/4/6 上传头像
         if (user.getId() == null || user.getId() <= 0) {
             return Util.constructResponse(0, "用户id不正确", "");
         }
@@ -38,7 +37,16 @@ public class UserController {
         return userService.update(user);
     }
 
+    @PostMapping("/admin/deleteUser")
+    @ResponseBody
+    public JSONObject deleteUser(@RequestParam("userId") Integer userId) {
+        // TODO: 2018/4/10 删除者是否为管理员的校验
+        if (userId == null || userId <= 0) {
+            return Util.constructResponse(0, "用户id不正确", "");
+        }
 
+        return userService.deleteUser(userId);
+    }
 
 
 

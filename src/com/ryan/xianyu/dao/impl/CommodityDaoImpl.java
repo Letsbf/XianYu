@@ -46,4 +46,15 @@ public class CommodityDaoImpl implements CommodityDao {
         return i;
     }
 
+    @Override
+    public List searchCommodity(String search, String classification, String instituteId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map params = new HashMap<String, Object>();
+        params.put("search", search);
+        params.put("classification", classification);
+        params.put("instituteId", instituteId);
+        List<Commodity> l = sqlSession.selectList("commodity.searchCommodity", params);
+        return l;
+    }
+
 }

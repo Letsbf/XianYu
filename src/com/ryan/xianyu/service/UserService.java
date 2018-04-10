@@ -18,4 +18,6 @@ public interface UserService {
 
     JSONObject update(User user);
 
+    JSONObject deleteUser(Integer userId);
+
 }

@@ -82,14 +82,7 @@ public class LoginAndRegisterController {
             logger.error("session为空，未登录状态!");
             Util.constructResponse(1, "身份过期，已登出！", "");
         }
-//        Cookie[] cookies = request.getCookies();
-//        for (Cookie cookie : cookies) {
-//            if (cookie.getName().equals("sessionId")) {
-//                if (cookie.getValue().equals(session.getId())) {
-//
-//                }
-//            }
-//        }
+
         session.invalidate();
 
         return Util.constructResponse(1, "退出成功！", "");

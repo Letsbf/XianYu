@@ -31,14 +31,14 @@ public class CommodityController {
 
     @GetMapping("/detail")
     @ResponseBody
-    public JSONObject getCommodityById(@RequestParam("id") Integer id, @RequestParam("pageSize") Integer pageSize) {
-        if (id <= 0) {
+    public JSONObject getCommodityById(@RequestParam("id") Integer commodityId, @RequestParam("pageSize") Integer pageSize) {
+        if (commodityId <= 0) {
             return Util.constructResponse(0, "id不正确", "");
         }
         if (pageSize <= 0) {
             pageSize = 10;
         }
-        return commodityService.getCommodityById(id, pageSize);
+        return commodityService.getCommodityById(commodityId, pageSize);
     }
 
     @GetMapping("/publish")
