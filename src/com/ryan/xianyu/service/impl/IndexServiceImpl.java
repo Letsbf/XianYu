@@ -39,6 +39,7 @@ public class IndexServiceImpl implements IndexService{
         if (ins == null) {
             return null;
         }
+        //似乎不用转换 key就是id
         Map res = new HashMap<String, Object>();
         for (Object o : ins.values()) {
             Map m = (HashMap<String, Object>) o;

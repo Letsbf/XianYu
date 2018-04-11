@@ -127,7 +127,25 @@ public class CommodityServiceImpl implements CommodityService {
         if (commodityList == null) {
             return null;
         }
-        List res = convertCommodityList2VoList(commodityList);
+
+        List<CommodityVo> res = convertCommodityList2VoList(commodityList);
+
+        StringBuilder sb = new StringBuilder("");
+        for (CommodityVo re : res) {
+            sb.append(re.getId() + ",");
+        }
+        if (sb.length() == 0) {
+            return res;
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        String commodityIds = sb.toString();
+        Map cId2Rc = postDao.selectReplyByIds(commodityIds);
+
+        logger.error("cId2Rc:{}", cId2Rc);
+
+        for (CommodityVo re : res) {
+            re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
+        }
         return res;
     }
 
@@ -146,7 +164,9 @@ public class CommodityServiceImpl implements CommodityService {
         for (Commodity commodity : s) {
             sb.append(commodity.getPublisher()).append(",");
         }
-        sb.deleteCharAt(sb.length() - 1);
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
         String publisherIds = sb.toString();
 
         List<User> ls = userDao.selectByIds(publisherIds);

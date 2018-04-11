@@ -22,6 +22,13 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
+    public Map selectReplyByIds(String commodityIds) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map l = sqlSession.selectMap("post.selectReplyByIds", commodityIds,"commodity_id");
+        return l;
+    }
+
+    @Override
     public List<Post> selectReply(Integer commodityId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map params = new HashMap<String, Object>();

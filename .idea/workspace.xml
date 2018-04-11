@@ -2,48 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/vo/UserVo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/IndexController.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/IndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/CommodityDao.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/CommodityDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/CommodityService.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/CommodityService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/PostServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/PostServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/IndexController.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/IndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/CommodityDao.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/CommodityDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/CommodityService.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/CommodityService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/PostServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/PostServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/CommodityMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql" afterPath="$PROJECT_DIR$/sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/common/Util.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/common/Util.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/PostController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/PostController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/User.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/IndexMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/IndexMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/IndexService.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/IndexService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/PostService.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/PostService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -71,23 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommodityServiceImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CommodityServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="121" column="19" lean-forward="false" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
+            <state relative-caret-position="416">
+              <caret line="139" column="41" lean-forward="true" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,13 +49,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommodityService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java">
+      <file leaf-file-name="PostMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+            <state relative-caret-position="272">
+              <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1523429504234" expanded="true" signature="688:742" ph="SELECT * FRO... post" />
+                <marker date="1523429504234" expanded="true" signature="688:760" ph="SELECT * FRO... post" />
+                <marker date="1523429504234" expanded="true" signature="987:1133" ph="insert into post... " />
+                <marker date="1523429504234" expanded="true" signature="1222:1255" ph="DELETE FROM " />
+                <marker date="1523429504234" expanded="true" signature="1373:1425" ph="SELECT count... post" />
+                <marker date="1523429504234" expanded="true" signature="1544:1644" ph="SELECT commo... post" />
+                <marker date="1523429504234" expanded="true" signature="1606:1621" ph="SELECT CONCA... " />
               </folding>
             </state>
           </provider>
@@ -133,8 +93,8 @@
       <find>toString</find>
       <find>todo</find>
       <find>selectById</find>
-      <find>------</find>
       <find>publisher</find>
+      <find>------</find>
       <find>学院</find>
     </findStrings>
   </component>
@@ -175,9 +135,6 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/PostService.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/PostController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/common/Util.java" />
@@ -186,19 +143,22 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/IndexService.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/UserVo.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" />
-        <option value="$PROJECT_DIR$/sql" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" />
+        <option value="$PROJECT_DIR$/sql" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
       </list>
     </option>
@@ -1076,12 +1036,12 @@
       <updated>1522379096340</updated>
       <workItem from="1522379098976" duration="20917000" />
       <workItem from="1522516975137" duration="46867000" />
-      <workItem from="1523112570687" duration="29411000" />
+      <workItem from="1523112570687" duration="32904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97195000" />
+    <option name="totallyTimeSpent" value="100688000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1116,7 +1076,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24578314" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.413253" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21745351" sideWeight="0.49107143" order="7" side_tool="false" content_ui="combo" />
@@ -1146,14 +1106,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/util/Base64.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="259" column="22" lean-forward="false" selection-start-line="259" selection-start-column="22" selection-end-line="259" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/XianYu.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1329,28 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <marker date="1523372481184" expanded="true" signature="688:742" ph="SELECT * FRO... post" />
-            <marker date="1523372481184" expanded="true" signature="688:760" ph="SELECT * FRO... post" />
-            <marker date="1523372481184" expanded="true" signature="987:1133" ph="insert into post... " />
-            <marker date="1523372481184" expanded="true" signature="1222:1255" ph="DELETE FROM " />
-            <marker date="1523372481184" expanded="true" signature="1373:1425" ph="SELECT count... post" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -1364,7 +1294,7 @@
         <state relative-caret-position="85">
           <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1376,14 +1306,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1427,22 +1349,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="51" column="22" lean-forward="false" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/IndexService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1468,16 +1374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/vo/UserVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1494,29 +1390,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="103" column="29" lean-forward="false" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="25" column="34" lean-forward="true" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding>
-            <marker date="1523381018134" expanded="true" signature="312:461" ph="SELECT * FRO... commodity" />
-            <marker date="1523381018134" expanded="true" signature="594:634" ph="SELECT * FRO... commodity" />
-            <marker date="1523381018134" expanded="true" signature="1241:1295" ph="SELECT COUNT... commodity" />
-            <marker date="1523381018134" expanded="true" signature="1436:1532" ph="SELECT * FRO... commodity" />
-            <marker date="1523381018134" expanded="true" signature="1645:1701" ph="update commo... " />
-            <marker date="1523381018134" expanded="true" signature="1936:1968" ph="SELECT CONCA... " />
-            <marker date="1523381018134" expanded="true" signature="1991:2023" ph="SELECT CONCA... " />
-            <marker date="1523381018134" expanded="true" signature="2118:2158" ph="SELECT CONCA... " />
-            <marker date="1523381018134" expanded="true" signature="2345:2382" ph="SELECT CONCA... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1536,21 +1414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#436#437#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1567,21 +1430,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="72" column="47" lean-forward="false" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
+        <state relative-caret-position="181">
+          <caret line="1566" column="34" lean-forward="true" selection-start-line="1566" selection-start-column="34" selection-end-line="1566" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="121" column="19" lean-forward="false" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
+        <state relative-caret-position="275">
+          <caret line="90" column="2" lean-forward="true" selection-start-line="90" selection-start-column="2" selection-end-line="90" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/IndexServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="38" column="26" lean-forward="true" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,10 +1482,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="136">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="26" column="36" lean-forward="true" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/vo/CommodityVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+          <folding>
+            <marker date="1523429504234" expanded="true" signature="688:742" ph="SELECT * FRO... post" />
+            <marker date="1523429504234" expanded="true" signature="688:760" ph="SELECT * FRO... post" />
+            <marker date="1523429504234" expanded="true" signature="987:1133" ph="insert into post... " />
+            <marker date="1523429504234" expanded="true" signature="1222:1255" ph="DELETE FROM " />
+            <marker date="1523429504234" expanded="true" signature="1373:1425" ph="SELECT count... post" />
+            <marker date="1523429504234" expanded="true" signature="1544:1644" ph="SELECT commo... post" />
+            <marker date="1523429504234" expanded="true" signature="1606:1621" ph="SELECT CONCA... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="139" column="41" lean-forward="true" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

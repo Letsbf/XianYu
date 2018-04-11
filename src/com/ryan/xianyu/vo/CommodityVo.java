@@ -12,7 +12,16 @@ public class CommodityVo {
     private String contact;
     private Integer status;
     private Integer browse;
+    private Integer reply;
     private Long time;
+
+    public Integer getReply() {
+        return reply;
+    }
+
+    public void setReply(Integer reply) {
+        this.reply = reply;
+    }
 
     public Integer getPublisherId() {
         return publisherId;

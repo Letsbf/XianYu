@@ -72,7 +72,7 @@ public class UserController {
      * @param pageStart 页面开始位置
      * @return json
      */
-    @PostMapping("/myPublish")
+    @GetMapping("/myPublish")
     @ResponseBody
     public JSONObject myPublish(@RequestParam("userId") Integer userId,
                                 @RequestParam("pageSize") Integer pageSize,

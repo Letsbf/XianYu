@@ -106,6 +106,10 @@ INSERT INTO post (text, replier, reply_post_id, time, commodity_id) VALUES (
   "测试帖子1的测试回复1", 1, 0, UNIX_TIMESTAMP(), 1
 );
 
+INSERT INTO post (text, replier, reply_post_id, time, commodity_id) VALUES (
+  "测试帖子2的测试回复1", 1, 0, UNIX_TIMESTAMP(), 2
+);
+
 #?
 CREATE TABLE deal(
   id INT PRIMARY KEY  AUTO_INCREMENT NOT NULL ,

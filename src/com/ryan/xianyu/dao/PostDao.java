@@ -4,6 +4,7 @@ import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.domain.Post;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PostDao {
 
@@ -15,4 +16,6 @@ public interface PostDao {
     Integer deleteReply(Integer postId);
 
     Integer countReply(Integer commodityId);
+
+    Map selectReplyByIds(String commodityIds);
 }
