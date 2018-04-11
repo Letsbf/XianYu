@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/filter/CorsFilter.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/filter/CorsFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +42,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CorsFilter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CorsFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/filter/CorsFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="221">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginAndRegisterController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -141,7 +161,6 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/IndexService.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/UserVo.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java" />
@@ -157,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/filter/CorsFilter.java" />
       </list>
     </option>
@@ -1056,12 +1076,12 @@
       <updated>1522379096340</updated>
       <workItem from="1522379098976" duration="20917000" />
       <workItem from="1522516975137" duration="46867000" />
-      <workItem from="1523112570687" duration="33572000" />
+      <workItem from="1523112570687" duration="34972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101356000" />
+    <option name="totallyTimeSpent" value="102756000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1337,14 +1357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="52" column="54" lean-forward="true" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -1446,14 +1458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="90" column="2" lean-forward="true" selection-start-line="90" selection-start-column="2" selection-end-line="90" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1570,8 +1574,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/filter/CorsFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="221">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
           <folding />
         </state>
       </provider>

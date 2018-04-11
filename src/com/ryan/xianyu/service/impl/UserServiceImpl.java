@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
         logger.info("用户 {} 登陆成功", user.getUsername());
 
-        return Util.constructResponse(1, "登录成功", data.toJSONString());
+        return Util.constructResponse(1, "登录成功", data);
     }
 
 
