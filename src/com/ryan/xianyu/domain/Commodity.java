@@ -14,6 +14,30 @@ public class Commodity {
     private Integer browse;
     private Long time;
 
+    public Commodity() {
+    }
+
+    public Commodity(Integer id, String title, Float price, Integer classification, Integer publisher, String description, String images, String contact) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.classification = classification;
+        this.publisher = publisher;
+        this.description = description;
+        this.images = images;
+        this.contact = contact;
+    }
+
+    public Commodity(String title, Float price, Integer classification, Integer publisher, String description, String images, String contact) {
+        this.title = title;
+        this.price = price;
+        this.classification = classification;
+        this.publisher = publisher;
+        this.description = description;
+        this.images = images;
+        this.contact = contact;
+    }
+
     public Integer getBrowse() {
         return browse;
     }

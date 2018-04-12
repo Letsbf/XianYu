@@ -39,13 +39,13 @@ CREATE TABLE notice(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
   title VARCHAR(100) NOT NULL COMMENT '标题',
   text VARCHAR(1024) NOT NULL COMMENT '正文',
-  publisherName INT NOT NULL COMMENT '发布人',
+  publisher INT NOT NULL COMMENT '发布人',
   publish_time BIGINT NOT NULL COMMENT '发布时间',
-  INDEX (publisherName,id),
-  FOREIGN KEY(publisherName) REFERENCES user(id) ON DELETE CASCADE
+  INDEX (publisher,id),
+  FOREIGN KEY(publisher) REFERENCES user(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '新闻公告';
 
-INSERT INTO notice (title, text, publisherName, publish_time) VALUES (
+INSERT INTO notice (title, text, publisher, publish_time) VALUES (
     "测试新闻1","这是新闻1的正文如果还有梦就追mavcipromacbookpro泰国新加坡印度尼西亚",1,UNIX_TIMESTAMP()
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE commodity (
   COMMENT '价格',
   classification INT                             NOT NULL
   COMMENT '类别',
-  publisherName      INT                             NOT NULL
+  publisher  INT                             NOT NULL
   COMMENT '发布人id',
   description    VARCHAR(1024)                   NOT NULL
   COMMENT '描述',
@@ -79,16 +79,16 @@ CREATE TABLE commodity (
   browse         INT     DEFAULT 0
   COMMENT '浏览数',
   time           BIGINT COMMENT '发布时间',
-  INDEX (id, publisherName),
-  FOREIGN KEY(publisherName) REFERENCES user(id) ON DELETE CASCADE ,
+  INDEX (id, publisher),
+  FOREIGN KEY(publisher) REFERENCES user(id) ON DELETE CASCADE ,
   FOREIGN KEY(classification) REFERENCES classification(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '商品发布表,算是帖子头';
 
-INSERT INTO commodity (title, price, classification, publisherName, description, images, contact, status, time) VALUES (
+INSERT INTO commodity (title, price, classification, publisher, description, images, contact, status, time) VALUES (
   "测试商品1", 999, 1, 1, "如果还有梦就追", "", "t@mt.com", 0, UNIX_TIMESTAMP()
 );
 
-INSERT INTO commodity (title, price, classification, publisherName, description, images, contact, status, time) VALUES (
+INSERT INTO commodity (title, price, classification, publisher, description, images, contact, status, time) VALUES (
   "测试商品2", 999, 1, 2, "如果还有梦就追", "", "t@mt.com", 0, UNIX_TIMESTAMP()
 );
 

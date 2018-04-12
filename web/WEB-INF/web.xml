@@ -21,7 +21,11 @@
 
     <filter-mapping>
         <filter-name>UserFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/commodity/publish</url-pattern>
+        <url-pattern>/commodity/purchase</url-pattern>
+        <url-pattern>/post/reply</url-pattern>
+        <url-pattern>/post/delete</url-pattern>
+        <url-pattern>/user/*</url-pattern>
     </filter-mapping>
 
 

@@ -30,7 +30,7 @@ public class CommodityController {
         return commodityService.getCommodities(classificationId, pageInfo);
     }
 
-    @GetMapping("/detail")
+    @PostMapping("/detail")
     @ResponseBody
     public JSONObject getCommodityById(@RequestParam("id") Integer commodityId, @RequestParam("pageSize") Integer pageSize) {
         if (commodityId <= 0) {
@@ -42,31 +42,81 @@ public class CommodityController {
         return commodityService.getCommodityById(commodityId, pageSize);
     }
 
-    @GetMapping("/publish")
+    /**
+     * 发布一个商品
+     * @param title 标题
+     * @param contact 联系方式
+     * @param description 描述
+     * @param images 图片 base64编码 英文分号隔开
+     * @param classification 分类对应的id
+     * @param price 价格 数字
+     * @param publisherId 发布人id 数字
+     * @return json
+     */
+    @PostMapping("/publish")
     @ResponseBody
-    public JSONObject publishCommodity(@RequestBody Commodity commodity) {
-        if (Util.isEmpty(commodity.getTitle())) {
+    public JSONObject publishCommodity(@RequestParam("title") String title, @RequestParam("contact") String contact,
+                                       @RequestParam("description") String description, @RequestParam("images") String images,
+                                       @RequestParam("classification") Integer classification, @RequestParam("price") Float price,
+                                       @RequestParam("publisherId") Integer publisherId) {
+        if (Util.isEmpty(title)) {
             return Util.constructResponse(0, "标题不能为空", "");
         }
-        if (Util.isEmpty(commodity.getContact())) {
+        if (Util.isEmpty(contact)) {
             return Util.constructResponse(0, "联系方式不能为空", "");
         }
-        if (Util.isEmpty(commodity.getDescription())) {
+        if (Util.isEmpty(description)) {
             return Util.constructResponse(0, "描述信息不能为空", "");
         }
-        if (Util.isEmpty(commodity.getImages())) {
+        if (Util.isEmpty(images)) {
             return Util.constructResponse(0, "至少要上传一张图片", 0);
         }
-        if (commodity.getClassification() == null || commodity.getClassification() <= 0) {
+        if (classification == null || classification <= 0) {
             return Util.constructResponse(0, "商品类别不能为空", "");
         }
-        if (commodity.getPrice() == null || commodity.getPrice() <= 0) {
+        if (price == null || price <= 0) {
             return Util.constructResponse(0, "商品价格不能为空", "");
         }
-        if (commodity.getPublisher() == null || commodity.getPublisher() <= 0) {
+        if (publisherId == null || publisherId <= 0) {
             return Util.constructResponse(0, "用户状态错误", "");
         }
+        Commodity commodity = new Commodity(title, price, classification, publisherId, description, images, contact);
         return commodityService.publishCommodity(commodity);
+    }
+
+    @PostMapping("/modify")
+    @ResponseBody
+    public JSONObject modifyCommodity(@RequestParam("commodityId") Integer commodityId,
+                                      @RequestParam("title") String title, @RequestParam("contact") String contact,
+                                      @RequestParam("description") String description, @RequestParam("images") String images,
+                                      @RequestParam("classification") Integer classification, @RequestParam("price") Float price,
+                                      @RequestParam("publisherId") Integer publisherId) {
+        if (commodityId == null || commodityId <= 0) {
+            return Util.constructResponse(0, "商品ID不能为空", "");
+        }
+        if (Util.isEmpty(title)) {
+            return Util.constructResponse(0, "标题不能为空", "");
+        }
+        if (Util.isEmpty(contact)) {
+            return Util.constructResponse(0, "联系方式不能为空", "");
+        }
+        if (Util.isEmpty(description)) {
+            return Util.constructResponse(0, "描述信息不能为空", "");
+        }
+        if (Util.isEmpty(images)) {
+            return Util.constructResponse(0, "至少要上传一张图片", 0);
+        }
+        if (classification == null || classification <= 0) {
+            return Util.constructResponse(0, "商品类别不能为空", "");
+        }
+        if (price == null || price <= 0) {
+            return Util.constructResponse(0, "商品价格不能为空", "");
+        }
+        if (publisherId == null || publisherId <= 0) {
+            return Util.constructResponse(0, "用户状态错误", "");
+        }
+        Commodity commodity = new Commodity(commodityId, title, price, classification, publisherId, description, images, contact);
+        return commodityService.modifyCommodity(commodity);
     }
 
     /**

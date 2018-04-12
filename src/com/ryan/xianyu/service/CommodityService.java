@@ -30,4 +30,6 @@ public interface CommodityService {
     List<CommodityVo> getCommoditiesByUserId(Integer userId, PageInfo pageInfo);
 
     JSONObject purchaseCommodity(Integer purchaserId, Integer commodityId);
+
+    JSONObject modifyCommodity(Commodity commodity);
 }

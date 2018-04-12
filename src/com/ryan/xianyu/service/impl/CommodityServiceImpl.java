@@ -72,13 +72,16 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public JSONObject publishCommodity(Commodity commodity) {
-        // TODO: 2018/4/8 发布人id校验
-        String images = commodity.getImages();
-        Integer id = commodityDao.publishCommodity(commodity);
-        if (id <= 0) {
+        Integer userId = commodity.getPublisher();
+        User user = userDao.selectById(userId);
+        if (user == null) {
+            return Util.constructResponse(0, "用户不存在", "");
+        }
+        Integer s = commodityDao.publishCommodity(commodity);
+        if (s <= 0) {
             return Util.constructResponse(0, "发布失败！", "");
         }
-        commodity.setId(id);
+        logger.error("last insert id:{}------", commodity.getId());
         try {
             Util.saveImages(commodity);
         } catch (Exception e) {
@@ -93,7 +96,6 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public JSONObject searchCommodity(String search, String institute, String classification, PageInfo pageInfo) {
-        // TODO: 2018/4/10 SQL 注入
         logger.error("参数：pageSize:{},pageStart:{},search:{},institute:{},classification:{}",
                 pageInfo.getPageSize(), pageInfo.getStart(), search, institute, classification);
         List<Commodity> l = commodityDao.searchCommodity(search, classification, institute, pageInfo);
@@ -178,6 +180,12 @@ public class CommodityServiceImpl implements CommodityService {
             dealDao.deleteDeal(purchaserId, commodityId);
         }
         return Util.constructResponse(1, "够买成功", "");
+    }
+
+    @Override
+    public JSONObject modifyCommodity(Commodity commodity) {
+
+        return null;
     }
 
     @Override

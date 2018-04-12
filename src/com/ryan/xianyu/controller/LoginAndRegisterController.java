@@ -109,12 +109,6 @@ public class LoginAndRegisterController {
         }
 
         session.invalidate();
-
         return Util.constructResponse(1, "退出成功！", "");
-    }
-
-
-    public static void main(String[] args) {
-        System.out.println("汉字".length());
     }
 }
