@@ -107,17 +107,18 @@ public class Util {
 
 
     public static void main(String[] args) {
+        System.out.println(isPhoneNum("17611173306"));
 
-        try {
-            Commodity commodity = new Commodity();
-            commodity.setId(123);
-            commodity.setPublisher(456);
-            commodity.setImages(new String(Base64.getEncoder().encode(new String("eedskjdhaksdkashdjkashjkdahskjdhaksjdhkasj").getBytes())));
-            saveImages(commodity);
-            readImages(commodity.getImages());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Commodity commodity = new Commodity();
+//            commodity.setId(123);
+//            commodity.setPublisher(456);
+//            commodity.setImages(new String(Base64.getEncoder().encode(new String("eedskjdhaksdkashdjkashjkdahskjdhaksjdhkasj").getBytes())));
+//            saveImages(commodity);
+//            readImages(commodity.getImages());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        User user = new User();
 //        user.setAvatar("blablablablabl");

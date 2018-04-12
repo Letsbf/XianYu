@@ -35,9 +35,9 @@
 
     <insert id="insertNewUser" useGeneratedKeys="true" parameterType="User">
         INSERT INTO
-        user(username, password, name, phone, institute_id, stu_id, email, admin)
-        VALUE (#{user.username},#{user.password},#{user.name},#{user.phone},
-        #{user.instituteId},#{user.stuId},#{user.email}, 0);
+        user(username, password, name, phone, institute_id, stu_id, email, admin, sex, time)
+        VALUE (#{username},#{password},#{name},#{phone},
+        #{instituteId},#{stuId},#{email}, 0,#{sex},UNIX_TIMESTAMP());
     </insert>
 
     <update id="updateUser" parameterType="User">

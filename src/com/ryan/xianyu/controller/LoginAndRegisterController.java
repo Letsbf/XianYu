@@ -24,6 +24,15 @@ public class LoginAndRegisterController {
 
 
     // TODO: 2018/4/11 读消息的请求
+
+    /**
+     * 登录
+     * @param username 用户名
+     * @param password 密码
+     * @param httpServletRequest req
+     * @param httpServletResponse res
+     * @return json
+     */
     @PostMapping("/login")
     @ResponseBody
     public JSONObject login(@RequestParam("username") String username, @RequestParam("password") String password,
@@ -41,35 +50,44 @@ public class LoginAndRegisterController {
 
     @PostMapping("/register")
     @ResponseBody
-    public JSONObject register(@RequestBody User user) {
-        if (Util.isEmpty(user.getUsername()) || user.getUsername().length() > 20) {
+    public JSONObject register(@RequestParam("username") String userName, @RequestParam("password") String password,
+                               @RequestParam("name") String name, @RequestParam("stuId") String stuId,
+                               @RequestParam("phone") String phone, @RequestParam("instituteId") Integer instituteId,
+                               @RequestParam("sex") Integer sex, @RequestParam("email") String email) {
+
+        if (Util.isEmpty(userName) || userName.length() > 20) {
             return Util.constructResponse(0, "用户名长度不正确！", "");
         }
 
-        if (Util.isEmpty(user.getPassword()) || user.getPassword().length() > 16) {
+        if (Util.isEmpty(password) || password.length() > 16) {
             return Util.constructResponse(0, "密码长度不正确！", "");
         }
 
-        if (Util.isEmpty(user.getName()) || user.getName().length() > 16) {
+        if (Util.isEmpty(name) || name.length() > 16) {
             return Util.constructResponse(0, "姓名长度不正确！", "");
         }
 
-        if (Util.isEmpty(user.getStuId()) || user.getStuId().length() > 20) {
+        if (Util.isEmpty(stuId) || stuId.length() > 20) {
             return Util.constructResponse(0, "学号长度不正确！", "");
         }
 
-        if (Util.isPhoneNum(user.getPhone())) {
+        if (!Util.isPhoneNum(phone)) {
             return Util.constructResponse(0, "手机号不正确！", "");
         }
 
-        if (user.getInstituteId() <= 0) {
+        if (instituteId <= 0) {
             return Util.constructResponse(0, "学院不正确！", "");
         }
 
-        if (Util.isEmpty(user.getEmail())) {
-            user.setEmail("");
+        if (Util.isEmpty(email)) {
+            email = "";
         }
 
+        if (sex != 0 && sex != 1) {
+            sex = 0;
+        }
+
+        User user = new User(userName, password, name, phone, sex, instituteId, stuId, email);
         return userService.register(user);
     }
 

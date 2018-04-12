@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
             JSONObject data = new JSONObject();
             data.put("username", user.getUsername());
             logger.info("用户 {} 注册成功", user.getUsername());
-            return Util.constructResponse(1, "注册成功！", data.toJSONString());
+            return Util.constructResponse(1, "注册成功！", data);
         }
 
         return Util.constructResponse(0, "注册失败！", "");

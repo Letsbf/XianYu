@@ -32,6 +32,20 @@ public class User {
 
     private Long time;
 
+    public User() {
+    }
+
+    public User(String username, String password, String name, String phone, Integer sex, Integer instituteId, String stuId, String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.sex = sex;
+        this.instituteId = instituteId;
+        this.stuId = stuId;
+        this.email = email;
+    }
+
     public Long getTime() {
         return time;
     }
