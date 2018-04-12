@@ -24,7 +24,7 @@ public class LoginAndRegisterController {
 
 
     // TODO: 2018/4/11 读消息的请求
-    @GetMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     public JSONObject login(@RequestParam("username") String username, @RequestParam("password") String password,
                             HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {

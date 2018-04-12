@@ -2,67 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/DealDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/NoticeDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/DealDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/NoticeDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Deal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/filter/UserFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/DealMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/NoticeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/CommodityController.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/CommodityController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/LoginAndRegisterController.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/LoginAndRegisterController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/UserController.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/CommodityDao.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/CommodityDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/UserDao.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/UserDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/CommodityService.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/CommodityService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/UserService.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/UserServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/CommodityController.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/CommodityController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/LoginAndRegisterController.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/LoginAndRegisterController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/UserController.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/CommodityDao.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/CommodityDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/UserDao.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/UserDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/CommodityService.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/CommodityService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/UserService.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/UserServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/config/mybatis.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/config/mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/IndexMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/IndexMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/mappers/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/config/mybatis.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/config/mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/IndexMapper.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/IndexMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/mappers/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql" afterPath="$PROJECT_DIR$/sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/config/mybatis.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/config/mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/config/springmvc.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/config/springmvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/PostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Post.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Post.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/IndexMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/IndexMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/UserService.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,8 +32,8 @@
       <file leaf-file-name="LoginAndRegisterController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="-85">
+              <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,8 +44,8 @@
       <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="76" column="37" lean-forward="false" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+            <state relative-caret-position="258">
+              <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1167,12 +1107,12 @@
       <updated>1522379096340</updated>
       <workItem from="1522379098976" duration="20917000" />
       <workItem from="1522516975137" duration="46867000" />
-      <workItem from="1523112570687" duration="51141000" />
+      <workItem from="1523112570687" duration="51300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118925000" />
+    <option name="totallyTimeSpent" value="119084000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1207,7 +1147,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3939759" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3939759" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21745351" sideWeight="0.48425198" order="0" side_tool="false" content_ui="combo" />
@@ -1675,16 +1615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="76" column="37" lean-forward="false" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PostMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1708,10 +1638,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/LoginAndRegisterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="-85">
+          <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
