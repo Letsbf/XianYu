@@ -136,11 +136,6 @@ public class UserServiceImpl implements UserService {
         userVo.setStuID(user.getStuId());
         userVo.setUsername(user.getUsername());
 
-        if (user.getSex() == null) {
-            userVo.setSex("未知");
-        } else {
-            userVo.setSex(user.getSex() == 1 ? "男" : "女");
-        }
 
         Map l = indexService.getInstitute();
         if (l != null && l.containsKey(user.getInstituteId())) {

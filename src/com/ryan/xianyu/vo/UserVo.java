@@ -10,8 +10,6 @@ public class UserVo {
 
     private String phone;
 
-    private String sex;
-
     private String institute;
 
     private String stuID;
@@ -62,14 +60,6 @@ public class UserVo {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public String getInstitute() {

@@ -10,7 +10,6 @@
         <result column="username" property="username"/>
         <result column="password" property="password"/>
         <result column="institute_id" property="instituteId"/>
-        <result column="sex" property="sex"/>
         <result column="stu_id" property="stuId"/>
         <result column="name" property="name"/>
         <result column="time" property="time"/>
@@ -35,9 +34,9 @@
 
     <insert id="insertNewUser" useGeneratedKeys="true" parameterType="User">
         INSERT INTO
-        user(username, password, name, phone, institute_id, stu_id, email, admin, sex, time)
+        user(username, password, name, phone, institute_id, stu_id, email, admin, time)
         VALUE (#{username},#{password},#{name},#{phone},
-        #{instituteId},#{stuId},#{email}, 0,#{sex},UNIX_TIMESTAMP());
+        #{instituteId},#{stuId},#{email}, 0, UNIX_TIMESTAMP());
     </insert>
 
     <update id="updateUser" parameterType="User">

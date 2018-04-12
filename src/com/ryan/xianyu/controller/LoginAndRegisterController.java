@@ -48,12 +48,23 @@ public class LoginAndRegisterController {
         return userService.login(username, password, httpServletRequest, httpServletResponse);
     }
 
+    /**
+     * 注册
+     * @param userName 用户名
+     * @param password 密码
+     * @param name 姓名
+     * @param stuId 学号
+     * @param phone 手机号
+     * @param instituteId 学院ID
+     * @param email 邮件
+     * @return json
+     */
     @PostMapping("/register")
     @ResponseBody
     public JSONObject register(@RequestParam("username") String userName, @RequestParam("password") String password,
                                @RequestParam("name") String name, @RequestParam("stuId") String stuId,
                                @RequestParam("phone") String phone, @RequestParam("instituteId") Integer instituteId,
-                               @RequestParam("sex") Integer sex, @RequestParam("email") String email) {
+                               @RequestParam("email") String email) {
 
         if (Util.isEmpty(userName) || userName.length() > 20) {
             return Util.constructResponse(0, "用户名长度不正确！", "");
@@ -83,11 +94,7 @@ public class LoginAndRegisterController {
             email = "";
         }
 
-        if (sex != 0 && sex != 1) {
-            sex = 0;
-        }
-
-        User user = new User(userName, password, name, phone, sex, instituteId, stuId, email);
+        User user = new User(userName, password, name, phone, instituteId, stuId, email);
         return userService.register(user);
     }
 
