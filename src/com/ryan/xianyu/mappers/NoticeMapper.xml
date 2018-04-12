@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+    <resultMap id="notice" type="com.ryan.xianyu.domain.Notice">
+        <result column="publish_time" property="publishTime"/>
+        <result column="title" property="title"/>
+        <result column="text" property="text"/>
+        <result column="publisher" property="publisher"/>
+        <result column="id" property="id"/>
+    </resultMap>
+
+    <insert id="insertNotice" parameterType="java.util.Map" useGeneratedKeys="true">
+        INSERT INTO notice(title,text,publisher,publish_time) VALUE (#{title},#{text},#{publisherId},UNIX_TIMESTAMP())
+    </insert>
+
+    <delete id="deleteNotice" parameterType="java.lang.Integer">
+        DELETE FROM notice WHERE id = #{id}
+    </delete>
+</mapper>

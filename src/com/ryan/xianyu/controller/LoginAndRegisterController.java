@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +23,8 @@ public class LoginAndRegisterController {
     private UserService userService;
 
 
-    @PostMapping("/login")
+    // TODO: 2018/4/11 读消息的请求
+    @GetMapping("/login")
     @ResponseBody
     public JSONObject login(@RequestParam("username") String username, @RequestParam("password") String password,
                             HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
@@ -80,7 +80,7 @@ public class LoginAndRegisterController {
         HttpSession session = request.getSession();
         if (session == null || session.isNew() || session.getAttribute("user") != null) {
             logger.error("session为空，未登录状态!");
-            Util.constructResponse(1, "身份过期，已登出！", "");
+            return Util.constructResponse(1, "身份过期，已登出！", "");
         }
 
         session.invalidate();

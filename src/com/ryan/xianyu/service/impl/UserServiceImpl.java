@@ -1,10 +1,15 @@
 package com.ryan.xianyu.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
-import com.ryan.xianyu.dao.IndexDao;
+import com.ryan.xianyu.dao.CommodityDao;
+import com.ryan.xianyu.dao.NoticeDao;
+import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.dao.UserDao;
+import com.ryan.xianyu.domain.Commodity;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.IndexService;
 import com.ryan.xianyu.service.UserService;
@@ -15,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.*;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -27,6 +33,16 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private IndexService indexService;
+
+    @Autowired
+    private NoticeDao noticeDao;
+
+    @Autowired
+    private CommodityDao commodityDao;
+
+    @Autowired
+    private PostDao postDao;
+
 
     @Override
     public JSONObject login(String username, String password, HttpServletRequest request, HttpServletResponse response) {
@@ -47,6 +63,22 @@ public class UserServiceImpl implements UserService {
         data.put("username", user.getUsername());
         data.put("id", user.getId());
         data.put("sessionId", session.getId());
+
+        Integer userId = user.getId();
+        List<Commodity> l = commodityDao.getCommoditiesByUserId(userId, null);
+        StringBuilder sb = new StringBuilder();
+        for (Commodity commodity : l) {
+            sb.append(commodity.getId() + ",");
+        }
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        logger.warn("userId:{},commodityIds:{}", userId, sb.toString());
+        Integer unread = postDao.countUnread(sb.toString());
+        if (unread == null) {
+            unread = 0;
+        }
+        data.put("unread", unread);
 
         logger.info("用户 {} 登陆成功", user.getUsername());
 
@@ -143,6 +175,57 @@ public class UserServiceImpl implements UserService {
             return Util.constructResponse(1, "删除成功！", "");
         }
         return Util.constructResponse(0, "删除失败！", "");
+    }
+
+    @Override
+    public JSONObject modifyPw(Integer userId, String oldPw, String newPw) {
+        Integer res = userDao.updatePw(userId, oldPw, newPw);
+
+        if (res <= 0) {
+            return Util.constructResponse(0, "更新账户密码失败！", "");
+        }
+
+        return Util.constructResponse(1, "更新成功！", "");
+    }
+
+    @Override
+    public JSONObject totalUsers(Integer pageSize) {
+        Integer i = userDao.totalUsers();
+        if (i == null) {
+            return Util.constructResponse(0, "获取用户总数失败！", "");
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pages", i / pageSize + 1);
+        return Util.constructResponse(1, "获取用户总数成功", jsonObject);
+    }
+
+    @Override
+    public JSONObject obtainAllUsers(PageInfo pageInfo) {
+        List l = userDao.selectAllByPage(pageInfo);
+        if (l == null || l.size() == 0) {
+            return Util.constructResponse(0, "获取用户列表失败", "");
+        }
+        return Util.constructResponse(1, "获取用户信息成功", JSONArray.toJSON(l));
+    }
+
+    @Override
+    public JSONObject searchUsers(String search) {
+        // TODO: 2018/4/12 支持分页、高级模糊搜索
+        List<User> users = userDao.searchUsers(search);
+        if (users == null || users.size() == 0) {
+            return Util.constructResponse(0, "未搜索到用户", "");
+        }
+        return Util.constructResponse(1, "搜索成功！", JSONArray.toJSON(users));
+    }
+
+    @Override
+    public JSONObject publishNotice(String title, String text, Integer userId) {
+        // TODO: 2018/4/12 indexmapper和indexDao中notice代码迁移至noticeMapper\Dao
+        Integer i = noticeDao.publishNotice(title, text, userId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "发布公告失败！", "");
+        }
+        return Util.constructResponse(1, "发布公告成功！", "");
     }
 
 }

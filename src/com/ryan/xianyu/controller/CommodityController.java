@@ -1,5 +1,6 @@
 package com.ryan.xianyu.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
@@ -19,7 +20,7 @@ public class CommodityController {
     @PostMapping("/class")
     @ResponseBody
     public JSONObject getCommdities(@RequestParam("classificationId") Integer classificationId,
-                                    @RequestParam("start")Integer start,
+                                    @RequestParam("start") Integer start,
                                     @RequestParam("pageSize") Integer pageSize,
                                     @RequestParam("total") Integer total) {
         if (classificationId < 0) {
@@ -66,7 +67,28 @@ public class CommodityController {
             return Util.constructResponse(0, "用户状态错误", "");
         }
         return commodityService.publishCommodity(commodity);
+    }
+
+    /**
+     * 购买商品
+     * @param purchaserId 购买人ID
+     * @param commodityId 商品ID
+     * @return json
+     */
+    @PostMapping("/purchase")
+    @ResponseBody
+    public JSONObject buyCommodity(@RequestParam("purchaserId") Integer purchaserId,
+                                   @RequestParam("commodityId") Integer commodityId) {
+        //先检查商品状态
+        if (purchaserId <= 0) {
+            return Util.constructResponse(0, "用户id不正确", "");
+        }
+        if (commodityId <= 0) {
+            return Util.constructResponse(0, "商品id不正确", "");
+        }
+        return commodityService.purchaseCommodity(purchaserId, commodityId);
 
     }
+
 
 }

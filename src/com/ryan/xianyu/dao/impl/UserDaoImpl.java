@@ -1,14 +1,18 @@
 package com.ryan.xianyu.dao.impl;
 
 
+import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.SQLFactory;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.User;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserDaoImpl implements UserDao {
@@ -54,4 +58,40 @@ public class UserDaoImpl implements UserDao {
         Integer s = sqlSession.delete("user.deleteUser", userId);
         return s;
     }
+
+    @Override
+    public Integer updatePw(Integer userId, String oldPw, String newPw) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map params = new HashMap<String, Object>();
+        params.put("userId", userId);
+        params.put("oldPw", oldPw);
+        params.put("newPw", newPw);
+        Integer s = sqlSession.update("user.updatePw", params);
+        return s;
+    }
+
+    @Override
+    public Integer totalUsers() {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer s = sqlSession.selectOne("user.totalUsers");
+        return s;
+    }
+
+    @Override
+    public List<User> selectAllByPage(PageInfo pageInfo) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        List<User> l = sqlSession.selectList("user.selectAllByPage", pageInfo);
+        return l;
+    }
+
+    @Override
+    public List<User> searchUsers(String search) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        List<User> l = sqlSession.selectList("user.searchUsers", search);
+        return l;
+    }
+
+
+
+
 }

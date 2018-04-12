@@ -38,6 +38,10 @@
     <select id="selectReplyByIds" parameterType="java.lang.String" resultType="java.util.Map">
         SELECT commodity_id,count(*) FROM post WHERE commodity_id IN (#{commodityIds}) GROUP BY commodity_id;
     </select>
+
+    <select id="countUnread" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT count(*) FROM post WHERE commodity_id IN (#{ids}) AND status = 0;
+    </select>
 </mapper>
 
 

@@ -46,9 +46,6 @@
             <if test="user.username!=null">
                 username = #{user.username},
             </if>
-            <if test="user.password!=null">
-                password = #{user.password},
-            </if>
             <if test="user.name!=null">
                 name = #{user.name},
             </if>
@@ -71,5 +68,21 @@
     <delete id="deleteUser" parameterType="java.lang.Integer">
         DELETE FROM user WHERE id = #{id};
     </delete>
+
+    <update id="updatePw" parameterType="java.util.Map">
+        UPDATE user SET password = #{newPw} WHERE id = #{userId} AND password = #{oldPw}
+    </update>
+
+    <select id="totalUsers" resultType="java.lang.Integer">
+        SELECT count(*) FROM user WHERE admin != 1
+    </select>
+
+    <select id="selectAllByPage" resultMap="userMap" parameterType="com.ryan.xianyu.common.PageInfo">
+        SELECT * FROM user WHERE admin != 1 LIMIT #{start},#{pageSize}
+    </select>
+
+    <select id="searchUsers" resultMap="userMap" parameterType="java.lang.String">
+        SELECT * FROM user WHERE admin != 1 AND (id=#{s} OR username=#{s} OR name=#{s} OR stu_id=#{s})
+    </select>
 
 </mapper>

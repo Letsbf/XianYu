@@ -18,4 +18,6 @@ public interface PostDao {
     Integer countReply(Integer commodityId);
 
     Map selectReplyByIds(String commodityIds);
+
+    Integer countUnread(String commodityIds);
 }

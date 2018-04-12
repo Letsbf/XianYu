@@ -28,4 +28,6 @@ public interface CommodityService {
      * @return list
      */
     List<CommodityVo> getCommoditiesByUserId(Integer userId, PageInfo pageInfo);
+
+    JSONObject purchaseCommodity(Integer purchaserId, Integer commodityId);
 }

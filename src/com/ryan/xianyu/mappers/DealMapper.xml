@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deal">
+    <insert id="insertDeal" parameterType="java.util.Map" useGeneratedKeys="true">
+        INSERT INTO deal(purchaser_id,commodity_id,time) VALUE (#{purchaserId},#{commodityId},UNIX_TIMESTAMP())
+    </insert>
+
+    <delete id="deleteDeal" parameterType="java.util.Map">
+        DELETE FROM deal WHERE purchaser_id = #{purchaserId} AND commodity_id = #{commodityId}
+    </delete>
+</mapper>

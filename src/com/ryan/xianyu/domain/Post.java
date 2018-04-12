@@ -6,8 +6,17 @@ public class Post {
     private Integer replier;
     private String text;
     private Integer replyPostId;
+    private Integer status;
     private Long time;
     private Integer commodityId;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;

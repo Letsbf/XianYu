@@ -30,5 +30,7 @@
         <mapper resource="com/ryan/xianyu/mappers/IndexMapper.xml"/>
         <mapper resource="com/ryan/xianyu/mappers/CommodityMapper.xml"/>
         <mapper resource="com/ryan/xianyu/mappers/PostMapper.xml"/>
+        <mapper resource="com/ryan/xianyu/mappers/DealMapper.xml"/>
+        <mapper resource="com/ryan/xianyu/mappers/NoticeMapper.xml"/>
     </mappers>
 </configuration>  

@@ -6,9 +6,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.dao.CommodityDao;
+import com.ryan.xianyu.dao.DealDao;
 import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.Commodity;
+import com.ryan.xianyu.domain.Deal;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.CommodityService;
 import com.ryan.xianyu.vo.CommodityVo;
@@ -33,6 +35,9 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private PostDao postDao;
 
+    @Autowired
+    private DealDao dealDao;
+
     @Override
     public JSONObject getCommodityById(Integer commodityId, Integer pageSize) {
         Commodity commodity = commodityDao.getCommodityById(commodityId);
@@ -56,10 +61,12 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setTime(commodity.getTime());
         commodityVo.setPublisherName(user.getUsername());
 
+        commodityDao.addBrowse(commodityId);
+
         Integer total = postDao.countReply(commodityId);
 
         JSONObject jsonObject = (JSONObject) JSON.toJSON(commodityVo);
-        jsonObject.put("pages", total / pageSize + 1);
+        jsonObject.put("replyPages", total / pageSize + 1);
         return Util.constructResponse(1, "获取商品详情成功", jsonObject);
     }
 
@@ -147,6 +154,30 @@ public class CommodityServiceImpl implements CommodityService {
             re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
         }
         return res;
+    }
+
+    @Override
+    public JSONObject purchaseCommodity(Integer purchaserId, Integer commodityId) {
+        Commodity commodity = commodityDao.getCommodityById(commodityId);
+        if (commodity == null || commodity.getStatus() != 0) {
+            return Util.constructResponse(0, "商品不可购买！", "");
+        }
+        if (commodity.getPublisher() == purchaserId) {
+            return Util.constructResponse(0, "不能购买自己的商品", "");
+        }
+        User user = userDao.selectById(purchaserId);
+        if (user == null) {
+            return Util.constructResponse(0, "用户id错误,无法购买", "");
+        }
+        Integer i = dealDao.insertDeal(purchaserId, commodityId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "购买失败！", "");
+        }
+        Integer s = commodityDao.updateCommodityStatus(commodityId, 1);
+        if (s <= 0) {
+            dealDao.deleteDeal(purchaserId, commodityId);
+        }
+        return Util.constructResponse(1, "够买成功", "");
     }
 
     @Override

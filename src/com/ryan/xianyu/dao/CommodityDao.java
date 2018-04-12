@@ -20,4 +20,8 @@ public interface CommodityDao {
     Integer getCommodityCountByUserId(Integer userId);
 
     List<Commodity> getCommoditiesByUserId(Integer userId, PageInfo pageInfo);
+
+    Integer updateCommodityStatus(Integer commodityId, Integer status);
+
+    Integer addBrowse(Integer commodityId);
 }

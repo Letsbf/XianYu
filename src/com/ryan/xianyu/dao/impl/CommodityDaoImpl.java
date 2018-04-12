@@ -75,4 +75,21 @@ public class CommodityDaoImpl implements CommodityDao {
         return l;
     }
 
+    @Override
+    public Integer updateCommodityStatus(Integer commodityId, Integer status) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map params = new HashMap<String, Object>();
+        params.put("commodityId", commodityId);
+        params.put("status", status);
+        Integer i = sqlSession.update("commodity.updateCommodityStatus", params);
+        return i;
+    }
+
+    @Override
+    public Integer addBrowse(Integer commodityId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("commodity.addBrowse", commodityId);
+        return i;
+    }
+
 }

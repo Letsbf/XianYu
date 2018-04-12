@@ -27,7 +27,10 @@
     </select>
 
     <select id="getCommoditiesByUserId" parameterType="java.util.Map" resultType="com.ryan.xianyu.domain.Commodity">
-        SELECT * FROM commodity WHERE publisher = #{userId} LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+        SELECT * FROM commodity WHERE publisher = #{userId}
+        <if test="pageInfo!=null">
+            LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+        </if>
     </select>
     
     
@@ -55,5 +58,13 @@
             LIMIT #{pageInfo.start}, #{pageInfo.pageSize}
         </if>;
     </select>
+
+    <update id="updateCommodityStatus" parameterType="java.util.Map">
+        UPDATE commodity SET status = #{status} WHERE id = #{commodityId}
+    </update>
+
+    <update id="addBrowse" parameterType="java.lang.Integer">
+        update commodity set browse = browse + 1 where id = #{id};
+    </update>
     
 </mapper>

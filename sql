@@ -32,6 +32,9 @@ INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, a
 INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin, time) VALUE (
   "user1","user1","user1","12345678911",1,"12345","123@qwq.com","??",0,UNIX_TIMESTAMP()
 );
+INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin, time) VALUE (
+  "user2","user2","user2","12345678911",1,"12345","123@qwq.com","??",0,UNIX_TIMESTAMP()
+);
 
 CREATE TABLE notice(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
@@ -73,7 +76,7 @@ CREATE TABLE commodity (
   contact      VARCHAR(30)                     NOT NULL
   COMMENT '联系方式',
   status         TINYINT DEFAULT 0
-  COMMENT '交易状态 0未开始 1谈价中 2已谈成 3交易完成',
+  COMMENT '交易状态 0可购买 2已购买 3已关闭',
   browse         INT     DEFAULT 0
   COMMENT '浏览数',
   time           BIGINT COMMENT '发布时间',
@@ -95,26 +98,28 @@ CREATE TABLE post (
   text VARCHAR(256) NOT NULL COMMENT '回复信息的主体',
   replier INT NOT NULL COMMENT '回复人id',
   reply_post_id INT DEFAULT 0 COMMENT '被回复的信息id 0为回复帖子',
-  time BIGINT NOT NULL DEFAULT 0 COMMENT '回复时间',
   commodity_id INT NOT NULL COMMENT '哪个帖子下的回复',
+  status INT DEFAULT 0 COMMENT '消息未读状态，0未读1已读',
+  time BIGINT NOT NULL DEFAULT 0 COMMENT '回复时间',
   INDEX (id, replier,commodity_id),
   FOREIGN KEY (replier) REFERENCES user(id) ON DELETE CASCADE ,
   FOREIGN KEY (commodity_id) REFERENCES commodity(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '帖子回复表';
 
-INSERT INTO post (text, replier, reply_post_id, time, commodity_id) VALUES (
-  "测试帖子1的测试回复1", 1, 0, UNIX_TIMESTAMP(), 1
+INSERT INTO post (text, replier, reply_post_id, status, time, commodity_id) VALUES (
+  "测试帖子1的测试回复1", 1, 0, 0, UNIX_TIMESTAMP(), 1
 );
 
-INSERT INTO post (text, replier, reply_post_id, time, commodity_id) VALUES (
-  "测试帖子2的测试回复1", 1, 0, UNIX_TIMESTAMP(), 2
+INSERT INTO post (text, replier, reply_post_id, status, time, commodity_id) VALUES (
+  "测试帖子2的测试回复1", 1, 0, 0, UNIX_TIMESTAMP(), 2
 );
 
-#?
+
 CREATE TABLE deal(
   id INT PRIMARY KEY  AUTO_INCREMENT NOT NULL ,
-  buyer INT NOT NULL COMMENT '购买人',
+  purchaser_id INT NOT NULL COMMENT '购买人',
   commodity_id INT NOT NULL COMMENT '商品id',
   time BIGINT NOT NULL DEFAULT 0 COMMENT '购买时间',
-  FOREIGN KEY (buyer) REFERENCES user(id) ON DELETE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '交易表';
+  FOREIGN KEY (purchaser_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (commodity_id) REFERENCES commodity(id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '购买表';

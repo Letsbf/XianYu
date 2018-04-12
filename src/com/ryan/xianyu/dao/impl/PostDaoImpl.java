@@ -29,6 +29,13 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
+    public Integer countUnread(String commodityIds) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.selectOne("post.countUnread", commodityIds);
+        return i;
+    }
+
+    @Override
     public List<Post> selectReply(Integer commodityId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map params = new HashMap<String, Object>();
