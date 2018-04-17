@@ -6,10 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.dao.*;
-import com.ryan.xianyu.domain.Commodity;
-import com.ryan.xianyu.domain.Deal;
-import com.ryan.xianyu.domain.Post;
-import com.ryan.xianyu.domain.User;
+import com.ryan.xianyu.domain.*;
 import com.ryan.xianyu.service.IndexService;
 import com.ryan.xianyu.service.UserService;
 import com.ryan.xianyu.vo.UserVo;
@@ -46,6 +43,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private DealDao dealDao;
+
+    @Autowired
+    private PrivateMessageDao privateMessageDao;
 
 
     @Override
@@ -349,6 +349,38 @@ public class UserServiceImpl implements UserService {
 
 
         return null;
+    }
+
+    @Override
+    public JSONObject sendPrivateMessage(Integer fromId, Integer toId, String message) {
+        Integer res = privateMessageDao.insertMessage(fromId, toId, message);
+        if (res <= 0) {
+            return Util.constructResponse(0, "发送失败！", "");
+        }
+        return Util.constructResponse(1, "发送成功！", "");
+    }
+
+    @Override
+    public JSONObject myPrivateMessage(Integer userId) {
+        List<PrivateMessage> privateMessageList = privateMessageDao.getPrivateMessageByToId(userId);
+        if (privateMessageList == null || privateMessageList.size() == 0) {
+            return Util.constructResponse(1, "没有私信", "");
+        }
+        privateMessageDao.updateMessage2Read(userId);
+        return Util.constructResponse(1, "获取私信成功", privateMessageList);
+    }
+
+    @Override
+    public JSONObject deletePrivateMessage(Integer messageId, Integer userId) {
+        PrivateMessage privateMessage = privateMessageDao.getPrivateMessageById(messageId);
+        if (privateMessage == null || !privateMessage.getToId().equals(userId)) {
+            return Util.constructResponse(0, "不是给你的消息哦", "");
+        }
+        Integer i = privateMessageDao.deleteById(messageId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "删除失败", "");
+        }
+        return Util.constructResponse(1, "删除成功", "");
     }
 
 }

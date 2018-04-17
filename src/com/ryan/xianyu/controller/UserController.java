@@ -1,7 +1,6 @@
 package com.ryan.xianyu.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
@@ -347,9 +346,54 @@ public class UserController {
     }
 
 
+    /**
+     * 发送留言
+     * @param fromId 发送人ID
+     * @param toId 接收人ID
+     * @param message 消息体
+     * @return json
+     */
     @PostMapping("/sendPrivateMessage")
     @ResponseBody
-    public
+    public JSONObject sendPrivateMessage(@RequestParam("fromId") Integer fromId,
+                                         @RequestParam("toId") Integer toId,
+                                         @RequestParam("message") String message) {
+        if (fromId <= 0 || toId <= 0 || Util.isEmpty(message)) {
+            return Util.constructResponse(0, "出现异常blabla", "");
+        }
+        return userService.sendPrivateMessage(fromId, toId, message);
+    }
+
+    /**
+     * 获取我的私信
+     * @param userId 我的ID
+     * @return json
+     */
+    @PostMapping("/myPrivateMessage")
+    @ResponseBody
+    public JSONObject myPrivateMessage(@RequestParam("userId") Integer userId) {
+
+        if (userId <= 0) {
+            return Util.constructResponse(0, "用户ID错误！", "");
+        }
+        return userService.myPrivateMessage(userId);
+    }
+
+    /**
+     * 删除私信
+     * @param messageId 消息id
+     * @param userId 用户id
+     * @return json
+     */
+    @PostMapping("/deletePrivateMessage")
+    @ResponseBody
+    public JSONObject deletePrivateMessage(@RequestParam("messageId") Integer messageId,
+                                           @RequestParam("userId") Integer userId) {
+        if (messageId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "出现异常blabla", "");
+        }
+        return userService.deletePrivateMessage(messageId, userId);
+    }
 
 }
 

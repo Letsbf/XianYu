@@ -41,4 +41,10 @@ public interface UserService {
 
     JSONObject timeShopping(Long start, Long end, Integer userId);
 
+    JSONObject sendPrivateMessage(Integer fromId, Integer toId, String message);
+
+    JSONObject myPrivateMessage(Integer userId);
+
+    JSONObject deletePrivateMessage(Integer messageId, Integer userId);
+
 }

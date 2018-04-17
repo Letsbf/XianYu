@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="privateMessage">
+    <resultMap id="pmMap" type="com.ryan.xianyu.domain.PrivateMessage">
+        <result column="id" property="id"/>
+        <result column="from_id" property="fromId"/>
+        <result column="to_id" property="toId"/>
+        <result column="message" property="message"/>
+        <result column="time" property="time"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <insert id="insertMessage" parameterType="java.util.Map">
+        INSERT INTO private_message(from_id,to_id,message,status,time) VALUE (#{fromId},#{toId},#{message},0,UNIX_TIMESTAMP())
+    </insert>
+
+    <select id="getPrivateMessageByToId" parameterType="java.lang.Integer" resultMap="pmMap">
+        SELECT * FROM private_message WHERE to_id = #{id} ORDER BY status ASC ,time DESC
+    </select>
+
+    <update id="updateMessage2Read" parameterType="java.lang.Integer">
+        UPDATE private_message SET status = 1 WHERE to_id = #{id}
+    </update>
+
+    <select id="getPrivateMessageById" parameterType="java.lang.Integer" resultMap="pmMap">
+        SELECT * FROM private_message WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM private_message WHERE id = #{id}
+    </delete>
+</mapper>

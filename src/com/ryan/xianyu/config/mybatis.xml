@@ -32,5 +32,6 @@
         <mapper resource="com/ryan/xianyu/mappers/PostMapper.xml"/>
         <mapper resource="com/ryan/xianyu/mappers/DealMapper.xml"/>
         <mapper resource="com/ryan/xianyu/mappers/NoticeMapper.xml"/>
+        <mapper resource="com/ryan/xianyu/mappers/PrivateMessageMapper.xml"/>
     </mappers>
 </configuration>  
