@@ -20,4 +20,10 @@ public interface PostDao {
     Map selectReplyByIds(String commodityIds);
 
     Integer countUnread(String commodityIds);
+
+    Post selectPostById(Integer postId);
+
+//    List<Post> selectReplyByUserId(Integer userId);
+
+    List<Post> selectReplyByCommodityIds(List commodityIds, PageInfo pageInfo);
 }

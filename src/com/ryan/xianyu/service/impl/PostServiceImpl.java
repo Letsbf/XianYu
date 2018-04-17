@@ -10,6 +10,9 @@ import com.ryan.xianyu.domain.Post;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.PostService;
 import com.ryan.xianyu.vo.PostVo;
+import javafx.geometry.Pos;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,8 @@ import java.util.Map;
 
 @Service
 public class PostServiceImpl implements PostService {
+
+    private static Logger logger = LoggerFactory.getLogger(PostServiceImpl.class);
 
     @Autowired
     private PostDao postDao;
@@ -34,15 +39,15 @@ public class PostServiceImpl implements PostService {
             return Util.constructResponse(0, "获取帖子回复失败，也许没有回复", "");
         }
 
-        StringBuilder sb = new StringBuilder();
+        List<Integer> idList = new ArrayList<>();
         for (Post re : res) {
-            sb.append(re.getReplier());
-            sb.append(",");
+            idList.add(re.getReplier());
         }
-        sb.deleteCharAt(sb.length() - 1);
 
         Map id2Name = new HashMap<Integer, String>();
-        List<User> l = userDao.selectByIds(sb.toString());
+        List<User> l = userDao.selectByIds(idList);
+        logger.error("userList:{}", l);
+
         for (User user : l) {
             id2Name.put(user.getId(), user.getUsername());
         }
@@ -72,7 +77,15 @@ public class PostServiceImpl implements PostService {
 
 
     @Override
-    public JSONObject deleteReply(Integer postId) {
+    public JSONObject deleteReply(Integer postId, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null) {
+            return Util.constructResponse(0, "用户不存在", "");
+        }
+        Post post = postDao.selectPostById(postId);
+        if (!post.getReplier().equals(userId) && !user.isAdmin()) {
+            return Util.constructResponse(0, "出现异常", "");
+        }
         Integer r = postDao.deleteReply(postId);
         if (r <= 0) {
             return Util.constructResponse(0, "删除失败略略", "");

@@ -6,7 +6,7 @@
 <mapper namespace="commodity">
 
     <select id="selectByPage" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.util.Map">
-        SELECT * FROM commodity WHERE classification = #{classficationId} AND status!=3
+        SELECT * FROM commodity WHERE classification = #{classificationId} AND status!=3
         ORDER BY id DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
     </select>
 
@@ -66,5 +66,39 @@
     <update id="addBrowse" parameterType="java.lang.Integer">
         update commodity set browse = browse + 1 where id = #{id};
     </update>
-    
+
+
+    <update id="modifyCommodity" parameterType="com.ryan.xianyu.domain.Commodity">
+        UPDATE commodity
+        <trim prefix="set" >
+            <if test="title!=null">
+                title = #{title},
+            </if>
+            <if test="price!=null">
+                price = #{price},
+            </if>
+            <if test="classification!=null">
+                classification = #{classification},
+            </if>
+            <if test="description!=null">
+                description = #{description},
+            </if>
+            <if test="images!=null">
+                images = #{images},
+            </if>
+            <if test="contact!=null">
+                contact = #{contact},
+            </if>
+        </trim>
+        time = UNIX_TIMESTAMP()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteCommodity" parameterType="java.lang.Integer">
+        DELETE FROM commodity WHERE id = #{id}
+    </delete>
+
+    <select id="getCommoditiesByIds" parameterType="java.lang.String" resultType="com.ryan.xianyu.domain.Commodity">
+        SELECT * FROM commodity WHERE id IN (#{id})
+    </select>
 </mapper>

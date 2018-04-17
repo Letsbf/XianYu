@@ -36,6 +36,30 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
+    public Post selectPostById(Integer postId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Post post = sqlSession.selectOne("post.selectPostById", postId);
+        return post;
+    }
+
+    @Override
+    public List<Post> selectReplyByCommodityIds(List commodityIds,PageInfo pageInfo) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map params = new HashMap<String, Object>();
+        params.put("commodityIds", commodityIds);
+        params.put("pageInfo", pageInfo);
+        List postList = sqlSession.selectList("post.selectReplyByCommodityIds", params);
+        return postList;
+    }
+
+//    @Override
+//    public List<Post> selectReplyByUserId(Integer userId) {
+//        SqlSession sqlSession = SQLFactory.getSession();
+//        List l = sqlSession.selectList("post.selectReplyByUserId", userId);
+//        return l;
+//    }
+
+    @Override
     public List<Post> selectReply(Integer commodityId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map params = new HashMap<String, Object>();

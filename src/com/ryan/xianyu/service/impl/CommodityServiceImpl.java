@@ -10,7 +10,6 @@ import com.ryan.xianyu.dao.DealDao;
 import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.Commodity;
-import com.ryan.xianyu.domain.Deal;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.CommodityService;
 import com.ryan.xianyu.vo.CommodityVo;
@@ -60,6 +59,7 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setStatus(commodity.getStatus());
         commodityVo.setTime(commodity.getTime());
         commodityVo.setPublisherName(user.getUsername());
+        commodityVo.setBrowse(commodity.getBrowse());
 
         commodityDao.addBrowse(commodityId);
 
@@ -184,8 +184,42 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public JSONObject modifyCommodity(Commodity commodity) {
+        if (!validateUserAndCommodity(commodity.getId(), commodity.getPublisher())) {
+            return Util.constructResponse(0, "非本人修改或修改人非管理员,修改失败!", "");
+        }
+        Integer commodityId = commodity.getId();
+        Commodity commodity1 = commodityDao.getCommodityById(commodityId);
+        commodity.setPublisher(commodity1.getPublisher());
 
-        return null;
+        Util.deleteImages(commodity.getPublisher(), commodityId);
+
+        try {
+            Util.saveImages(commodity);
+        } catch (Exception e) {
+            logger.error("保存图片异常", e);
+            return Util.constructResponse(0, "更新图片失败！", "");
+        }
+
+        Integer res = commodityDao.modifyCommodity(commodity);
+        if (res < 0) {
+            return Util.constructResponse(0, "修改商品信息失败！", "");
+        }
+
+        return Util.constructResponse(1, "修改成功！", "");
+    }
+
+    @Override
+    public JSONObject deleteCommodity(Integer commodityId, Integer userId) {
+        if (!validateUserAndCommodity(commodityId, userId)) {
+            return Util.constructResponse(0, "您无权限删除此商品或商品不存在！", "");
+        }
+        Commodity commodity = commodityDao.getCommodityById(commodityId);
+        Integer res = commodityDao.deleteCommodity(commodityId);
+        if (res <= 0) {
+            return Util.constructResponse(0, "删除失败！", "");
+        }
+        Util.deleteImages(commodity.getPublisher(), commodity.getId());
+        return Util.constructResponse(1, "删除成功", "");
     }
 
     @Override
@@ -198,17 +232,15 @@ public class CommodityServiceImpl implements CommodityService {
         return Util.constructResponse(1, "获取成功", JSON.toJSON(res));
     }
 
+    // TODO: 2018/4/16 验证一下
     private List<CommodityVo> convertCommodityList2VoList(List<Commodity> s){
         StringBuilder sb = new StringBuilder();
+        List<Integer> idList = new ArrayList<>();
         for (Commodity commodity : s) {
-            sb.append(commodity.getPublisher()).append(",");
+            idList.add(commodity.getPublisher());
         }
-        if (sb.length() > 0) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-        String publisherIds = sb.toString();
 
-        List<User> ls = userDao.selectByIds(publisherIds);
+        List<User> ls = userDao.selectByIds(idList);
         Map id2Name = new HashMap<Integer, String>();
         for (User l : ls) {
             id2Name.put(l.getId(), l.getUsername());
@@ -220,6 +252,21 @@ public class CommodityServiceImpl implements CommodityService {
             res.add(commodityVo);
         }
         return res;
+    }
+
+    private boolean validateUserAndCommodity(Integer commodityId, Integer userId) {
+        Commodity commodity = commodityDao.getCommodityById(commodityId);
+        if (commodity == null) {
+            return false;
+        }
+        User user = userDao.selectById(userId);
+        if (user == null || !user.getId().equals(commodity.getPublisher())) {
+            if (user.isAdmin()) {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     private CommodityVo convertCommodity2Vo(Commodity commodity,Map id2Name) {

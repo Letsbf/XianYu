@@ -46,14 +46,13 @@ public class IndexController {
     }
 
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     @ResponseBody
     public JSONObject search(@RequestParam("search") String search,
                              @RequestParam("institute") String institute,
                              @RequestParam("classification") String classification,
                              @RequestParam("pageStart") Integer pageStart,
-                             @RequestParam("pageSize") Integer pageSize,
-                             @RequestParam("total") Integer total) {
+                             @RequestParam("pageSize") Integer pageSize) {
 //        if (Util.isEmpty(search)) {
 //            search = "";
 //        }
@@ -69,7 +68,7 @@ public class IndexController {
         if (pageSize <= 0) {
             pageSize = 10;
         }
-        PageInfo pageInfo = new PageInfo(pageStart, pageSize, total);
+        PageInfo pageInfo = new PageInfo(pageStart, pageSize, -1);
         return commodityService.searchCommodity(search, institute, classification, pageInfo);
     }
 

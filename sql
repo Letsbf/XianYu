@@ -92,6 +92,10 @@ INSERT INTO commodity (title, price, classification, publisher, description, ima
   "测试商品2", 999, 1, 2, "如果还有梦就追", "", "t@mt.com", 0, UNIX_TIMESTAMP()
 );
 
+INSERT INTO commodity (title, price, classification, publisher, description, images, contact, status, time) VALUES (
+  "测试商品用于修改1", 99, 2, 4, "马上要被修改了", "", "tjggnut@163.com", 0, UNIX_TIMESTAMP()
+);
+
 CREATE TABLE post (
   id INT PRIMARY KEY  AUTO_INCREMENT NOT NULL ,
   text VARCHAR(256) NOT NULL COMMENT '回复信息的主体',
@@ -119,6 +123,18 @@ CREATE TABLE deal(
   purchaser_id INT NOT NULL COMMENT '购买人',
   commodity_id INT NOT NULL COMMENT '商品id',
   time BIGINT NOT NULL DEFAULT 0 COMMENT '购买时间',
+  INDEX (id, purchaser_id, commodity_id),
   FOREIGN KEY (purchaser_id) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (commodity_id) REFERENCES commodity(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '购买表';
+
+CREATE TABLE private_message(
+  id INT PRIMARY KEY  AUTO_INCREMENT NOT NULL ,
+  from INT NOT NULL COMMENT '发送人',
+  to INT NOT NULL COMMENT '接收人',
+  message VARCHAR(256) NOT NULL COMMENT '消息体',
+  time BIGINT NOT NULL COMMENT '发送时间',
+  INDEX (id, from, to),
+  FOREIGN KEY (from) REFERENCES user(id) ON DELETE CASCADE ,
+  FOREIGN KEY (to) REFERENCES user(id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '帖子回复表';

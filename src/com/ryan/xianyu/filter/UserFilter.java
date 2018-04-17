@@ -35,30 +35,30 @@ public class UserFilter implements Filter {
 //            return;
 //        }
 
-        String uriStr = request.getRequestURI();
-        logger.error("-----UserFilter uri:{}----", uriStr);
-        String[] uris = uriStr.split("/");
-        for (String uri : uris) {
-            // TODO: 2018/4/12 先只添加admin的校验
-            if (uri.contains("admin")) {
-                String userIdStr = request.getParameter("userId");
-                if (Util.isEmpty(userIdStr)) {
-                    return;
-                }
-                try {
-                    Integer userId = Integer.parseInt(userIdStr);
-                    User user = userDao.selectById(userId);
-                    if (user == null || !user.isAdmin()) {
-                        logger.error("用户不存在或用户非管理员！");
-                        return;
-                    }
-                } catch (Exception e) {
-                    logger.error("验证用户信息异常,userIdStr:{}", userIdStr, e);
-                    return;
-                }
-                filterChain.doFilter(request, servletResponse);
-            }
-        }
+//        String uriStr = request.getRequestURI();
+//        logger.error("-----UserFilter uri:{}----", uriStr);
+//        String[] uris = uriStr.split("/");
+//        for (String uri : uris) {
+//            // TODO: 2018/4/12 先只添加admin的校验
+//            if (uri.contains("admin")) {
+//                String userIdStr = request.getParameter("userId");
+//                if (Util.isEmpty(userIdStr)) {
+//                    return;
+//                }
+//                try {
+//                    Integer userId = Integer.parseInt(userIdStr);
+//                    User user = userDao.selectById(userId);
+//                    if (user == null || !user.isAdmin()) {
+//                        logger.error("用户不存在或用户非管理员！");
+//                        return;
+//                    }
+//                } catch (Exception e) {
+//                    logger.error("验证用户信息异常,userIdStr:{}", userIdStr, e);
+//                    return;
+//                }
+//                filterChain.doFilter(request, servletResponse);
+//            }
+//        }
 
         filterChain.doFilter(request, servletResponse);
     }

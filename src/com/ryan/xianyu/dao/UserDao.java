@@ -15,7 +15,7 @@ public interface UserDao {
 
     User selectById(Integer id);
 
-    List<User> selectByIds(String ids);
+    List<User> selectByIds(List ids);
 
     Integer updateUser(User user);
 
@@ -28,5 +28,7 @@ public interface UserDao {
     List<User> selectAllByPage(PageInfo pageInfo);
 
     List<User> searchUsers(String search);
+
+    Integer setUser2Admin(Integer userId);
 
 }

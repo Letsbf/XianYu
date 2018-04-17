@@ -19,17 +19,18 @@ public class PostController {
 
 
     /**
-     * 获取帖子当前回复
+     * 分页获取商品当前的回复
      *
-     * @param commodityId
-     * @return
+     * @param commodityId 商品id
+     * @param pageSize    分页大小
+     * @param pageStart   页面开始
+     * @return json
      */
     @PostMapping("/detail")
     @ResponseBody
     public JSONObject getReply(@RequestParam("commodityId") Integer commodityId,
                                @RequestParam("pageSize") Integer pageSize,
-                               @RequestParam("pageStart") Integer pageStart,
-                               @RequestParam("total") Integer total) {
+                               @RequestParam("pageStart") Integer pageStart) {
         if (commodityId <= 0) {
             return Util.constructResponse(0, "商品ID错误", "");
         }
@@ -39,19 +40,19 @@ public class PostController {
         if (pageStart < 0) {
             pageStart = 0;
         }
-        PageInfo pageInfo = new PageInfo(pageStart, pageSize, total);
+        PageInfo pageInfo = new PageInfo(pageStart, pageSize, -1);
         return postService.getReply(commodityId, pageInfo);
     }
 
     /**
      * 回复帖子
-     * @param replier
-     * @param text
-     * @param replyPostId
-     * @param commodityId
-     * @return
+     * @param replier 回复人ID
+     * @param text 回复内容
+     * @param replyPostId 被回复的回帖ID 直接回复设为0
+     * @param commodityId 商品ID
+     * @return json
      */
-    @GetMapping("/reply")
+    @PostMapping("/reply")
     @ResponseBody
     public JSONObject reply(@RequestParam("replier") Integer replier,
                             @RequestParam("text") String text,
@@ -66,20 +67,22 @@ public class PostController {
         return postService.reply(replier, text, replyPostId, commodityId);
     }
 
+
     /**
-     * 删除当前回复
-     * @param postId
-     * @return
+     * 删除回复
+     * @param postId 回复ID
+     * @param userId 用户ID
+     * @return json
      */
     @PostMapping("/delete")
     @ResponseBody
-    public JSONObject delete(@RequestParam("postId") Integer postId) {
-        // TODO: 2018/4/6 校验管理员身份 禁止删除他人回复
+    public JSONObject delete(@RequestParam("postId") Integer postId,
+                             @RequestParam("userId") Integer userId) {
         if (postId <= 0) {
             return Util.constructResponse(0, "删除失败略略略", "");
         }
 
-        return postService.deleteReply(postId);
+        return postService.deleteReply(postId, userId);
     }
 
 

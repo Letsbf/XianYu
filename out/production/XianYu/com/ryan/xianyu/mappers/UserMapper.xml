@@ -27,8 +27,11 @@
         SELECT * FROM user WHERE id = #{id};
     </select>
 
-    <select id="selectByIds" resultMap="userMap" parameterType="java.lang.String">
-        SELECT * FROM user WHERE id in (#{id});
+    <select id="selectByIds" resultMap="userMap" parameterType="java.util.List">
+        SELECT * FROM user WHERE id in
+        <foreach collection="list" open="(" separator="," close=")" item="item" index="index">
+            #{item}
+        </foreach>
     </select>
 
 
@@ -42,26 +45,29 @@
     <update id="updateUser" parameterType="User">
         update user
         <trim prefix="set" suffixOverrides=",">
-            <if test="user.username!=null">
-                username = #{user.username},
+            <if test="username!=null">
+                username = #{username},
             </if>
-            <if test="user.name!=null">
-                name = #{user.name},
+            <if test="name!=null">
+                name = #{name},
             </if>
-            <if test="user.phone!=null">
-                phone = #{user.phone},
+            <if test="phone!=null">
+                phone = #{phone},
             </if>
-            <if test="user.instituteId!=null">
-                institute_id = #{user.instituteId},
+            <if test="instituteId!=null">
+                institute_id = #{instituteId},
             </if>
-            <if test="user.stuId">
-                stu_id = #{user.stuId},
+            <if test="stuId">
+                stu_id = #{stuId},
             </if>
-            <if test="user.email!=null">
-                email = #{user.email}
+            <if test="email!=null">
+                email = #{email},
+            </if>
+            <if test="avatar!=null">
+                avatar = #{avatar},
             </if>
         </trim>
-        where id = #{user.id};
+        where id = #{id};
     </update>
 
     <delete id="deleteUser" parameterType="java.lang.Integer">
@@ -83,5 +89,9 @@
     <select id="searchUsers" resultMap="userMap" parameterType="java.lang.String">
         SELECT * FROM user WHERE admin != 1 AND (id=#{s} OR username=#{s} OR name=#{s} OR stu_id=#{s})
     </select>
+
+    <update id="setUser2Admin" parameterType="java.lang.Integer">
+        UPDATE user SET admin = 1 WHERE id = #{id}
+    </update>
 
 </mapper>

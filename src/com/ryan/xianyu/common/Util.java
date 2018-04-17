@@ -105,9 +105,26 @@ public class Util {
         return "";
     }
 
+    public static void deleteImages(Integer publisherId, Integer commodityId) {
+        String path = System.getProperty("user.dir");
+        String dirPath = path + "/" + publisherId;
+        File file = new File(dirPath);
+        File[] files = file.listFiles();
+        if (files == null || files.length == 0) {
+            return;
+        }
+        for (File file1 : files) {
+            String fileName = file1.getName();
+            String[] split = fileName.split("_");
+            if (split[0].equals("" + commodityId)) {
+                file1.delete();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println(isPhoneNum("17611173306"));
+        Util.deleteImages(456, 123);
 
 //        try {
 //            Commodity commodity = new Commodity();

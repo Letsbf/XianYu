@@ -16,10 +16,10 @@ public class CommodityDaoImpl implements CommodityDao {
 
 
     @Override
-    public List getCommoditiesByPage(Integer classficationId, PageInfo pageInfo) {
+    public List getCommoditiesByPage(Integer classificationId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map params = new HashMap<String, Object>();
-        params.put("classficationId", classficationId);
+        params.put("classificationId", classificationId);
         params.put("pageInfo", pageInfo);
         List s = sqlSession.selectList("commodity.selectByPage", params);
         return s;
@@ -90,6 +90,27 @@ public class CommodityDaoImpl implements CommodityDao {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.update("commodity.addBrowse", commodityId);
         return i;
+    }
+
+    @Override
+    public Integer modifyCommodity(Commodity commodity) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("commodity.modifyCommodity", commodity);
+        return i;
+    }
+
+    @Override
+    public Integer deleteCommodity(Integer commodityId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.delete("commodity.deleteCommodity", commodityId);
+        return i;
+    }
+
+    @Override
+    public List<Commodity> getCommoditiesByIds(String commodityStr) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIds", commodityStr);
+        return l;
     }
 
 }

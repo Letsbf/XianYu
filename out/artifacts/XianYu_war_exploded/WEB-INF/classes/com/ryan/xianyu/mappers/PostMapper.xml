@@ -10,6 +10,7 @@
         <result column="text" property="text"/>
         <result column="reply_post_id" property="replyPostId"/>
         <result column="commodity_id" property="commodityId"/>
+        <result column="status" property="status"/>
         <result column="time" property="time"/>
     </resultMap>
 
@@ -41,6 +42,21 @@
 
     <select id="countUnread" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT count(*) FROM post WHERE commodity_id IN (#{ids}) AND status = 0;
+    </select>
+
+    <select id="selectPostById" parameterType="java.lang.Integer" resultMap="postReply">
+        SELECT * FROM post WHERE id = #{id}
+    </select>
+
+    <select id="selectReplyByCommodityIds" parameterType="java.util.Map" resultMap="postReply">
+        SELECT * FROM post WHERE commodity_id IN
+        <foreach collection="commodityIds" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY status ASC,time DESC
+        <if test="pageInfo!=null">
+            LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+        </if>
     </select>
 </mapper>
 

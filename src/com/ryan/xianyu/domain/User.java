@@ -32,6 +32,17 @@ public class User {
     public User() {
     }
 
+    public User(Integer id, String username, String name, String phone, Integer instituteId, String stuId, String email, String avatar) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.phone = phone;
+        this.instituteId = instituteId;
+        this.stuId = stuId;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
     public User(String username, String password, String name, String phone, Integer instituteId, String stuId, String email) {
         this.username = username;
         this.password = password;

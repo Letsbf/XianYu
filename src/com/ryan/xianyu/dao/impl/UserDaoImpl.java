@@ -6,6 +6,7 @@ import com.ryan.xianyu.common.SQLFactory;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.User;
 import com.sun.corba.se.spi.ior.ObjectKey;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.jdbc.Sql;
@@ -39,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> selectByIds(String ids) {
+    public List<User> selectByIds(List ids) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<User> s = sqlSession.selectList("user.selectByIds", ids);
         return s;
@@ -91,7 +92,12 @@ public class UserDaoImpl implements UserDao {
         return l;
     }
 
-
+    @Override
+    public Integer setUser2Admin(Integer userId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("user.setUser2Admin", userId);
+        return i;
+    }
 
 
 }

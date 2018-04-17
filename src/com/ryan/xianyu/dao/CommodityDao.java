@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CommodityDao {
 
+    //分类
     List getCommoditiesByPage(Integer id, PageInfo pageInfo);
 
     Commodity getCommodityById(Integer id);
@@ -24,4 +25,12 @@ public interface CommodityDao {
     Integer updateCommodityStatus(Integer commodityId, Integer status);
 
     Integer addBrowse(Integer commodityId);
+
+    Integer modifyCommodity(Commodity commodity);
+
+    Integer deleteCommodity(Integer commodityId);
+
+    List<Commodity> getCommoditiesByIds(String commodityStr);
+
+
 }

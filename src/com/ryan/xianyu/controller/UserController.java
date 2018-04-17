@@ -1,6 +1,7 @@
 package com.ryan.xianyu.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
@@ -116,12 +117,44 @@ public class UserController {
         return userService.modifyPw(userId, oldPw, newPw);
     }
 
+    /**
+     * 修改除密码以外的个人信息
+     * @param userId 用户id
+     * @param userName 用户名
+     * @param name 名
+     * @param phone 手机号
+     * @param instituteId 学院id
+     * @param stuId 学号
+     * @param email 邮箱
+     * @param avatar 头图base64编码
+     * @return json
+     */
     @PostMapping("/update")
     @ResponseBody
-    public JSONObject update(@RequestBody User user) {
-        if (user.getId() == null || user.getId() <= 0) {
-            return Util.constructResponse(0, "用户id不正确", "");
+    public JSONObject update(@RequestParam("userId")Integer userId,
+                             @RequestParam("userName")String userName,
+                             @RequestParam("name")String name,
+                             @RequestParam("phone")String phone,
+                             @RequestParam("instituteId")Integer instituteId,
+                             @RequestParam("stuId")String stuId,
+                             @RequestParam("email")String email,
+                             @RequestParam("avatar")String avatar) {
+        if (userId == null || userId <= 0) {
+            return Util.constructResponse(0, "用户ID不正确", "");
         }
+        if (Util.isEmpty(userName) || Util.isEmpty(name) || !Util.isPhoneNum(phone) || Util.isEmpty(stuId)) {
+            return Util.constructResponse(0, "用户信息不正确", "");
+        }
+        if (instituteId == null || instituteId <= 0) {
+            return Util.constructResponse(0, "学院信息不正确", "");
+        }
+        if (Util.isEmpty(email)) {
+            email = "";
+        }
+        if (Util.isEmpty(avatar)) {
+            avatar = "";
+        }
+        User user = new User(userId, userName, name, phone, instituteId, stuId, email, avatar);
 
         return userService.update(user);
     }
@@ -209,6 +242,114 @@ public class UserController {
 
     }
 
+    /**
+     * 设置其他普通用户为管理员
+     * @param adminId 当前管理员ID
+     * @param userId 被设置的普通用户的ID
+     * @return json
+     */
+    @PostMapping("/admin/addAdmin")
+    @ResponseBody
+    public JSONObject addAdmin(@RequestParam("adminId") Integer adminId,
+                               @RequestParam("userId") Integer userId) {
+        if (adminId <= 0) {
+            return Util.constructResponse(0, "您的信息异常！", "");
+        }
+        if (userId <= 0) {
+            return Util.constructResponse(0, "您要添加为管理员的用户信息异常", "");
+        }
+        return userService.addAdmin(adminId, userId);
+    }
+
+    /**
+     * 获取已购买物品的分页数
+     * @param userId 用户ID
+     * @param pageSize 分页大小
+     * @return json
+     */
+    @PostMapping("/boughtPages")
+    @ResponseBody
+    public JSONObject getBoughtPages(@RequestParam("userId") Integer userId,
+                                     @RequestParam("pageSize") Integer pageSize) {
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+        return userService.getBoughtPages(userId,pageSize);
+    }
+
+    /**
+     * 分页获取已购买商品
+     * @param userId 用户ID
+     * @param pageStart 页面开始
+     * @param pageSize 页面大小
+     * @return json
+     */
+    @PostMapping("/bought")
+    @ResponseBody
+    public JSONObject bought(@RequestParam("userId") Integer userId,
+                             @RequestParam("pageStart") Integer pageStart,
+                             @RequestParam("pageSize") Integer pageSize) {
+        if (userId == null || userId <= 0) {
+            return Util.constructResponse(0, "用户ID不正确", "");
+        }
+
+        if (pageStart < 0) {
+            pageStart = 0;
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+
+        PageInfo pageInfo = new PageInfo(pageStart, pageSize, -1);
+        return userService.bought(userId,pageInfo);
+    }
+
+    @PostMapping("/timeShopping")
+    @ResponseBody
+    public JSONObject timeShopping(@RequestParam("start") Long start, @RequestParam("end") Long end,
+                                   @RequestParam("userId") Integer userId) {
+        if (userId <= 0) {
+            return Util.constructResponse(0, "用户ID不正确", "");
+        }
+
+        if (start <= 0 || end <= 0 || start > end) {
+            return Util.constructResponse(0, "时间错误", "");
+        }
+
+        return userService.timeShopping(start, end, userId);
+    }
+
+    // TODO: 2018/4/17 如何把消息设为已读
+
+    /**
+     * 获取"我的回复" （回复我的消息）
+     * @param userId 我的用户ID
+     * @param pageSize 页面大小
+     * @param pageStart 页面开始
+     * @return json
+     */
+    @PostMapping("/reply2me")
+    @ResponseBody
+    public JSONObject reply2me(@RequestParam("userId") Integer userId,
+                               @RequestParam("pageSize") Integer pageSize,
+                               @RequestParam("pageStart") Integer pageStart) {
+        if (userId <= 0) {
+            return Util.constructResponse(0, "用户ID不正确", "");
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+        if (pageStart < 0) {
+            pageStart = 0;
+        }
+        PageInfo pageInfo = new PageInfo(pageStart, pageSize, -1);
+        return userService.getReply2Me(userId, pageInfo);
+    }
+
+
+    @PostMapping("/sendPrivateMessage")
+    @ResponseBody
+    public
 
 }
 

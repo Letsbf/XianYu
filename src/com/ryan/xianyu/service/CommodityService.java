@@ -32,4 +32,6 @@ public interface CommodityService {
     JSONObject purchaseCommodity(Integer purchaserId, Integer commodityId);
 
     JSONObject modifyCommodity(Commodity commodity);
+
+    JSONObject deleteCommodity(Integer commodityId, Integer userId);
 }

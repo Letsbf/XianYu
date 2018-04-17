@@ -5,11 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
-import com.ryan.xianyu.dao.CommodityDao;
-import com.ryan.xianyu.dao.NoticeDao;
-import com.ryan.xianyu.dao.PostDao;
-import com.ryan.xianyu.dao.UserDao;
+import com.ryan.xianyu.dao.*;
 import com.ryan.xianyu.domain.Commodity;
+import com.ryan.xianyu.domain.Deal;
+import com.ryan.xianyu.domain.Post;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.IndexService;
 import com.ryan.xianyu.service.UserService;
@@ -20,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PostDao postDao;
 
+    @Autowired
+    private DealDao dealDao;
+
 
     @Override
     public JSONObject login(String username, String password, HttpServletRequest request, HttpServletResponse response) {
@@ -58,6 +62,7 @@ public class UserServiceImpl implements UserService {
 
         JSONObject data = new JSONObject();
         data.put("sessionId", session.getId());
+        // TODO: 2018/4/17 未返回头像base64
         data.put("avatar", user.getAvatar());
         data.put("admin", user.isAdmin() ? "1" : "0");
         data.put("username", user.getUsername());
@@ -150,6 +155,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JSONObject update(User user) {
+        User u1 = userDao.selectById(user.getId());
+        if (u1 == null) {
+            return Util.constructResponse(0, "用户不存在", "");
+        }
+        User u2 = userDao.selectByUserName(user.getUsername());
+        if (!u2.getId().equals(user.getId())) {
+            return Util.constructResponse(0, "用户名已存在", "");
+        }
         try {
             Util.saveAvatar(user);
         } catch (Exception e) {
@@ -221,6 +234,121 @@ public class UserServiceImpl implements UserService {
             return Util.constructResponse(0, "发布公告失败！", "");
         }
         return Util.constructResponse(1, "发布公告成功！", "");
+    }
+
+    @Override
+    public JSONObject bought(Integer userId, PageInfo pageInfo) {
+        logger.error("userId:{},pageInfo:{}", userId, pageInfo);
+        List<Deal> dealList = dealDao.getDealsByUserIdByPage(userId, pageInfo);
+        if (dealList == null || dealList.size() == 0) {
+            return Util.constructResponse(0, "获取已购买列表失败", "");
+        }
+        StringBuilder commodityIdsStr = new StringBuilder("");
+        for (Deal deal : dealList) {
+            commodityIdsStr.append(deal.getCommodityId() + ",");
+        }
+        if (commodityIdsStr.length() > 0) {
+            commodityIdsStr.deleteCharAt(commodityIdsStr.length() - 1);
+        }
+        List<Commodity> l = commodityDao.getCommoditiesByIds(commodityIdsStr.toString());
+        JSONArray jsonArray = new JSONArray();
+        for (int i = 0; i < l.size(); i++) {
+            JSONObject data = new JSONObject();
+            data.put("id", l.get(i).getId());
+            data.put("title", l.get(i).getTitle());
+            data.put("price", l.get(i).getPrice());
+            data.put("description", l.get(i).getDescription());
+            jsonArray.add(data);
+        }
+        return Util.constructResponse(1, "分页获取已购买商品成功", jsonArray);
+    }
+
+    @Override
+    public JSONObject getBoughtPages(Integer userId, Integer pageSize) {
+        List<Deal> dealList = dealDao.getDealsByUserId(userId);
+        if (dealList == null) {
+            return Util.constructResponse(0, "获取已购买物品失败", "");
+        }
+        JSONObject data = new JSONObject();
+        data.put("pages", dealList.size() / pageSize + 1);
+        return Util.constructResponse(1, "获取页数成功", data);
+    }
+
+    @Override
+    public JSONObject addAdmin(Integer adminId, Integer userId) {
+        User admin = userDao.selectById(adminId);
+        if (admin == null || !admin.isAdmin()) {
+            return Util.constructResponse(0, "您还不是管理员呢，没有这个权利哦", "");
+        }
+        User user = userDao.selectById(userId);
+        if (user == null || user.isAdmin()) {
+            return Util.constructResponse(0, "他不存在或者已经是管理员了呢", "");
+        }
+        Integer i = userDao.setUser2Admin(userId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "设置管理员失败！", "");
+        }
+        return Util.constructResponse(1, "设置管理员成功！", "");
+    }
+
+    @Override
+    public JSONObject getReply2Me(Integer userId, PageInfo pageInfo) {
+        //获取该用户发布的所有商品的所有回复、及商品id-title的map
+        List<Commodity> commodityList = commodityDao.getCommoditiesByUserId(userId, null);
+        if (commodityList == null || commodityList.size() == 0) {
+            return Util.constructResponse(0, "您还未发布商品", "");
+        }
+        List<Integer> commodityIds = new ArrayList<>();
+        Map<Integer, String> commodityId2TitleMap = new HashMap<>();
+        for (Commodity commodity : commodityList) {
+            commodityIds.add(commodity.getId());
+            commodityId2TitleMap.put(commodity.getId(), commodity.getTitle());
+        }
+        List<Post> posts = postDao.selectReplyByCommodityIds(commodityIds,pageInfo);
+
+        if (posts == null || posts.size() == 0) {
+            return Util.constructResponse(0, "没有回复哦", "");
+        }
+
+        //获取所有回复的用户的名称
+        List<Integer> userIds = new ArrayList<>();
+        for (Post post : posts) {
+            userIds.add(post.getReplier());
+        }
+        List<User> users = userDao.selectByIds(userIds);
+        Map<Integer, String> userId2NameMap = new HashMap<>();
+        for (User user : users) {
+            userId2NameMap.put(user.getId(), user.getUsername());
+        }
+
+        //组装数据
+        JSONArray finalData = new JSONArray();
+        JSONArray dataArray = new JSONArray();
+        JSONObject pages = new JSONObject();
+        if (pageInfo.getStart() == 0) {
+            pages.put("pages", posts.size() / pageInfo.getPageSize() + 1);
+            finalData.add(pages);
+        }
+
+        for (Post post : posts) {
+            JSONObject data = new JSONObject();
+            data.put("postId", post.getId());
+            data.put("commodityId", post.getCommodityId());
+            data.put("commodityTitle", commodityId2TitleMap.get(post.getCommodityId()));
+            data.put("replierId", post.getReplier());
+            data.put("replierUserName", userId2NameMap.get(post.getReplier()));
+            data.put("unread", post.getStatus());
+            dataArray.add(data);
+        }
+        finalData.add(dataArray);
+        return Util.constructResponse(1, "获取回复成功", finalData);
+    }
+
+    @Override
+    public JSONObject timeShopping(Long start, Long end, Integer userId) {
+
+
+        return null;
     }
 
 }

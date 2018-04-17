@@ -30,9 +30,15 @@ public class CommodityController {
         return commodityService.getCommodities(classificationId, pageInfo);
     }
 
+    /**
+     * 商品详情，即进入帖子页面时首先获取的信息，同时根据分页大小返回"回帖"分页的页数
+     * @param commodityId 商品id
+     * @param pageSize 页面大小
+     * @return
+     */
     @PostMapping("/detail")
     @ResponseBody
-    public JSONObject getCommodityById(@RequestParam("id") Integer commodityId, @RequestParam("pageSize") Integer pageSize) {
+    public JSONObject getCommodityById(@RequestParam("commodityId") Integer commodityId, @RequestParam("pageSize") Integer pageSize) {
         if (commodityId <= 0) {
             return Util.constructResponse(0, "id不正确", "");
         }
@@ -84,13 +90,25 @@ public class CommodityController {
         return commodityService.publishCommodity(commodity);
     }
 
+    /**
+     * 修改已发布商品信息
+     * @param commodityId 商品id
+     * @param title 标题
+     * @param contact 联系方式
+     * @param description 描述
+     * @param images 图片base64编码
+     * @param classification 分类
+     * @param price 价格
+     * @param modifier 修改人ID
+     * @return json
+     */
     @PostMapping("/modify")
     @ResponseBody
     public JSONObject modifyCommodity(@RequestParam("commodityId") Integer commodityId,
                                       @RequestParam("title") String title, @RequestParam("contact") String contact,
                                       @RequestParam("description") String description, @RequestParam("images") String images,
                                       @RequestParam("classification") Integer classification, @RequestParam("price") Float price,
-                                      @RequestParam("publisherId") Integer publisherId) {
+                                      @RequestParam("modifier") Integer modifier) {
         if (commodityId == null || commodityId <= 0) {
             return Util.constructResponse(0, "商品ID不能为空", "");
         }
@@ -112,10 +130,10 @@ public class CommodityController {
         if (price == null || price <= 0) {
             return Util.constructResponse(0, "商品价格不能为空", "");
         }
-        if (publisherId == null || publisherId <= 0) {
+        if (modifier == null || modifier <= 0) {
             return Util.constructResponse(0, "用户状态错误", "");
         }
-        Commodity commodity = new Commodity(commodityId, title, price, classification, publisherId, description, images, contact);
+        Commodity commodity = new Commodity(commodityId, title, price, classification, modifier, description, images, contact);
         return commodityService.modifyCommodity(commodity);
     }
 
@@ -140,5 +158,21 @@ public class CommodityController {
 
     }
 
+
+    /**
+     * 删除商品 及相关图片
+     * @param commodityId 商品id
+     * @param userId 用户id（当前操作用户）
+     * @return json
+     */
+    @PostMapping("/delete")
+    @ResponseBody
+    public JSONObject deleteCommodity(@RequestParam("commodityId") Integer commodityId,
+                                      @RequestParam("userId") Integer userId) {
+        if (commodityId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "用户信息错误或商品信息错误", "");
+        }
+        return commodityService.deleteCommodity(commodityId, userId);
+    }
 
 }
