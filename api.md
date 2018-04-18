@@ -1,5 +1,8 @@
 注：key->value
 无特别注明GET 则为POST
+
+时间传递均为时间戳
+
 ### 首页
 #### 获取学院信息 GET */index/institute*
 Args:
@@ -279,6 +282,79 @@ private Long time;
 
 
 
+### 和具体到商品详情页下某一条的回复有关的接口
+
+#### 分页获取当前商品的回复*/post/detail*
+
+Args: (页面数在进入商品详情页时发送pageSize返回，/commodity/detail)
+
+```
+/**
+ * @param commodityId 商品id
+ * @param pageSize    分页大小
+ * @param pageStart   页面开始
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data:jsonArray (key与名称相同)
+
+```
+private Integer id;//回复的id 删除与再回复时用到
+private String text;//回复内容
+private Integer replyPostId;//当前回复是哪一条回复的回复，那条的id
+private String replier;//回复人名字
+private Long time;//时间戳
+```
+
+
+
+#### 回帖*/post/reply*
+
+Args:
+
+```
+/**
+ * @param replier 回复人ID
+ * @param text 回复内容
+ * @param replyPostId 被回复的回帖ID 直接回复原贴设为0
+ * @param commodityId 商品ID
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
+#### 删除回复*/post/delete*
+
+Args: 普通用户仅能删除自己回复 管理员可以随便删
+
+```
+/**
+ * @param postId 回复ID
+ * @param userId 当前操作用户ID
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
 ### 管理员页
 
 #### 添加学院 */user/admin/addInstitute*
@@ -369,6 +445,8 @@ Returns:
 - flag
 - msg
 - data
+
+
 
 
 
