@@ -83,7 +83,7 @@ public class IndexServiceImpl implements IndexService{
         if (l == null) {
             return Util.constructResponse(0, "获取分类失败", "");
         }
-        return Util.constructResponse(0, "获取分类成功", JSONArray.toJSON(l));
+        return Util.constructResponse(1, "获取分类成功", JSONArray.toJSON(l));
     }
 
     @Override
