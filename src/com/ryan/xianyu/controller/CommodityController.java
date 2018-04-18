@@ -16,16 +16,44 @@ public class CommodityController {
     @Autowired
     private CommodityService commodityService;
 
+    /**
+     * 分页获取某个分类下的商品数据
+     * @param classificationId 分类ID
+     * @param start 开始索引
+     * @param pageSize 分页大小
+     * @return json
+     */
     @PostMapping("/class")
     @ResponseBody
-    public JSONObject getCommdities(@RequestParam("classificationId") Integer classificationId,
+    public JSONObject getCommodities(@RequestParam("classificationId") Integer classificationId,
                                     @RequestParam("start") Integer start,
                                     @RequestParam("pageSize") Integer pageSize) {
-        if (classificationId < 0) {
+        if (classificationId <= 0) {
             return Util.constructResponse(0, "分类id不正确", "");
         }
         PageInfo pageInfo = new PageInfo(start, pageSize, -1);
         return commodityService.getCommodities(classificationId, pageInfo);
+    }
+
+    /**
+     * 获取某个大类下的商品展示页数
+     * @param classificationId 分类id
+     * @param pageSize 分页大小
+     * @return json pages->value
+     */
+    @PostMapping("/classPages")
+    @ResponseBody
+    public JSONObject getClassPages(@RequestParam("classificationId") Integer classificationId,
+                                    @RequestParam("pageSize") Integer pageSize) {
+        if (classificationId <= 0) {
+            return Util.constructResponse(0, "分类id不正确", "");
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+
+        return commodityService.getCommodityClassPages(classificationId, pageSize);
+
     }
 
     /**

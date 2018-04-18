@@ -98,7 +98,102 @@ Returns:
 
 
 
-### 商品页 即每个商品（帖子）页、包括回复
+### 商品相关 
+
+#### 发布一个商品 */commodity/publish*
+
+Args:
+
+```
+/**
+ * 发布一个商品
+ * @param title 标题
+ * @param contact 联系方式
+ * @param description 描述
+ * @param images 图片 base64编码 英文分号隔开
+ * @param classification 分类对应的id
+ * @param price 价格 数字
+ * @param publisherId 发布人id 数字
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
+#### 修改一个商品 */commodity/modify*
+
+Args:
+
+```
+/**
+ * 修改已发布商品信息
+ * @param commodityId 商品id
+ * @param title 标题
+ * @param contact 联系方式
+ * @param description 描述
+ * @param images 图片base64编码
+ * @param classification 分类
+ * @param price 价格
+ * @param modifier 修改人ID
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
+#### 删除一个商品 */commodity/delete*
+
+Args:
+
+```
+/**
+ * 删除商品 及相关图片
+ * @param commodityId 商品id
+ * @param userId 用户id（当前操作用户）
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
+#### 购买商品 */commodity/purchase*
+
+Args:
+
+```
+/**
+ * 购买商品
+ * @param purchaserId 购买人ID
+ * @param commodityId 商品ID
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
 
 ####获取帖子的详情 */commodity/detail*
 Args:
@@ -126,7 +221,61 @@ Returns:
 
 
 
+#### 某个大类下的商品列表 1.分页 2.获取具体数据
 
+#### *1./commodity/classPages*
+
+Args:
+
+```
+/**
+ * 获取某个大类下的商品展示页数
+ * @param classificationId 分类id
+ * @param pageSize 分页大小
+ * @return json pages->value
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data:json  pages -> 页数
+
+#### 2. /commodity/class
+
+Args:
+
+```
+/**
+ * 分页获取某个分类下的商品数据
+ * @param classificationId 分类ID
+ * @param start 开始索引
+ * @param pageSize 分页大小
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data: JsonArray: (应该不用解释了吧，选择性展示就好了)
+
+```
+private Integer id;
+private String title;
+private Float price;
+private String publisherName;
+private Integer publisherId;
+private String description;
+private String images;
+private String contact;
+private Integer status;
+private Integer browse;
+private Integer reply;
+private Long time;
+```
 
 
 

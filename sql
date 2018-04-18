@@ -52,8 +52,7 @@ CREATE TABLE classification(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
   name VARCHAR(20) NOT NULL COMMENT '分类名' ,
   refer INT DEFAULT 0 COMMENT '分类的上级大类',
-  INDEX (id),
-  FOREIGN KEY (refer) REFERENCES classification(id) ON DELETE CASCADE
+  INDEX (id)
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '分类';
 
 INSERT INTO classification (name, refer) VALUES ("闲置数码", 0),("闲置母婴", 0),("家具日用", 0),("影音家电", 0),

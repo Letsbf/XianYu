@@ -5,7 +5,6 @@ import com.ryan.xianyu.dao.NoticeDao;
 import com.ryan.xianyu.domain.Notice;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.HashMap;
 import java.util.List;

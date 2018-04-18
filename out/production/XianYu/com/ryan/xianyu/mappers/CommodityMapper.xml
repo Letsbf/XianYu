@@ -114,4 +114,8 @@
             #{item}
         </foreach>
     </select>
+
+    <select id="countCommodityByClassification" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
+        SELECT count(*) FROM commodity WHERE classification = #{id}
+    </select>
 </mapper>

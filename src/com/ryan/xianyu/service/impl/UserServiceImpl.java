@@ -66,7 +66,12 @@ public class UserServiceImpl implements UserService {
         JSONObject data = new JSONObject();
         data.put("sessionId", session.getId());
         // TODO: 2018/4/17 未返回头像base64
-        data.put("avatar", user.getAvatar());
+//        data.put("avatar", user.getAvatar());
+        try {
+            data.put("avatar", Util.readImages(user.getAvatar()));
+        } catch (Exception e) {
+            logger.error("读取头像出现异常", e);
+        }
         data.put("admin", user.isAdmin() ? "1" : "0");
         data.put("username", user.getUsername());
         data.put("id", user.getId());
@@ -206,7 +211,11 @@ public class UserServiceImpl implements UserService {
             return Util.constructResponse(0, "获取用户总数失败！", "");
         }
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pages", i / pageSize + 1);
+        int pages = i / pageSize;
+        if (pages * pageSize != i) {
+            pages++;
+        }
+        jsonObject.put("pages", pages);
         return Util.constructResponse(1, "获取用户总数成功", jsonObject);
     }
 
@@ -273,7 +282,11 @@ public class UserServiceImpl implements UserService {
             return Util.constructResponse(0, "获取已购买物品失败", "");
         }
         JSONObject data = new JSONObject();
-        data.put("pages", dealList.size() / pageSize + 1);
+        int pages = dealList.size() / pageSize;
+        if (pages * pageSize != dealList.size()) {
+            pages++;
+        }
+        data.put("pages", pages);
         return Util.constructResponse(1, "获取页数成功", data);
     }
 
@@ -329,7 +342,12 @@ public class UserServiceImpl implements UserService {
         JSONArray dataArray = new JSONArray();
         JSONObject pages = new JSONObject();
         if (pageInfo.getStart() == 0) {
-            pages.put("pages", posts.size() / pageInfo.getPageSize() + 1);
+            int pagesr = posts.size() / pageInfo.getPageSize();
+            if (pagesr * pageInfo.getPageSize() != posts.size()) {
+                pagesr++;
+            }
+            pages.put("pages", pagesr);
+
             finalData.add(pages);
         }
 

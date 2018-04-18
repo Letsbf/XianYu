@@ -6,6 +6,15 @@ public class Classification {
     private String name;
     private Integer refer;
 
+    public Classification() {
+    }
+
+    public Classification(Integer id, String name, Integer refer) {
+        this.id = id;
+        this.name = name;
+        this.refer = refer;
+    }
+
     public Classification(String name, Integer refer) {
         this.name = name;
         this.refer = refer;

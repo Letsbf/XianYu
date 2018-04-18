@@ -120,4 +120,9 @@ public class CommodityDaoImpl implements CommodityDao {
         return l;
     }
 
+    @Override
+    public Integer countCommodityByClassification(Integer classificationId) {
+        return SQLFactory.getSession().selectOne("commodity.countCommodityByClassification", classificationId);
+    }
+
 }

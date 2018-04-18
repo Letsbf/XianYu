@@ -125,7 +125,11 @@ public class CommodityServiceImpl implements CommodityService {
             return Util.constructResponse(0, "失败", "");
         }
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pages", l.size() / pageSize + 1);
+        int pages = l.size() / pageSize;
+        if (pages * pageSize != l.size()) {
+            pages++;
+        }
+        jsonObject.put("pages", pages);
         return Util.constructResponse(1, "获取分页数成功！", jsonObject);
     }
 
@@ -238,6 +242,21 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
+    public JSONObject getCommodityClassPages(Integer classificationId, Integer pageSize) {
+        Integer res = commodityDao.countCommodityByClassification(classificationId);
+        if (res <= 0) {
+            return Util.constructResponse(0, "该分类下没有商品哦", "");
+        }
+        JSONObject data = new JSONObject();
+        int pages = res / pageSize;
+        if (pages * pageSize != res) {
+            pages++;
+        }
+        data.put("pages", pages);
+        return Util.constructResponse(1, "获取分类商品页数成功", data);
+    }
+
+    @Override
     public JSONObject getCommodities(Integer classificationId, PageInfo pageInfo) {
         List<Commodity> s = commodityDao.getCommoditiesByPage(classificationId, pageInfo);
         if (s == null || s.size() == 0) {
@@ -289,7 +308,11 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setTitle(commodity.getTitle());
         commodityVo.setContact(commodity.getContact());
         commodityVo.setDescription(commodity.getDescription());
-        commodityVo.setImages(commodity.getImages());
+        try {
+            commodityVo.setImages(Util.readImages(commodity.getImages()));
+        } catch (Exception e) {
+            logger.error("获取商品图片失败,商品id:{}", commodity.getId(), e);
+        }
         commodityVo.setPrice(commodity.getPrice());
         commodityVo.setStatus(commodity.getStatus());
         commodityVo.setTime(commodity.getTime());

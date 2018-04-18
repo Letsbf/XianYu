@@ -8,9 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by tong on 2018/3/31.
- */
 public class SQLFactory {
 
     private static SqlSessionFactory sqlSessionFactory;

@@ -34,4 +34,6 @@ public interface CommodityService {
     JSONObject modifyCommodity(Commodity commodity);
 
     JSONObject deleteCommodity(Integer commodityId, Integer userId);
+
+    JSONObject getCommodityClassPages(Integer classificationId, Integer pageSize);
 }

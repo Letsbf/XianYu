@@ -34,5 +34,7 @@ public interface CommodityDao {
 
     List<Commodity> getCommoditiesByIdList(List commodityIdList);
 
+    Integer countCommodityByClassification(Integer classificationId);
+
 
 }
