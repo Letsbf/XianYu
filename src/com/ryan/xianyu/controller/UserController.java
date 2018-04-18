@@ -222,6 +222,9 @@ public class UserController {
 
     /**
      * 发布新闻和公告
+     * @param title 标题
+     * @param text 文本
+     * @param userId 用户id
      * @return json
      */
     @PostMapping("/admin/publishNotice")

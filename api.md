@@ -357,7 +357,7 @@ Returns:
 
 
 
-### 管理员页
+### 与管理员有关的接口
 
 #### 添加学院 */user/admin/addInstitute*
 
@@ -434,7 +434,7 @@ Returns:
 - msg
 - data
 
-#### 修改分类 */user/admin/renameClassificationa*
+#### 修改分类 */user/admin/renameClassification*
 
 Args:
 
@@ -450,10 +450,153 @@ Returns:
 
 
 
+#### 获取用户列表的分页数 */user/admin/totalUsers*
+
+Args:
+
+```
+/**
+ * 获取用户的分页数
+ * @param pageSize 分页大小
+ * @return json
+ */
+```
+
+Return:
+
+- flag
+- msg
+- data : json pages -> 页数
+
+
+
+#### 分页获取用户列表 */admin/obtainAllUserByPage*
+
+Args:
+
+```
+/**
+ * 分页获取用户信息
+ * @param pageStart 页面开始的索引
+ * @param pageSize 页面大小
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data jsonArray
+
+```
+private Integer id;
+private String username;
+private String password;
+private String name;
+private String phone;
+private Integer instituteId;
+private String stuId;
+private String email;
+private String avatar;
+private boolean admin;
+private Long time;
+```
+
+
+
+#### 管理员搜索用户 */user/admin/searchUser*
+
+Args:
+
+```
+/**
+ * 支持id、username、name、stuId搜索用户
+ * @param search 搜索内容
+ * @return json
+ */
+```
+
+Returns:返回的是一个列表  和上面的分页获取的信息相同
+
+
+
+#### 管理员删除用户 */user/admin/deleteUser*
+
+Args:
+
+```
+/**
+ * 管理员删除用户
+ * @param userId 用户id
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+#### 管理员设置其他用户为管理员 */user/admin/addAdmin*
+
+Args:
+
+```
+/**
+ * 设置其他普通用户为管理员
+ * @param adminId 当前管理员ID
+ * @param userId 被设置的普通用户的ID
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+#### 管理员发布新闻 */user/admin/publishNotice*
+
+Args:
+
+```
+/**
+ * 发布新闻和公告
+ * @param title 标题
+ * @param text 文本
+ * @param userId 用户id
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+#### 管理员删除公告 /user/admin/deleteNotice
+
+Args:
+
+```
+/**
+ * 删除公告
+ * @param noticeId 公告id
+ * @param userId 操作人id
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+
+
+
 
 
 
 #### 注册 */register*
+
 Args:
 - username
 - password
@@ -559,4 +702,234 @@ Returns:
 - flag
 - msg
 - data
+
+
+
+## 和普通用户有关的接口
+
+#### 获取用户详细信息*/user/detail/*
+
+Args:
+
+```
+/**
+ * @param userId 用户id
+ */
+```
+
+Return:
+
+- flag
+- msg
+- data:json
+
+```
+private Integer id;
+private String username;//用户名
+private String name;//姓名
+private String phone;
+private String institute;//学院名
+private String stuID;
+private String email;
+private String avatar;//头像的base64编码
+private boolean admin;//1是管理员 0普通用户
+private Long time;//注册时间
+```
+
+
+
+#### 已发布的商品分页 */user/commodityPages*
+
+Args:
+
+```
+/**
+ * 用户中心界面获取"已发布的商品"分页数
+ * @param userId 用户id
+ * @param pageSize 分页大小
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data:json pages->页数
+
+
+
+#### 分页获取已发布的商品 */user/myPublish*
+
+Args:
+
+```
+/**
+ * 分页获取"已发布的商品"
+ * @param userId 用户ID
+ * @param pageSize 分页大小
+ * @param pageStart 页面开始位置
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data jsonArray 选择性展示 点击跳转难道对应帖子页
+
+```
+private Integer id;
+private String title;
+private Float price;
+private String publisherName;
+private Integer publisherId;
+private String description;
+private String images;
+private String contact;
+private Integer status;
+private Integer browse;
+private Integer reply;
+private Long time;
+```
+
+
+
+#### 修改密码 */user/modifyPw*
+
+Args:
+
+```
+/**
+ * 更新账户密码
+ * @param userId 用户id
+ * @param oldPw 旧密码
+ * @param newPw 新密码
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+#### 修改除密码以外的个人信息 */user/update*
+
+Args:改没改都传一下 参数要有 传空也可以
+
+```
+/**
+ * 修改除密码以外的个人信息
+ * @param userId 用户id
+ * @param userName 用户名
+ * @param name 名
+ * @param phone 手机号
+ * @param instituteId 学院id
+ * @param stuId 学号
+ * @param email 邮箱
+ * @param avatar 头图base64编码
+ * @return json
+ */
+```
+
+Returns:
+
+
+
+#### 获取已购买的物品分页数 */user/boughtPages*
+
+Args:
+
+```
+/**
+ * 获取已购买物品的分页数
+ * @param userId 用户ID
+ * @param pageSize 分页大小
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data : json pages -> 页数
+
+
+
+#### 分页获取购买的物品 */user/bought*
+
+Args: 每个物品建议增加点击跳转到详情页
+
+```
+/**
+ * 分页获取已购买商品
+ * @param userId 用户ID
+ * @param pageStart 页面开始
+ * @param pageSize 页面大小
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data : jsonArray
+  - id -> 物品id
+  - title -> 标题
+  - description -> 描述
+  - price -> 价格
+
+
+
+#### 选择时间段查看已购买的物品 */user/timeShopping*
+
+Args: 饼状图展示类别数量即可 
+
+```
+/**
+ * 按时间获取购物详情
+ * @param start 开始时间戳
+ * @param end 结束时间戳
+ * @param userId 用户id
+ * @return json,key为分类id value为购买数
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data : jsonArray
+  - key : 分类的id -> value : 购买数量
+
+
+
+#### 获取“我的回复” /user/reply2me
+
+Args:
+
+```
+/**
+ * 获取"我的回复" （回复我的消息）
+ * @param userId 我的用户ID
+ * @param pageSize 页面大小
+ * @param pageStart 页面开始
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data : jsonArray
+  - postId -> 回复的id
+  - commodityId -> 商品的id
+  - commodityTitle -> 商品标题
+  - replierId -> 回复人id
+  - replierUserName -> 回复人用户名
+  - unread -> 是否已读 0未读1已读
 

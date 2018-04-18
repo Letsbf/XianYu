@@ -141,7 +141,11 @@ public class UserServiceImpl implements UserService {
 
         UserVo userVo = new UserVo();
         userVo.setId(user.getId());
-        userVo.setAvatar(user.getAvatar());
+        try {
+            userVo.setAvatar(Util.readImages(user.getAvatar()));
+        } catch (Exception e) {
+            logger.error("读取头像失败,用户id:{}", userId, e);
+        }
         userVo.setAdmin(user.isAdmin());
         userVo.setEmail(user.getEmail());
         userVo.setName(user.getName());
@@ -173,7 +177,9 @@ public class UserServiceImpl implements UserService {
             return Util.constructResponse(0, "用户名已存在", "");
         }
         try {
-            Util.saveAvatar(user);
+            if (!Util.isEmpty(user.getAvatar())) {
+                Util.saveAvatar(user);
+            }
         } catch (Exception e) {
             logger.error("保存头像失败!userId:{}", user.getId(), e);
             return Util.constructResponse(0, "更新失败！", "");
