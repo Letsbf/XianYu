@@ -47,7 +47,7 @@ public class CommodityDaoImpl implements CommodityDao {
     }
 
     @Override
-    public List searchCommodity(String search, String classification, String instituteId, PageInfo pageInfo) {
+    public List searchCommodity(String search, List classification, List instituteId, PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map params = new HashMap<String, Object>();
         params.put("search", search);
@@ -110,6 +110,13 @@ public class CommodityDaoImpl implements CommodityDao {
     public List<Commodity> getCommoditiesByIds(String commodityStr) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIds", commodityStr);
+        return l;
+    }
+
+    @Override
+    public List<Commodity> getCommoditiesByIdList(List commodityIdList) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIdList", commodityIdList);
         return l;
     }
 

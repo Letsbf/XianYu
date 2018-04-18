@@ -19,4 +19,8 @@
     <delete id="deleteNotice" parameterType="java.lang.Integer">
         DELETE FROM notice WHERE id = #{id}
     </delete>
+
+    <select id="getSixNotice" resultMap="notice">
+        SELECT * FROM notice ORDER BY publish_time DESC LIMIT 6
+    </select>
 </mapper>

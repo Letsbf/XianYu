@@ -2,6 +2,7 @@ package com.ryan.xianyu.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
+import com.ryan.xianyu.domain.Classification;
 import com.ryan.xianyu.domain.User;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,17 @@ public interface UserService {
 
     JSONObject deletePrivateMessage(Integer messageId, Integer userId);
 
+    JSONObject addInstitute(String instituteName, Integer userId);
+
+    JSONObject renameInstitute(Integer instituteId, String newName, Integer userId);
+
+    JSONObject deleteInstitute(Integer instituteId, Integer userId);
+
+    JSONObject addClassification(Classification classification, Integer userId);
+
+    JSONObject renameClassification(Integer classificationId,String newName,Integer userId);
+
+    JSONObject deleteClassification(Integer classificationId, Integer userId);
+
+    JSONObject deleteNotice(Integer noticeId, Integer userId);
 }

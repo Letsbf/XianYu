@@ -29,4 +29,35 @@
     <select id="selectClassification" resultType="com.ryan.xianyu.domain.Classification">
         select * from classification;
     </select>
+
+    <insert id="addInstitute" parameterType="java.lang.String" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+        INSERT INTO institute(name) VALUE (#{name})
+    </insert>
+
+    <delete id="deleteInstitute" parameterType="java.lang.Integer">
+        DELETE FROM institute WHERE id = #{id}
+    </delete>
+
+    <update id="renameInstitute" parameterType="java.util.Map">
+        UPDATE institute SET name = #{newName} WHERE id = #{instituteId}
+    </update>
+
+    <insert id="addClassification" parameterType="com.ryan.xianyu.domain.Classification" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+        INSERT INTO classification(name,refer) VALUE (#{name},#{refer})
+    </insert>
+
+    <delete id="deleteClassification" parameterType="java.lang.Integer">
+        DELETE FROM classification WHERE id = #{id} OR refer = #{id}
+    </delete>
+
+    <update id="renameClassification" parameterType="java.util.Map">
+        UPDATE classification SET name = #{newName} WHERE id = #{classificationId}
+    </update>
+
 </mapper>

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
+import com.ryan.xianyu.domain.Classification;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.CommodityService;
 import com.ryan.xianyu.service.UserService;
@@ -242,6 +243,23 @@ public class UserController {
     }
 
     /**
+     * 删除公告
+     * @param noticeId 公告id
+     * @param userId 操作人id
+     * @return json
+     */
+    @PostMapping("/admin/deleteNotice")
+    @ResponseBody
+    public JSONObject deleteNotice(@RequestParam("noticeId") Integer noticeId,
+                                   @RequestParam("userId") Integer userId) {
+        if (noticeId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "出问题了！", "");
+        }
+        return userService.deleteNotice(noticeId, userId);
+
+    }
+
+    /**
      * 设置其他普通用户为管理员
      * @param adminId 当前管理员ID
      * @param userId 被设置的普通用户的ID
@@ -303,6 +321,13 @@ public class UserController {
         return userService.bought(userId,pageInfo);
     }
 
+    /**
+     * 按时间获取购物详情
+     * @param start 开始时间戳
+     * @param end 结束时间戳
+     * @param userId 用户id
+     * @return json,key为分类id value为购买数
+     */
     @PostMapping("/timeShopping")
     @ResponseBody
     public JSONObject timeShopping(@RequestParam("start") Long start, @RequestParam("end") Long end,
@@ -318,7 +343,7 @@ public class UserController {
         return userService.timeShopping(start, end, userId);
     }
 
-    // TODO: 2018/4/17 如何把消息设为已读
+    // TODO: 2018/4/17 如何把消息设为已读 打开帖子页面将消息设置为已读
 
     /**
      * 获取"我的回复" （回复我的消息）
@@ -393,6 +418,115 @@ public class UserController {
             return Util.constructResponse(0, "出现异常blabla", "");
         }
         return userService.deletePrivateMessage(messageId, userId);
+    }
+
+    /**
+     * 添加学院
+     * @param instituteName 学院名
+     * @param userId 操作人ID
+     * @return json
+     */
+    @PostMapping("/admin/addInstitute")
+    @ResponseBody
+    public JSONObject addInstitute(@RequestParam("instituteName") String instituteName,
+                                   @RequestParam("userId") Integer userId) {
+        if (Util.isEmpty(instituteName)) {
+            return Util.constructResponse(0, "学院名不能为空", "");
+        }
+        if (userId <= 0) {
+            return Util.constructResponse(0, "用户ID不正确", "");
+        }
+        return userService.addInstitute(instituteName, userId);
+    }
+
+    /**
+     * 修改学院名
+     * @param instituteId 学院ID
+     * @param newName 新名字
+     * @param userId 操作人ID
+     * @return json
+     */
+    @PostMapping("/admin/renameInstitute")
+    @ResponseBody
+    public JSONObject renameInstitute(@RequestParam("instituteId") Integer instituteId,
+                                      @RequestParam("newName") String newName,
+                                      @RequestParam("userId")Integer userId) {
+        if (Util.isEmpty(newName) || instituteId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "出现异常blabla", "");
+        }
+        return userService.renameInstitute(instituteId, newName, userId);
+    }
+
+    /**
+     * 删除学院
+     * @param instituteId 学院id
+     * @param userId 操作人ID
+     * @return json
+     */
+    @PostMapping("/admin/deleteInstitute")
+    @ResponseBody
+    public JSONObject deleteInstitute(@RequestParam("instituteId") Integer instituteId,
+                                      @RequestParam("userId") Integer userId) {
+        if (instituteId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "出现异常", "");
+        }
+        return userService.deleteInstitute(instituteId, userId);
+    }
+
+    /**
+     * 添加分类
+     * @param name 分类名称
+     * @param userId 操作人ID
+     * @param refer 上级分类 0则表示大类
+     * @return json
+     */
+    @PostMapping("/admin/addClassification")
+    @ResponseBody
+    public JSONObject addClassification(@RequestParam("name") String name,
+                                        @RequestParam("userId") Integer userId,
+                                        @RequestParam("refer") Integer refer) {
+
+        if (userId <= 0 || Util.isEmpty(name)) {
+            return Util.constructResponse(0, "有问题啊兄dei", "");
+        }
+        Classification classification = new Classification(name, refer);
+        return userService.addClassification(classification, userId);
+    }
+
+    /**
+     * 修改分类
+     * @param classificationId 分类ID
+     * @param newName 新名字
+     * @param userId 操作人ID
+     * @return json
+     */
+    @PostMapping("/admin/renameClassification")
+    @ResponseBody
+    public JSONObject renameClassification(@RequestParam("classificationId") Integer classificationId,
+                                           @RequestParam("newName") String newName,
+                                           @RequestParam("userId") Integer userId) {
+        if (classificationId <= 0 || userId <= 0 || Util.isEmpty(newName)) {
+            return Util.constructResponse(0, "有问题啊兄dei", "");
+        }
+
+        return userService.renameClassification(classificationId, newName, userId);
+    }
+
+    /**
+     * 删除分类
+     * @param classificationId 分类ID
+     * @param userId 操作人ID
+     * @return json
+     */
+    @PostMapping("/admin/deleteClassification")
+    @ResponseBody
+    public JSONObject deleteClassification(@RequestParam("classificationId") Integer classificationId,
+                                           @RequestParam("userId") Integer userId) {
+        if (classificationId <= 0 || userId <= 0) {
+            return Util.constructResponse(0, "有问题啊兄dei", "");
+        }
+
+        return userService.deleteClassification(classificationId, userId);
     }
 
 }

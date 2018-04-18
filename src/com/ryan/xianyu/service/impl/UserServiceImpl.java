@@ -47,6 +47,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PrivateMessageDao privateMessageDao;
 
+    @Autowired
+    private IndexDao indexDao;
+
 
     @Override
     public JSONObject login(String username, String password, HttpServletRequest request, HttpServletResponse response) {
@@ -346,9 +349,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JSONObject timeShopping(Long start, Long end, Integer userId) {
+        List<Deal> dealList = dealDao.getDealsByTime(start, end, userId);
+        if (dealList == null || dealList.size() == 0) {
+            return Util.constructResponse(1, "您并没买过东西", "");
+        }
+        List<Integer> commodityIdList = new ArrayList<>();
+        for (Deal deal : dealList) {
+            commodityIdList.add(deal.getCommodityId());
+        }
+        List<Commodity> commodityList = commodityDao.getCommoditiesByIdList(commodityIdList);
+        Map classId2CountMap = new HashMap<Integer, Integer>();
+        for (Commodity commodity : commodityList) {
+            classId2CountMap.put(commodity.getClassification(),
+                    1 + (Integer) classId2CountMap.getOrDefault(commodity.getClassification(), 0));
+        }
 
-
-        return null;
+        return Util.constructResponse(1, "获取购物分类详情成功！", classId2CountMap);
     }
 
     @Override
@@ -383,4 +399,99 @@ public class UserServiceImpl implements UserService {
         return Util.constructResponse(1, "删除成功", "");
     }
 
+    @Override
+    public JSONObject addInstitute(String instituteName, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.addInstitute(instituteName);
+        if (i <= 0) {
+            return Util.constructResponse(0, "添加学院失败", "");
+        }
+        JSONObject data = new JSONObject();
+        data.put("" + i, instituteName);
+        return Util.constructResponse(1, "添加成功", data);
+    }
+
+    @Override
+    public JSONObject deleteInstitute(Integer instituteId, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.deleteInstitute(instituteId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "删除失败", "");
+        }
+        return Util.constructResponse(1, "删除成功", "");
+    }
+
+    @Override
+    public JSONObject renameInstitute(Integer instituteId, String newName, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.renameInstitute(instituteId, newName);
+        if (i <= 0) {
+            return Util.constructResponse(0, "修改学院名失败！", "");
+        }
+
+        return Util.constructResponse(1, "修改成功！", "");
+    }
+
+    @Override
+    public JSONObject addClassification(Classification classification, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.addClassification(classification);
+        if (i <= 0) {
+            return Util.constructResponse(0, "添加分类失败", "");
+        }
+        return Util.constructResponse(1, "添加分类成功", classification);
+    }
+
+    @Override
+    public JSONObject renameClassification(Integer classificationId, String newName, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.renameClassification(classificationId, newName);
+
+        if (i <= 0) {
+            return Util.constructResponse(0, "修改分类失败！", "");
+        }
+
+        return Util.constructResponse(1, "修改成功！", "");
+    }
+
+    @Override
+    public JSONObject deleteClassification(Integer classificationId, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = indexDao.deleteClassification(classificationId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "删除分类失败", "");
+        }
+        return Util.constructResponse(1, "删除成功", "");
+    }
+
+    @Override
+    public JSONObject deleteNotice(Integer noticeId, Integer userId) {
+        User user = userDao.selectById(userId);
+        if (user == null || !user.isAdmin()) {
+            return Util.constructResponse(0, "用户不存在或不具备权限", "");
+        }
+        Integer i = noticeDao.deleteNotice(noticeId);
+        if (i <= 0) {
+            return Util.constructResponse(0, "删除公告失败", "");
+        }
+        return Util.constructResponse(1, "删除成功", "");
+    }
 }

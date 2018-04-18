@@ -14,4 +14,6 @@ public interface DealDao {
     List<Deal> getDealsByUserId(Integer userId);
 
     List<Deal> getDealsByUserIdByPage(Integer userId, PageInfo pageInfo);
+
+    List<Deal> getDealsByTime(Long start, Long end, Integer userId);
 }

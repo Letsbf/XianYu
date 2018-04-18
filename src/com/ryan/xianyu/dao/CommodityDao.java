@@ -16,7 +16,7 @@ public interface CommodityDao {
 
     Integer insertImages(Commodity commodity);
 
-    List searchCommodity(String search, String classification, String instituteId, PageInfo pageInfo);
+    List searchCommodity(String search, List classification, List instituteId, PageInfo pageInfo);
 
     Integer getCommodityCountByUserId(Integer userId);
 
@@ -31,6 +31,8 @@ public interface CommodityDao {
     Integer deleteCommodity(Integer commodityId);
 
     List<Commodity> getCommoditiesByIds(String commodityStr);
+
+    List<Commodity> getCommoditiesByIdList(List commodityIdList);
 
 
 }

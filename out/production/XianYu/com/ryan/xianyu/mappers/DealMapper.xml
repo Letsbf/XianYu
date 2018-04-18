@@ -29,4 +29,8 @@
             LIMIT #{pageInfo.start},#{pageInfo.pageSize}
         </if>
     </select>
+
+    <select id="getDealsByTime" parameterType="java.util.Map" resultMap="dealMap">
+        SELECT * FROM deal WHERE purchaser_id = #{userId} AND time BETWEEN #{start} AND #{end}
+    </select>
 </mapper>

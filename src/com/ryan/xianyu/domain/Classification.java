@@ -6,6 +6,11 @@ public class Classification {
     private String name;
     private Integer refer;
 
+    public Classification(String name, Integer refer) {
+        this.name = name;
+        this.refer = refer;
+    }
+
     public Integer getId() {
         return id;
     }

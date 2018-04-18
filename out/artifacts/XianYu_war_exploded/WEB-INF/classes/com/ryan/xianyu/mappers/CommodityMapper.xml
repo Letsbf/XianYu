@@ -39,24 +39,30 @@
     </update>
 
     <select id="searchCommodity" parameterType="java.util.Map" resultType="com.ryan.xianyu.domain.Commodity">
-        SELECT * FROM commodity WHERE 1 = 1
-        <if test="#{search}!=null">
-            AND title LIKE (SELECT CONCAT('%',#{search},'%')) OR description LIKE (SELECT CONCAT('%',#{search},'%'))
+        SELECT * FROM commodity WHERE status = 0
+        <if test="search !=null">
+            AND (title LIKE (SELECT CONCAT('%',#{search},'%')) OR description LIKE (SELECT CONCAT('%',#{search},'%')))
         </if>
-        <if test="#{classification}!=null">
-            AND classification in (SELECT CONCAT('(',#{classification},')'))
+        <if test="classification != null">
+            AND classification in
+            <foreach collection="classification" open="(" separator="," close=")" index="index" item="item">
+                #{item}
+            </foreach>
         </if>
-        AND publisherName IN
+        AND publisher IN
         (SELECT id FROM user WHERE 1 = 1
         <choose>
-            <when test="#{instituteId}!=null">
-                AND institute_id in (SELECT CONCAT('(',#{instituteId},')'))
+            <when test="instituteId != null">
+                AND institute_id in
+                <foreach collection="instituteId" open="(" separator="," close=")" index="index" item="item">
+                  #{item}
+                </foreach>
             </when>
         </choose>)
         ORDER BY time DESC
-        <if test='#{pageInfo}!=null'>
+        <if test='pageInfo != null'>
             LIMIT #{pageInfo.start}, #{pageInfo.pageSize}
-        </if>;
+        </if>
     </select>
 
     <update id="updateCommodityStatus" parameterType="java.util.Map">
@@ -100,5 +106,12 @@
 
     <select id="getCommoditiesByIds" parameterType="java.lang.String" resultType="com.ryan.xianyu.domain.Commodity">
         SELECT * FROM commodity WHERE id IN (#{id})
+    </select>
+
+    <select id="getCommoditiesByIdList" parameterType="java.util.List" resultType="com.ryan.xianyu.domain.Commodity">
+        SELECT * FROM commodity WHERE id IN
+        <foreach collection="list" open="(" separator="," close=")" index="index" item="item">
+            #{item}
+        </foreach>
     </select>
 </mapper>

@@ -21,6 +21,11 @@ public class IndexController {
     @Autowired
     private CommodityService commodityService;
 
+
+    /**
+     * 获取学院信息
+     * @return json,key学院的id,value学院中文名
+     */
     @GetMapping("/institute")
     @ResponseBody
     public JSONObject getInstitute() {
@@ -31,7 +36,21 @@ public class IndexController {
         return Util.constructResponse(1, "获取学院信息成功！", m);
     }
 
+    /**
+     * 获取至多6条公告
+     * @return json
+     */
+    @GetMapping("/sixNoticeTitle")
+    @ResponseBody
+    public JSONObject sixNoticeTitle() {
+        return indexService.getSixNotice();
+    }
 
+    /**
+     * 获取公告详情
+     * @param id 公告id
+     * @return json
+     */
     @PostMapping("/notice")
     @ResponseBody
     public JSONObject getNotice(@RequestParam("id") Integer id) {
@@ -39,6 +58,10 @@ public class IndexController {
     }
 
 
+    /**
+     * 获取分类列表
+     * @return json
+     */
     @GetMapping("/classification")
     @ResponseBody
     public JSONObject getClassification(){
@@ -46,6 +69,15 @@ public class IndexController {
     }
 
 
+    /**
+     * 首页搜索框
+     * @param search 搜索内容
+     * @param institute 学院
+     * @param classification 分类
+     * @param pageStart 页面开始
+     * @param pageSize 页面大小
+     * @return json
+     */
     @PostMapping("/search")
     @ResponseBody
     public JSONObject search(@RequestParam("search") String search,
@@ -53,15 +85,6 @@ public class IndexController {
                              @RequestParam("classification") String classification,
                              @RequestParam("pageStart") Integer pageStart,
                              @RequestParam("pageSize") Integer pageSize) {
-//        if (Util.isEmpty(search)) {
-//            search = "";
-//        }
-//        if (Util.isEmpty(institute)) {
-//            institute = "";
-//        }
-//        if (Util.isEmpty(classification)) {
-//            classification = "";
-//        }
         if (pageStart < 0) {
             pageStart = 0;
         }
@@ -72,7 +95,15 @@ public class IndexController {
         return commodityService.searchCommodity(search, institute, classification, pageInfo);
     }
 
-    @GetMapping("/getSearchPages")
+    /**
+     * 搜索获取搜索结果页数
+     * @param search 搜索内容
+     * @param institute 学院
+     * @param classification 分类
+     * @param pageSize 页面大小
+     * @return json
+     */
+    @PostMapping("/getSearchPages")
     @ResponseBody
     public JSONObject getSearchPages(@RequestParam("search") String search,
                                      @RequestParam("institute") String institute,
@@ -80,12 +111,5 @@ public class IndexController {
                                      @RequestParam("pageSize") Integer pageSize) {
         return commodityService.getSearchPages(search, institute, classification, pageSize);
     }
-
-    public static void main(String[] args) {
-        String[] s = "".split(";");
-        System.out.println("te" + s[0] + "st");
-    }
-
-
 
 }

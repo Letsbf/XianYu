@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.Util;
 import com.ryan.xianyu.dao.IndexDao;
+import com.ryan.xianyu.dao.NoticeDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.Notice;
 import com.ryan.xianyu.domain.User;
@@ -32,6 +33,9 @@ public class IndexServiceImpl implements IndexService{
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private NoticeDao noticeDao;
 
     @Override
     public Map<String, Object> getInstitute() {
@@ -80,5 +84,22 @@ public class IndexServiceImpl implements IndexService{
             return Util.constructResponse(0, "获取分类失败", "");
         }
         return Util.constructResponse(0, "获取分类成功", JSONArray.toJSON(l));
+    }
+
+    @Override
+    public JSONObject getSixNotice() {
+        List<Notice> notices = noticeDao.getSixNotice();
+        if (notices == null || notices.size() == 0) {
+            return Util.constructResponse(1, "暂无公告", "");
+        }
+        JSONArray data = new JSONArray();
+        for (Notice notice : notices) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", notice.getId());
+            jsonObject.put("title", notice.getTitle());
+            jsonObject.put("time", notice.getPublishTime());
+            data.add(jsonObject);
+        }
+        return Util.constructResponse(1, "获取公告成功", data);
     }
 }

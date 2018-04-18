@@ -83,7 +83,7 @@ public class Util {
     }
 
     public static String readImages(String imagePath) throws Exception {
-        if (imagePath == null) {
+        if (Util.isEmpty(imagePath)) {
             return "";
         }
         String[] imagePaths = imagePath.split(";");

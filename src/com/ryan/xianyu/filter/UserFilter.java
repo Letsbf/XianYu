@@ -39,7 +39,6 @@ public class UserFilter implements Filter {
 //        logger.error("-----UserFilter uri:{}----", uriStr);
 //        String[] uris = uriStr.split("/");
 //        for (String uri : uris) {
-//            // TODO: 2018/4/12 先只添加admin的校验
 //            if (uri.contains("admin")) {
 //                String userIdStr = request.getParameter("userId");
 //                if (Util.isEmpty(userIdStr)) {

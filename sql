@@ -21,8 +21,7 @@ CREATE TABLE user(
   avatar VARCHAR(128) DEFAULT '',
   admin TINYINT(1) DEFAULT 0 COMMENT '1管理员 0普通用户',
   time BIGINT COMMENT '注册时间',
-  INDEX (id),
-  FOREIGN KEY(institute_id) REFERENCES institute(id) ON DELETE CASCADE
+  INDEX (id)
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
 INSERT INTO user(username, password, name, phone, institute_id, stu_id, email, avatar, admin, time) VALUE (
@@ -53,7 +52,8 @@ CREATE TABLE classification(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
   name VARCHAR(20) NOT NULL COMMENT '分类名' ,
   refer INT DEFAULT 0 COMMENT '分类的上级大类',
-  INDEX (id)
+  INDEX (id),
+  FOREIGN KEY (refer) REFERENCES classification(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT '分类';
 
 INSERT INTO classification (name, refer) VALUES ("闲置数码", 0),("闲置母婴", 0),("家具日用", 0),("影音家电", 0),
@@ -75,7 +75,7 @@ CREATE TABLE commodity (
   contact      VARCHAR(30)                     NOT NULL
   COMMENT '联系方式',
   status         TINYINT DEFAULT 0
-  COMMENT '交易状态 0可购买 2已购买 3已关闭',
+  COMMENT '交易状态 0可购买 1已购买 2已关闭',
   browse         INT     DEFAULT 0
   COMMENT '浏览数',
   time           BIGINT COMMENT '发布时间',

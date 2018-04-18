@@ -98,14 +98,29 @@ public class CommodityServiceImpl implements CommodityService {
     public JSONObject searchCommodity(String search, String institute, String classification, PageInfo pageInfo) {
         logger.error("参数：pageSize:{},pageStart:{},search:{},institute:{},classification:{}",
                 pageInfo.getPageSize(), pageInfo.getStart(), search, institute, classification);
-        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute, pageInfo);
+
+        List classList = this.convertString2IntList(classification);
+        List instituteList = this.convertString2IntList(institute);
+
+        List<Commodity> l = commodityDao.searchCommodity(search, classList, instituteList, pageInfo);
+        for (Commodity commodity : l) {
+            try {
+                commodity.setImages(Util.readImages(commodity.getImages()));
+            } catch (Exception e) {
+                logger.error("读取图片异常", e);
+            }
+        }
         logger.error("----------- l长度:{} -----------", l.size());
-        return Util.constructResponse(0, "失败", JSONArray.toJSON(l));
+        return Util.constructResponse(0, "搜索成功", JSONArray.toJSON(l));
     }
 
     @Override
     public JSONObject getSearchPages(String search, String institute, String classification, Integer pageSize) {
-        List<Commodity> l = commodityDao.searchCommodity(search, classification, institute, null);
+
+        List classList = this.convertString2IntList(classification);
+        List instituteList = this.convertString2IntList(institute);
+
+        List<Commodity> l = commodityDao.searchCommodity(search, classList, instituteList, null);
         if (l == null || l.size() == 0) {
             return Util.constructResponse(0, "失败", "");
         }
@@ -225,8 +240,8 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public JSONObject getCommodities(Integer classificationId, PageInfo pageInfo) {
         List<Commodity> s = commodityDao.getCommoditiesByPage(classificationId, pageInfo);
-        if (s == null) {
-            return Util.constructResponse(0, "获取该分类下商品失败！", "");
+        if (s == null || s.size() == 0) {
+            return Util.constructResponse(1, "该分类下尚无商品", "");
         }
         List<CommodityVo> res = convertCommodityList2VoList(s);
         return Util.constructResponse(1, "获取成功", JSON.toJSON(res));
@@ -234,7 +249,6 @@ public class CommodityServiceImpl implements CommodityService {
 
     // TODO: 2018/4/16 验证一下
     private List<CommodityVo> convertCommodityList2VoList(List<Commodity> s){
-        StringBuilder sb = new StringBuilder();
         List<Integer> idList = new ArrayList<>();
         for (Commodity commodity : s) {
             idList.add(commodity.getPublisher());
@@ -284,4 +298,17 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setBrowse(commodity.getBrowse());
         return commodityVo;
     }
+
+    private List convertString2IntList(String str) {
+        if (Util.isEmpty(str)) {
+            return null;
+        }
+        String[] strings = str.split(",");
+        List integers = new ArrayList<Integer>();
+        for (String s : strings) {
+            integers.add(Integer.parseInt(s));
+        }
+        return integers;
+    }
+
 }

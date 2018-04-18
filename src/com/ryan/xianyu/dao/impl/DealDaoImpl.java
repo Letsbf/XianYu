@@ -50,5 +50,17 @@ public class DealDaoImpl implements DealDao {
         List<Deal> dealList = sqlSession.selectList("deal.getDealsByUserIdByPage", params);
         return dealList;
     }
+
+    @Override
+    public List<Deal> getDealsByTime(Long start, Long end, Integer userId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Map params = new HashMap<String, Object>();
+        params.put("start", start);
+        params.put("end", end);
+        params.put("userId", userId);
+        List<Deal> dealList = sqlSession.selectList("deal.getDealsByTime", params);
+        return dealList;
+    }
+
 }
 

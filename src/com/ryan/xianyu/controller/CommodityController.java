@@ -1,6 +1,5 @@
 package com.ryan.xianyu.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
@@ -21,12 +20,11 @@ public class CommodityController {
     @ResponseBody
     public JSONObject getCommdities(@RequestParam("classificationId") Integer classificationId,
                                     @RequestParam("start") Integer start,
-                                    @RequestParam("pageSize") Integer pageSize,
-                                    @RequestParam("total") Integer total) {
+                                    @RequestParam("pageSize") Integer pageSize) {
         if (classificationId < 0) {
             return Util.constructResponse(0, "分类id不正确", "");
         }
-        PageInfo pageInfo = new PageInfo(start, pageSize, total);
+        PageInfo pageInfo = new PageInfo(start, pageSize, -1);
         return commodityService.getCommodities(classificationId, pageInfo);
     }
 

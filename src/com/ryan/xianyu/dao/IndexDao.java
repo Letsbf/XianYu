@@ -18,4 +18,16 @@ public interface IndexDao {
 
     List<Classification> getClassification();
 
+    Integer addInstitute(String name);
+
+    Integer deleteInstitute(Integer instituteId);
+
+    Integer renameInstitute(Integer instituteId, String newName);
+
+    Integer addClassification(Classification classification);
+
+    Integer deleteClassification(Integer classificationId);
+
+    Integer renameClassification(Integer classification, String newName);
+
 }

@@ -2,10 +2,13 @@ package com.ryan.xianyu.dao.impl;
 
 import com.ryan.xianyu.common.SQLFactory;
 import com.ryan.xianyu.dao.NoticeDao;
+import com.ryan.xianyu.domain.Notice;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,4 +24,15 @@ public class NoticeDaoImpl implements NoticeDao{
         Integer i = sqlSession.insert("notice.insertNotice", params);
         return i;
     }
+
+    @Override
+    public List<Notice> getSixNotice() {
+        return SQLFactory.getSession().selectList("notice.getSixNotice");
+    }
+
+    @Override
+    public Integer deleteNotice(Integer noticeId) {
+        return SQLFactory.getSession().delete("notice.deleteNotice", noticeId);
+    }
+
 }
