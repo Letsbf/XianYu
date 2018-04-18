@@ -355,6 +355,8 @@ Returns:
 
 
 
+
+
 ### 管理员页
 
 #### 添加学院 */user/admin/addInstitute*
@@ -483,3 +485,78 @@ Returns:
 - flag:0失败 1成功
 - msg:提示信息
 - data:json字符串，id->学院名
+
+
+
+
+
+## 与私信有关的接口 
+
+私信做的很简单 一条就是一条 回复性都没有 后台只知道是谁发给谁的、以及是否已读、没有任何上下文联系
+
+#### 发送私信 */user/sendPrivateMessage*
+
+Args:
+
+```
+/**
+ * @param fromId 发送人ID
+ * @param toId 接收人ID
+ * @param message 消息体
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+
+
+
+#### 查看我的私信*/user/myPrivateMessage*
+
+Args:
+
+```
+/**
+ * @param userId 我的ID
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data jsonArray 返回中未读私信、最后收到的优先
+
+```
+private Integer id;//私信的id
+private Integer fromId;//谁发的
+private Integer fromUserName;//发送人的用户名
+private Integer status;// 状态 0未读 1已读
+private String message;
+private Long time;//时间戳
+```
+
+
+
+#### 删除私信 */user/deletePrivateMessage*
+
+Args:
+
+```
+/**
+ * @param messageId 消息id
+ * @param userId 操作人id
+ * @return json
+ */
+```
+
+Returns:
+
+- flag
+- msg
+- data
+

@@ -370,6 +370,7 @@ public class UserController {
         return userService.getReply2Me(userId, pageInfo);
     }
 
+    //-------------------------下面的接口文档写完了
 
     /**
      * 发送留言
@@ -383,7 +384,7 @@ public class UserController {
     public JSONObject sendPrivateMessage(@RequestParam("fromId") Integer fromId,
                                          @RequestParam("toId") Integer toId,
                                          @RequestParam("message") String message) {
-        if (fromId <= 0 || toId <= 0 || Util.isEmpty(message)) {
+        if (fromId <= 0 || toId <= 0 || Util.isEmpty(message) || fromId.equals(toId)) {
             return Util.constructResponse(0, "出现异常blabla", "");
         }
         return userService.sendPrivateMessage(fromId, toId, message);

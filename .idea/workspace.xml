@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/vo/PrivateMessageVo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.md" afterPath="$PROJECT_DIR$/api.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +46,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="138" column="42" lean-forward="true" selection-start-line="138" selection-start-column="42" selection-end-line="138" selection-end-column="42" />
+            <state relative-caret-position="306">
+              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -52,7 +56,7 @@
       <file leaf-file-name="PostServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
+            <state relative-caret-position="487">
               <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
               <folding />
             </state>
@@ -62,9 +66,35 @@
       <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="422" column="25" lean-forward="false" selection-start-line="422" selection-start-column="25" selection-end-line="422" selection-end-column="25" />
+            <state relative-caret-position="111">
+              <caret line="432" column="22" lean-forward="false" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrivateMessageDaoImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrivateMessageMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PrivateMessageMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+              <folding>
+                <marker date="1523947752818" expanded="true" signature="661:779" ph="INSERT INTO private_message... " />
+                <marker date="1523947752818" expanded="true" signature="897:977" ph="SELECT * FRO... private_message" />
+                <marker date="1523947752818" expanded="true" signature="1072:1129" ph="UPDATE priva... " />
+                <marker date="1523947752818" expanded="true" signature="1245:1291" ph="SELECT * FRO... private_message" />
+                <marker date="1523947752818" expanded="true" signature="1378:1422" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,29 +104,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="8" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/IndexController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="64" column="32" lean-forward="false" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="32" />
-              <folding>
-                <element signature="e#1132#1133#0" expanded="true" />
-                <element signature="e#1182#1183#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -118,26 +125,6 @@
                 <marker date="1523968969913" expanded="true" signature="2063:2123" ph="DELETE FROM " />
                 <marker date="1523968969913" expanded="true" signature="2216:2290" ph="UPDATE class... " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Classification.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/domain/Classification.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -194,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Notice.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/config/springmvc.xml" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Post.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/UserVo.java" />
@@ -229,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/NoticeDao.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/NoticeMapper.xml" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/NoticeDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/CommodityService.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/dao/CommodityDao.java" />
@@ -240,11 +225,13 @@
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/config/mybatis.xml" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/UserMapper.xml" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/mappers/CommodityMapper.xml" />
-        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/sql" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/CommodityController.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/ryan/xianyu/domain/Classification.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/vo/PrivateMessageVo.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -339,6 +326,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="xianyu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -545,6 +536,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="XianYu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="XianYu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xianyu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1170,12 +1179,12 @@
       <workItem from="1522379098976" duration="20917000" />
       <workItem from="1522516975137" duration="46867000" />
       <workItem from="1523112570687" duration="81448000" />
-      <workItem from="1523948979553" duration="19738000" />
+      <workItem from="1523948979553" duration="20729000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168970000" />
+    <option name="totallyTimeSpent" value="169961000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1271,7 +1280,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java</url>
-          <line>369</line>
+          <line>370</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
@@ -1285,39 +1294,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/domain/Commodity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="108" column="16" lean-forward="false" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-          <folding>
-            <element signature="e#2505#2506#0" expanded="false" />
-            <element signature="e#2541#2542#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="187">
-            <caret line="91" column="11" lean-forward="false" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/IndexDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1459,22 +1435,6 @@
         <state relative-caret-position="115">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PrivateMessageMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-          <folding>
-            <marker date="1523947752818" expanded="true" signature="661:779" ph="INSERT INTO private_message... " />
-            <marker date="1523947752818" expanded="true" signature="897:946" ph="SELECT * FRO... private_message" />
-            <marker date="1523947752818" expanded="true" signature="897:977" ph="SELECT * FRO... private_message" />
-            <marker date="1523947752818" expanded="true" signature="1072:1129" ph="UPDATE priva... " />
-            <marker date="1523947752818" expanded="true" signature="1245:1291" ph="SELECT * FRO... private_message" />
-            <marker date="1523947752818" expanded="true" signature="1378:1411" ph="DELETE FROM " />
-            <marker date="1523947752818" expanded="true" signature="1378:1422" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1764,22 +1724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="422" column="25" lean-forward="false" selection-start-line="422" selection-start-column="25" selection-end-line="422" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/PostController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -1788,10 +1732,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/mappers/PrivateMessageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <marker date="1523947752818" expanded="true" signature="661:779" ph="INSERT INTO private_message... " />
+            <marker date="1523947752818" expanded="true" signature="897:977" ph="SELECT * FRO... private_message" />
+            <marker date="1523947752818" expanded="true" signature="1072:1129" ph="UPDATE priva... " />
+            <marker date="1523947752818" expanded="true" signature="1245:1291" ph="SELECT * FRO... private_message" />
+            <marker date="1523947752818" expanded="true" signature="1378:1422" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/PostServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/vo/PrivateMessageVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/domain/PrivateMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="432" column="22" lean-forward="false" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="138" column="42" lean-forward="true" selection-start-line="138" selection-start-column="42" selection-end-line="138" selection-end-column="42" />
+        <state relative-caret-position="306">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
           <folding />
         </state>
       </provider>

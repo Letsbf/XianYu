@@ -9,6 +9,7 @@ import com.ryan.xianyu.dao.*;
 import com.ryan.xianyu.domain.*;
 import com.ryan.xianyu.service.IndexService;
 import com.ryan.xianyu.service.UserService;
+import com.ryan.xianyu.vo.PrivateMessageVo;
 import com.ryan.xianyu.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -400,8 +401,32 @@ public class UserServiceImpl implements UserService {
         if (privateMessageList == null || privateMessageList.size() == 0) {
             return Util.constructResponse(1, "没有私信", "");
         }
+
         privateMessageDao.updateMessage2Read(userId);
-        return Util.constructResponse(1, "获取私信成功", privateMessageList);
+
+        List userIdList = new ArrayList();
+        for (PrivateMessage privateMessage : privateMessageList) {
+            userIdList.add(privateMessage.getFromId());
+        }
+        List<User> users = userDao.selectByIds(userIdList);
+        Map userId2UserName = new HashMap();
+        for (User user : users) {
+            userId2UserName.put(user.getId(), user.getUsername());
+        }
+
+        List pml = new ArrayList<PrivateMessageVo>();
+        for (PrivateMessage privateMessage : privateMessageList) {
+            PrivateMessageVo pmVo = new PrivateMessageVo();
+            pmVo.setId(privateMessage.getId());
+            pmVo.setTime(privateMessage.getTime());
+            pmVo.setFromId(privateMessage.getFromId());
+            pmVo.setStatus(privateMessage.getStatus());
+            pmVo.setMessage(privateMessage.getMessage());
+            pmVo.setFromUserName((String) userId2UserName.get(privateMessage.getFromId()));
+            pml.add(pmVo);
+        }
+
+        return Util.constructResponse(1, "获取私信成功", pml);
     }
 
     @Override
