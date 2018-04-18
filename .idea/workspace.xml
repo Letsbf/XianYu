@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.md" afterPath="$PROJECT_DIR$/api.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/UserServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1147,12 +1144,12 @@
       <workItem from="1522379098976" duration="20917000" />
       <workItem from="1522516975137" duration="46867000" />
       <workItem from="1523112570687" duration="81448000" />
-      <workItem from="1523948979553" duration="23501000" />
+      <workItem from="1523948979553" duration="23557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172733000" />
+    <option name="totallyTimeSpent" value="172789000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

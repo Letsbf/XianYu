@@ -3,6 +3,8 @@
 
 时间传递均为时间戳
 
+Return为空 表示 常规 flag+msg模式 无data
+
 ### 首页
 #### 获取学院信息 GET */index/institute*
 Args:
