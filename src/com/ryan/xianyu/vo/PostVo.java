@@ -6,8 +6,16 @@ public class PostVo {
     private String text;
     private Integer replyPostId;
     private String replier;
+    private Integer replierIsAdmin;
     private Long time;
 
+    public Integer getReplierIsAdmin() {
+        return replierIsAdmin;
+    }
+
+    public void setReplierIsAdmin(Integer replierIsAdmin) {
+        this.replierIsAdmin = replierIsAdmin;
+    }
 
     public Integer getId() {
         return id;

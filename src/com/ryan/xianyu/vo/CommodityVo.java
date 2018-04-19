@@ -13,7 +13,16 @@ public class CommodityVo {
     private Integer status;
     private Integer browse;
     private Integer reply;
+    private Integer publisherIsAdmin;
     private Long time;
+
+    public Integer getPublisherIsAdmin() {
+        return publisherIsAdmin;
+    }
+
+    public void setPublisherIsAdmin(Integer publisherIsadmin) {
+        this.publisherIsAdmin = publisherIsadmin;
+    }
 
     public Integer getReply() {
         return reply;

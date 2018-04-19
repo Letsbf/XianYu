@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public JSONObject getReply(Integer commodityId, PageInfo pageInfo) {
         List<Post> res = postDao.selectReply(commodityId, pageInfo);
-        if (res == null) {
+        if (res == null || res.size() == 0) {
             return Util.constructResponse(0, "获取帖子回复失败，也许没有回复", "");
         }
 
@@ -45,11 +45,13 @@ public class PostServiceImpl implements PostService {
         }
 
         Map id2Name = new HashMap<Integer, String>();
+        Map id2Admin = new HashMap<Integer, Integer>();
         List<User> l = userDao.selectByIds(idList);
         logger.error("userList:{}", l);
 
         for (User user : l) {
             id2Name.put(user.getId(), user.getUsername());
+            id2Admin.put(user.getId(), user.isAdmin() ? 1 : 0);
         }
 
         List r = new ArrayList<PostVo>();
@@ -59,6 +61,7 @@ public class PostServiceImpl implements PostService {
             postVo.setTime(re.getTime());
             postVo.setReplyPostId(re.getReplyPostId());
             postVo.setId(re.getId());
+            postVo.setReplierIsAdmin((Integer) id2Admin.get(re.getReplier()));
 
             postVo.setReplier((String) id2Name.get(re.getReplier()));
             r.add(postVo);

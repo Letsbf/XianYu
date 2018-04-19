@@ -46,6 +46,7 @@ public class CommodityServiceImpl implements CommodityService {
         User user = userDao.selectById(commodity.getPublisher());
         CommodityVo commodityVo = new CommodityVo();
 
+        commodityVo.setPublisherIsAdmin(user.isAdmin() ? 1 : 0);
         commodityVo.setTitle(commodity.getTitle());
         commodityVo.setContact(commodity.getContact());
         commodityVo.setDescription(commodity.getDescription());
@@ -91,7 +92,9 @@ public class CommodityServiceImpl implements CommodityService {
         if (i <= 0) {
             return Util.constructResponse(0, "发布失败！", "");
         }
-        return Util.constructResponse(1, "发布成功！", "");
+        JSONObject data = new JSONObject();
+        data.put("id", commodity.getId());
+        return Util.constructResponse(1, "发布成功！", data);
     }
 
     @Override
