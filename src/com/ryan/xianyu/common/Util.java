@@ -34,9 +34,8 @@ public class Util {
         String path = System.getProperty("user.dir");
         String image = user.getAvatar();
         if (isEmpty(image)) {
-            String avatar = path + "/default/avatar.jpg";
-            user.setAvatar(avatar);
-            return avatar;
+            user.setAvatar("");
+            return "";
         }
         String avatar = path + "/" + user.getId() + "/avatar";
         save(avatar, image);
@@ -51,7 +50,7 @@ public class Util {
         Integer id = commodity.getId();
         StringBuilder sb = new StringBuilder();
 
-        String[] imagesBase64 = images.split(";");
+        String[] imagesBase64 = images.split("@");
         int i = 0;
         for (String s : imagesBase64) {
             i++;
@@ -96,7 +95,7 @@ public class Util {
             InputStream inputStream = new FileInputStream(file);
             byte[] content = new byte[new Long(file.length()).intValue()];
             inputStream.read(content);
-            sb.append(new String(content) + ";");
+            sb.append(new String(content) + "@");
         }
         System.out.println(sb.toString());
         if (sb.length() > 0) {

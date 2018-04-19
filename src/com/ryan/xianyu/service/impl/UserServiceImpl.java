@@ -66,8 +66,6 @@ public class UserServiceImpl implements UserService {
 
         JSONObject data = new JSONObject();
         data.put("sessionId", session.getId());
-        // TODO: 2018/4/17 未返回头像base64
-//        data.put("avatar", user.getAvatar());
         try {
             data.put("avatar", Util.readImages(user.getAvatar()));
         } catch (Exception e) {

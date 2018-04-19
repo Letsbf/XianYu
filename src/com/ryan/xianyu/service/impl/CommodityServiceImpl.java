@@ -316,7 +316,7 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setPrice(commodity.getPrice());
         commodityVo.setStatus(commodity.getStatus());
         commodityVo.setTime(commodity.getTime());
-        commodityVo.setPublisherName((String) id2Name.get(commodity.getId()));
+        commodityVo.setPublisherName((String) id2Name.get(commodity.getPublisher()));
         commodityVo.setPublisherId(commodity.getPublisher());
         commodityVo.setBrowse(commodity.getBrowse());
         return commodityVo;
