@@ -37,6 +37,7 @@ public class Util {
             user.setAvatar("");
             return "";
         }
+        image = image.replaceAll(" ", "+");
         String avatar = path + "/" + user.getId() + "/avatar";
         save(avatar, image);
         user.setAvatar(avatar);
@@ -49,7 +50,7 @@ public class Util {
         String images = commodity.getImages();
         Integer id = commodity.getId();
         StringBuilder sb = new StringBuilder();
-
+        images = images.replaceAll(" ", "+");
         String[] imagesBase64 = images.split("@");
         int i = 0;
         for (String s : imagesBase64) {
