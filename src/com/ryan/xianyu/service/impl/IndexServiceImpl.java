@@ -91,7 +91,7 @@ public class IndexServiceImpl implements IndexService{
         }
         PageInfo pageInfo = new PageInfo(0, 6, -1);
 
-        JSONArray dataArray = new JSONArray();
+        List<ClassificationVo> ll = new ArrayList<>();
         for (Classification classification : l) {
             ClassificationVo vo = new ClassificationVo();
             vo.setId(classification.getId());
@@ -121,11 +121,9 @@ public class IndexServiceImpl implements IndexService{
             vo.setImages(images);
             vo.setCommodityIds(commodityId);
 
-            JSONObject data = new JSONObject();
-            data.put("" + classification.getId(), vo);
-            dataArray.add(data);
+            ll.add(vo);
         }
-        return Util.constructResponse(1, "获取分类成功", dataArray);
+        return Util.constructResponse(1, "获取分类成功", ll);
     }
 
     @Override
