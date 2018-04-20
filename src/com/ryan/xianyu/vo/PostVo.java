@@ -6,8 +6,17 @@ public class PostVo {
     private String text;
     private Integer replyPostId;
     private String replier;
+    private String replierAvatar;
     private Integer replierIsAdmin;
     private Long time;
+
+    public String getReplierAvatar() {
+        return replierAvatar;
+    }
+
+    public void setReplierAvatar(String replierAvatar) {
+        this.replierAvatar = replierAvatar;
+    }
 
     public Integer getReplierIsAdmin() {
         return replierIsAdmin;

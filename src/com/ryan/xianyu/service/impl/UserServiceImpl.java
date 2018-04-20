@@ -235,10 +235,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JSONObject searchUsers(String search) {
-        // TODO: 2018/4/12 支持分页、高级模糊搜索
         List<User> users = userDao.searchUsers(search);
         if (users == null || users.size() == 0) {
             return Util.constructResponse(0, "未搜索到用户", "");
+        }
+        for (User user : users) {
+            try {
+                user.setAvatar(Util.readImages(user.getAvatar()));
+            } catch (Exception e) {
+                logger.error("读取头像失败", e);
+            }
+
         }
         return Util.constructResponse(1, "搜索成功！", JSONArray.toJSON(users));
     }

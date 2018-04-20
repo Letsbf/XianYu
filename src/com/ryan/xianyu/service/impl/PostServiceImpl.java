@@ -46,12 +46,19 @@ public class PostServiceImpl implements PostService {
 
         Map id2Name = new HashMap<Integer, String>();
         Map id2Admin = new HashMap<Integer, Integer>();
+        Map id2User = new HashMap<Integer, User>();
         List<User> l = userDao.selectByIds(idList);
         logger.error("userList:{}", l);
 
         for (User user : l) {
             id2Name.put(user.getId(), user.getUsername());
             id2Admin.put(user.getId(), user.isAdmin() ? 1 : 0);
+            try {
+                user.setAvatar(Util.readImages(user.getAvatar()));
+            } catch (Exception e) {
+                logger.error("加载头像失败", e);
+            }
+            id2User.put(user.getId(), user);
         }
 
         List r = new ArrayList<PostVo>();
@@ -62,6 +69,7 @@ public class PostServiceImpl implements PostService {
             postVo.setReplyPostId(re.getReplyPostId());
             postVo.setId(re.getId());
             postVo.setReplierIsAdmin((Integer) id2Admin.get(re.getReplier()));
+            postVo.setReplierAvatar(((User) id2User.get(re.getReplier())).getAvatar());
 
             postVo.setReplier((String) id2Name.get(re.getReplier()));
             r.add(postVo);
