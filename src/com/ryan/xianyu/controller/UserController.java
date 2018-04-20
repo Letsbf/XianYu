@@ -93,6 +93,9 @@ public class UserController {
         if (l == null) {
             return Util.constructResponse(0, "获取已发布商品失败", "");
         }
+        if (l.size() == 0) {
+            return Util.constructResponse(1, "您尚未发布商品！", "");
+        }
         return Util.constructResponse(1, "获取已发布商品成功", JSONArray.toJSON(l));
     }
 

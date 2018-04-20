@@ -158,6 +158,9 @@ public class CommodityServiceImpl implements CommodityService {
         if (commodityList == null) {
             return null;
         }
+        if (commodityList.size() == 0) {
+            return new ArrayList<CommodityVo>();
+        }
 
         List<CommodityVo> res = convertCommodityList2VoList(commodityList);
 
