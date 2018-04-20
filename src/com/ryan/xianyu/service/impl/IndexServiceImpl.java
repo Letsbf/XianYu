@@ -100,7 +100,7 @@ public class IndexServiceImpl implements IndexService{
 
             List<Commodity> commodityList = commodityDao.getCommoditiesByPage(classification.getId(), pageInfo);
             List images = new ArrayList<String>();
-            List commodityId = new ArrayList<Integer>();
+            List commodityId = new ArrayList<String>();
             for (Commodity commodity : commodityList) {
                 String imagePath = commodity.getImages();
                 if (Util.isEmpty(imagePath)) {
@@ -118,6 +118,13 @@ public class IndexServiceImpl implements IndexService{
                 commodityId.add(commodity.getId());
             }
 
+            if (images.size() != 6) {
+                int w = 6 - images.size();
+                for (int i = 0; i < w; i++) {
+                    images.add("");
+                    commodityId.add("");
+                }
+            }
             vo.setImages(images);
             vo.setCommodityIds(commodityId);
 
