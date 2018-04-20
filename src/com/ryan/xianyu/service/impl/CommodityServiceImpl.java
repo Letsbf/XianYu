@@ -61,6 +61,7 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setTime(commodity.getTime());
         commodityVo.setPublisherName(user.getUsername());
         commodityVo.setBrowse(commodity.getBrowse());
+        commodityVo.setPublisherId(user.getId());
 
         commodityDao.addBrowse(commodityId);
 

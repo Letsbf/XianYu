@@ -66,6 +66,7 @@ public class PostServiceImpl implements PostService {
             PostVo postVo = new PostVo();
             postVo.setText(re.getText());
             postVo.setTime(re.getTime());
+            postVo.setReplierId(re.getReplier());
             postVo.setReplyPostId(re.getReplyPostId());
             postVo.setId(re.getId());
             postVo.setReplierIsAdmin((Integer) id2Admin.get(re.getReplier()));

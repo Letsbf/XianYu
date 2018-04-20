@@ -8,7 +8,16 @@ public class PostVo {
     private String replier;
     private String replierAvatar;
     private Integer replierIsAdmin;
+    private Integer replierId;
     private Long time;
+
+    public Integer getReplierId() {
+        return replierId;
+    }
+
+    public void setReplierId(Integer replierId) {
+        this.replierId = replierId;
+    }
 
     public String getReplierAvatar() {
         return replierAvatar;
