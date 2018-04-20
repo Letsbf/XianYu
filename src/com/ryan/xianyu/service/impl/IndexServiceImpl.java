@@ -3,15 +3,19 @@ package com.ryan.xianyu.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
+import com.ryan.xianyu.dao.CommodityDao;
 import com.ryan.xianyu.dao.IndexDao;
 import com.ryan.xianyu.dao.NoticeDao;
 import com.ryan.xianyu.dao.UserDao;
+import com.ryan.xianyu.domain.Classification;
+import com.ryan.xianyu.domain.Commodity;
 import com.ryan.xianyu.domain.Notice;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.IndexService;
+import com.ryan.xianyu.vo.ClassificationVo;
 import com.ryan.xianyu.vo.NoticeVo;
-import com.sun.tools.corba.se.idl.constExpr.Not;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 @Service
 public class IndexServiceImpl implements IndexService{
@@ -36,6 +39,9 @@ public class IndexServiceImpl implements IndexService{
 
     @Autowired
     private NoticeDao noticeDao;
+
+    @Autowired
+    private CommodityDao commodityDao;
 
     @Override
     public Map<String, Object> getInstitute() {
@@ -79,11 +85,47 @@ public class IndexServiceImpl implements IndexService{
 
     @Override
     public JSONObject getClassification() {
-        List l = indexDao.getClassification();
-        if (l == null) {
+        List<Classification> l = indexDao.getClassification();
+        if (l == null || l.size() == 0) {
             return Util.constructResponse(0, "获取分类失败", "");
         }
-        return Util.constructResponse(1, "获取分类成功", JSONArray.toJSON(l));
+        PageInfo pageInfo = new PageInfo(0, 6, -1);
+
+        JSONArray dataArray = new JSONArray();
+        for (Classification classification : l) {
+            ClassificationVo vo = new ClassificationVo();
+            vo.setId(classification.getId());
+            vo.setName(classification.getName());
+            vo.setRefer(classification.getRefer());
+
+            List<Commodity> commodityList = commodityDao.getCommoditiesByPage(classification.getId(), pageInfo);
+            List images = new ArrayList<String>();
+            List commodityId = new ArrayList<Integer>();
+            for (Commodity commodity : commodityList) {
+                String imagePath = commodity.getImages();
+                if (Util.isEmpty(imagePath)) {
+                    commodity.setImages("");
+                    continue;
+                }
+                String[] imageArray = imagePath.split(";");
+                try {
+                    commodity.setImages(Util.readImages(imageArray[0]));
+                } catch (Exception e) {
+                    logger.error("读取商品第一张图片异常");
+                    commodity.setImages("");
+                }
+                images.add(commodity.getImages());
+                commodityId.add(commodity.getId());
+            }
+
+            vo.setImages(images);
+            vo.setCommodityIds(commodityId);
+
+            JSONObject data = new JSONObject();
+            data.put("" + classification.getId(), vo);
+            dataArray.add(data);
+        }
+        return Util.constructResponse(1, "获取分类成功", dataArray);
     }
 
     @Override

@@ -6,8 +6,8 @@
 <mapper namespace="commodity">
 
     <select id="selectByPage" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.util.Map">
-        SELECT * FROM commodity WHERE classification = #{classificationId} AND status!=3
-        ORDER BY id DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
+        SELECT * FROM commodity WHERE classification = #{classificationId} AND status=0
+        ORDER BY time DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
     </select>
 
     <select id="selectById" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.lang.Integer">

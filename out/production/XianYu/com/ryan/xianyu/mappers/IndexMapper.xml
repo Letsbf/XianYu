@@ -27,7 +27,7 @@
     </select>
 
     <select id="selectClassification" resultType="com.ryan.xianyu.domain.Classification">
-        select * from classification;
+        select * from classification WHERE refer = 0;
     </select>
 
     <insert id="addInstitute" parameterType="java.lang.String" useGeneratedKeys="true">
