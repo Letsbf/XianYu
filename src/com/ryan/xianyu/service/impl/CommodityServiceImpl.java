@@ -64,6 +64,12 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setBrowse(commodity.getBrowse());
         commodityVo.setPublisherId(user.getId());
         commodityVo.setClassificationId(commodity.getClassification());
+        try {
+            commodityVo.setPublisherAvatar(Util.readAvatar(user.getAvatar()));
+        } catch (Exception e) {
+            logger.error("设置卖家头像失败！", e);
+            commodityVo.setImages("");
+        }
 
         commodityDao.addBrowse(commodityId);
 
@@ -109,15 +115,38 @@ public class CommodityServiceImpl implements CommodityService {
         List instituteList = this.convertString2IntList(institute);
 
         List<Commodity> l = commodityDao.searchCommodity(search, classList, instituteList, pageInfo);
+        List publisherIds = new ArrayList();
         for (Commodity commodity : l) {
+            publisherIds.add(commodity.getPublisher());
             try {
                 commodity.setImages(Util.readImages(commodity.getImages()));
             } catch (Exception e) {
                 logger.error("读取图片异常", e);
             }
         }
+        List<User> userList = userDao.selectByIds(publisherIds);
+        Map id2User = new HashMap();
+        for (User user : userList) {
+            id2User.put(user.getId(), user);
+        }
+
+        JSONArray dataArray = new JSONArray();
+
+        for (Commodity commodity : l) {
+            JSONObject data = (JSONObject) JSON.toJSON(commodity);
+            try {
+                User user = (User) id2User.get(commodity.getPublisher());
+                data.put("publisherAvatar", Util.readAvatar(user.getAvatar()));
+                data.put("publisherName", user.getName());
+            } catch (Exception e) {
+                logger.error("搜索结果设置卖家头像出错", e);
+            }
+            dataArray.add(data);
+        }
+
         logger.error("----------- l长度:{} -----------", l.size());
-        return Util.constructResponse(1, "搜索成功", JSONArray.toJSON(l));
+        return Util.constructResponse(1, "搜索成功", dataArray);
+//        return Util.constructResponse(1, "搜索成功", JSONArray.toJSON(l));
     }
 
     @Override

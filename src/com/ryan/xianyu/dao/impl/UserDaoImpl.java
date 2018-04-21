@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
     public User selectByUserName(String username) {
         SqlSession sqlSession = SQLFactory.getSession();
         User user = sqlSession.selectOne("user.selectByUserName", username);
+        sqlSession.close();
         return user;
     }
 
@@ -29,6 +30,7 @@ public class UserDaoImpl implements UserDao {
     public Integer insertNewUser(User user) {
         SqlSession sqlSession = SQLFactory.getSession();
         int i = sqlSession.insert("user.insertNewUser", user);
+        sqlSession.close();
         return i;
     }
 
@@ -36,6 +38,7 @@ public class UserDaoImpl implements UserDao {
     public User selectById(Integer id) {
         SqlSession sqlSession = SQLFactory.getSession();
         User user = sqlSession.selectOne("user.selectById", id);
+        sqlSession.close();
         return user;
     }
 
@@ -43,6 +46,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> selectByIds(List ids) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<User> s = sqlSession.selectList("user.selectByIds", ids);
+        sqlSession.close();
         return s;
     }
 
@@ -50,6 +54,7 @@ public class UserDaoImpl implements UserDao {
     public Integer updateUser(User user) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer s = sqlSession.update("user.updateUser", user);
+        sqlSession.close();
         return s;
     }
 
@@ -57,6 +62,7 @@ public class UserDaoImpl implements UserDao {
     public Integer deleteUser(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer s = sqlSession.delete("user.deleteUser", userId);
+        sqlSession.close();
         return s;
     }
 
@@ -68,6 +74,7 @@ public class UserDaoImpl implements UserDao {
         params.put("oldPw", oldPw);
         params.put("newPw", newPw);
         Integer s = sqlSession.update("user.updatePw", params);
+        sqlSession.close();
         return s;
     }
 
@@ -75,6 +82,7 @@ public class UserDaoImpl implements UserDao {
     public Integer totalUsers() {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer s = sqlSession.selectOne("user.totalUsers");
+        sqlSession.close();
         return s;
     }
 
@@ -82,6 +90,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> selectAllByPage(PageInfo pageInfo) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<User> l = sqlSession.selectList("user.selectAllByPage", pageInfo);
+        sqlSession.close();
         return l;
     }
 
@@ -89,6 +98,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> searchUsers(String search) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<User> l = sqlSession.selectList("user.searchUsers", search);
+        sqlSession.close();
         return l;
     }
 
@@ -96,6 +106,7 @@ public class UserDaoImpl implements UserDao {
     public Integer setUser2Admin(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.update("user.setUser2Admin", userId);
+        sqlSession.close();
         return i;
     }
 

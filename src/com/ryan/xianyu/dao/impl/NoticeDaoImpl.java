@@ -21,6 +21,7 @@ public class NoticeDaoImpl implements NoticeDao{
         params.put("text", text);
         params.put("publisherId", publisherId);
         Integer i = sqlSession.insert("notice.insertNotice", params);
+        sqlSession.close();
         return i;
     }
 

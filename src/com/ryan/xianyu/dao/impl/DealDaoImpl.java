@@ -21,6 +21,7 @@ public class DealDaoImpl implements DealDao {
         params.put("purchaserId", purchaserId);
         params.put("commodityId", commodityId);
         Integer i = sqlSession.insert("deal.insertDeal", params);
+        sqlSession.close();
         return i;
     }
 
@@ -31,6 +32,7 @@ public class DealDaoImpl implements DealDao {
         params.put("purchaserId", purchaserId);
         params.put("commodityId", commodityId);
         Integer i = sqlSession.insert("deal.deleteDeal", params);
+        sqlSession.close();
         return i;
     }
 
@@ -38,6 +40,7 @@ public class DealDaoImpl implements DealDao {
     public List<Deal> getDealsByUserId(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<Deal> dealList = sqlSession.selectList("deal.getDealsByUserId", userId);
+        sqlSession.close();
         return dealList;
     }
 
@@ -48,6 +51,7 @@ public class DealDaoImpl implements DealDao {
         params.put("userId", userId);
         params.put("pageInfo", pageInfo);
         List<Deal> dealList = sqlSession.selectList("deal.getDealsByUserIdByPage", params);
+        sqlSession.close();
         return dealList;
     }
 
@@ -59,6 +63,7 @@ public class DealDaoImpl implements DealDao {
         params.put("end", end);
         params.put("userId", userId);
         List<Deal> dealList = sqlSession.selectList("deal.getDealsByTime", params);
+        sqlSession.close();
         return dealList;
     }
 

@@ -18,15 +18,15 @@ public class IndexDaoImpl implements IndexDao {
     public Map<Integer,String> getInstitute() {
         SqlSession sqlSession = SQLFactory.getSession();
         Map s = sqlSession.selectMap("index.selectInstitute", "id");
-
+        sqlSession.close();
         return s;
     }
 
     @Override
     public List<Notice> getNotices() {
-
         SqlSession sqlSession = SQLFactory.getSession();
         List s = sqlSession.selectList("index.selectNotices");
+        sqlSession.close();
         return s;
     }
 
@@ -34,6 +34,7 @@ public class IndexDaoImpl implements IndexDao {
     public Notice getNotice(int id) {
         SqlSession sqlSession = SQLFactory.getSession();
         Notice notice = sqlSession.selectOne("index.selectNotice", id);
+        sqlSession.close();
         return notice;
     }
 
@@ -41,6 +42,7 @@ public class IndexDaoImpl implements IndexDao {
     public List<Classification> getClassification() {
         SqlSession sqlSession = SQLFactory.getSession();
         List s = sqlSession.selectList("index.selectClassification");
+        sqlSession.close();
         return s;
     }
 

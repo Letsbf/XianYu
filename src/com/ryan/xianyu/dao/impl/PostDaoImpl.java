@@ -18,6 +18,7 @@ public class PostDaoImpl implements PostDao {
     public Integer countReply(Integer commodityId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer ls = sqlSession.selectOne("post.countReply", commodityId);
+        sqlSession.close();
         return ls;
     }
 
@@ -25,6 +26,7 @@ public class PostDaoImpl implements PostDao {
     public Map selectReplyByIds(List commodityIds) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map l = sqlSession.selectMap("post.selectReplyByIds", commodityIds,"commodity_id");
+        sqlSession.close();
         return l;
     }
 
@@ -32,6 +34,7 @@ public class PostDaoImpl implements PostDao {
     public Integer countUnread(String commodityIds) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.selectOne("post.countUnread", commodityIds);
+        sqlSession.close();
         return i;
     }
 
@@ -39,6 +42,7 @@ public class PostDaoImpl implements PostDao {
     public Post selectPostById(Integer postId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Post post = sqlSession.selectOne("post.selectPostById", postId);
+        sqlSession.close();
         return post;
     }
 
@@ -49,6 +53,7 @@ public class PostDaoImpl implements PostDao {
         params.put("commodityIds", commodityIds);
         params.put("pageInfo", pageInfo);
         List postList = sqlSession.selectList("post.selectReplyByCommodityIds", params);
+        sqlSession.close();
         return postList;
     }
 
@@ -66,6 +71,7 @@ public class PostDaoImpl implements PostDao {
         params.put("commodityId", commodityId);
         params.put("pageInfo", pageInfo);
         List<Post> ls = sqlSession.selectList("post.selectReply", params);
+        sqlSession.close();
         return ls;
     }
 
@@ -79,6 +85,7 @@ public class PostDaoImpl implements PostDao {
         params.put("replyPostId", replyPostId);
         params.put("commodityId", commodityId);
         Integer i = sqlSession.insert("post.insertReply", params);
+        sqlSession.close();
         return i;
     }
 
@@ -86,6 +93,7 @@ public class PostDaoImpl implements PostDao {
     public Integer deleteReply(Integer postId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.delete("post.deleteReply", postId);
+        sqlSession.close();
         return i;
     }
 }

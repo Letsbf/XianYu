@@ -22,6 +22,7 @@ public class CommodityDaoImpl implements CommodityDao {
         params.put("classificationId", classificationId);
         params.put("pageInfo", pageInfo);
         List s = sqlSession.selectList("commodity.selectByPage", params);
+        sqlSession.close();
         return s;
     }
 
@@ -29,6 +30,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Commodity getCommodityById(Integer id) {
         SqlSession sqlSession = SQLFactory.getSession();
         Commodity commodity = sqlSession.selectOne("commodity.selectById", id);
+        sqlSession.close();
         return commodity;
     }
 
@@ -36,6 +38,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer publishCommodity(Commodity commodity) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.insert("commodity.insertCommodity", commodity);
+        sqlSession.close();
         return i;
     }
 
@@ -43,6 +46,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer insertImages(Commodity commodity) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.update("commodity.insertImages", commodity);
+        sqlSession.close();
         return i;
     }
 
@@ -55,6 +59,7 @@ public class CommodityDaoImpl implements CommodityDao {
         params.put("instituteId", instituteId);
         params.put("pageInfo", pageInfo);
         List<Commodity> l = sqlSession.selectList("commodity.searchCommodity", params);
+        sqlSession.close();
         return l;
     }
 
@@ -62,6 +67,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer getCommodityCountByUserId(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.selectOne("commodity.getCommodityCountByUserId", userId);
+        sqlSession.close();
         return i;
     }
 
@@ -72,6 +78,7 @@ public class CommodityDaoImpl implements CommodityDao {
         params.put("userId", userId);
         params.put("pageInfo", pageInfo);
         List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByUserId", params);
+        sqlSession.close();
         return l;
     }
 
@@ -82,6 +89,7 @@ public class CommodityDaoImpl implements CommodityDao {
         params.put("commodityId", commodityId);
         params.put("status", status);
         Integer i = sqlSession.update("commodity.updateCommodityStatus", params);
+        sqlSession.close();
         return i;
     }
 
@@ -89,6 +97,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer addBrowse(Integer commodityId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.update("commodity.addBrowse", commodityId);
+        sqlSession.close();
         return i;
     }
 
@@ -96,6 +105,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer modifyCommodity(Commodity commodity) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.update("commodity.modifyCommodity", commodity);
+        sqlSession.close();
         return i;
     }
 
@@ -103,6 +113,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public Integer deleteCommodity(Integer commodityId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.delete("commodity.deleteCommodity", commodityId);
+        sqlSession.close();
         return i;
     }
 
@@ -110,6 +121,7 @@ public class CommodityDaoImpl implements CommodityDao {
     public List<Commodity> getCommoditiesByIds(List commodityList) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIds", commodityList);
+        sqlSession.close();
         return l;
     }
 
@@ -117,12 +129,16 @@ public class CommodityDaoImpl implements CommodityDao {
     public List<Commodity> getCommoditiesByIdList(List commodityIdList) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIdList", commodityIdList);
+        sqlSession.close();
         return l;
     }
 
     @Override
     public Integer countCommodityByClassification(Integer classificationId) {
-        return SQLFactory.getSession().selectOne("commodity.countCommodityByClassification", classificationId);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.selectOne("commodity.countCommodityByClassification", classificationId);
+        sqlSession.close();
+        return i;
     }
 
 }

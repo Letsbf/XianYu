@@ -21,6 +21,7 @@ public class PrivateMessageDaoImpl implements PrivateMessageDao {
         params.put("toId", toId);
         params.put("message", message);
         Integer i = sqlSession.insert("privateMessage.insertMessage", params);
+        sqlSession.close();
         return i;
     }
 
@@ -28,6 +29,7 @@ public class PrivateMessageDaoImpl implements PrivateMessageDao {
     public List<PrivateMessage> getPrivateMessageByToId(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         List<PrivateMessage> l = sqlSession.selectList("privateMessage.getPrivateMessageByToId", userId);
+        sqlSession.close();
         return l;
     }
 
@@ -35,6 +37,7 @@ public class PrivateMessageDaoImpl implements PrivateMessageDao {
     public Integer updateMessage2Read(Integer userId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer res = sqlSession.update("privateMessage.updateMessage2Read", userId);
+        sqlSession.close();
         return res;
     }
 
@@ -42,6 +45,7 @@ public class PrivateMessageDaoImpl implements PrivateMessageDao {
     public PrivateMessage getPrivateMessageById(Integer messageId) {
         SqlSession sqlSession = SQLFactory.getSession();
         PrivateMessage privateMessage = sqlSession.selectOne("privateMessage.getPrivateMessageById", messageId);
+        sqlSession.close();
         return privateMessage;
     }
 
@@ -49,6 +53,7 @@ public class PrivateMessageDaoImpl implements PrivateMessageDao {
     public Integer deleteById(Integer messageId) {
         SqlSession sqlSession = SQLFactory.getSession();
         Integer i = sqlSession.delete("privateMessage.deleteById", messageId);
+        sqlSession.close();
         return i;
     }
 
