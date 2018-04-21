@@ -381,11 +381,14 @@ public class UserServiceImpl implements UserService {
     public JSONObject timeShopping(Long start, Long end, Integer userId) {
         List<Deal> dealList = dealDao.getDealsByTime(start, end, userId);
         if (dealList == null || dealList.size() == 0) {
+            JSONArray ja = new JSONArray();
             JSONObject data = new JSONObject();
             data.put("name", "尚未购买");
             data.put("value", 1);
-            return Util.constructResponse(1, "您并没买过东西", data);
+            ja.add(data);
+            return Util.constructResponse(1, "您并没买过东西", ja);
         }
+
         List<Integer> commodityIdList = new ArrayList<>();
         for (Deal deal : dealList) {
             commodityIdList.add(deal.getCommodityId());
