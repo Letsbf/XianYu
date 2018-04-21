@@ -151,6 +151,7 @@ public class UserServiceImpl implements UserService {
         userVo.setTime(user.getTime());
         userVo.setStuID(user.getStuId());
         userVo.setUsername(user.getUsername());
+        userVo.setInstituteId(user.getInstituteId());
 
 
         Map l = indexService.getInstitute();

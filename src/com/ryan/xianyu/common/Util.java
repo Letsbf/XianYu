@@ -41,6 +41,10 @@ public class Util {
             return "";
         }
         image = image.replaceAll(" ", "+");
+        File file = new File(path + "/" + user.getId());
+        if (!file.isDirectory()) {
+            file.mkdir();
+        }
         String avatar = path + "/" + user.getId() + "/avatar";
         save(avatar, image);
         user.setAvatar(avatar);

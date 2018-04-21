@@ -12,6 +12,8 @@ public class UserVo {
 
     private String institute;
 
+    private Integer instituteId;
+
     private String stuID;
 
     private String email;
@@ -21,6 +23,14 @@ public class UserVo {
     private boolean admin;
 
     private Long time;
+
+    public Integer getInstituteId() {
+        return instituteId;
+    }
+
+    public void setInstituteId(Integer instituteId) {
+        this.instituteId = instituteId;
+    }
 
     public Long getTime() {
         return time;

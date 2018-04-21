@@ -310,13 +310,20 @@ public class CommodityServiceImpl implements CommodityService {
 
         List<User> ls = userDao.selectByIds(idList);
         Map id2Name = new HashMap<Integer, String>();
+        Map<Integer, String> userId2Avatar = new HashMap();
         for (User l : ls) {
             id2Name.put(l.getId(), l.getUsername());
+            userId2Avatar.put(l.getId(), l.getAvatar());
         }
 
         List res = new ArrayList<CommodityVo>();
         for (Commodity commodity : s) {
             CommodityVo commodityVo = convertCommodity2Vo(commodity, id2Name);
+            try {
+                commodityVo.setPublisherAvatar(Util.readAvatar(userId2Avatar.get(commodityVo.getPublisherId())));
+            } catch (Exception e) {
+                logger.error("获取头像失败", e);
+            }
             res.add(commodityVo);
         }
         return res;
