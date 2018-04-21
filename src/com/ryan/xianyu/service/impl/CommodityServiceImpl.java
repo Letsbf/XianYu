@@ -115,7 +115,7 @@ public class CommodityServiceImpl implements CommodityService {
             }
         }
         logger.error("----------- l长度:{} -----------", l.size());
-        return Util.constructResponse(0, "搜索成功", JSONArray.toJSON(l));
+        return Util.constructResponse(1, "搜索成功", JSONArray.toJSON(l));
     }
 
     @Override
