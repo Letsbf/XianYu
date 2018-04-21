@@ -14,7 +14,16 @@ public class CommodityVo {
     private Integer browse;
     private Integer reply;
     private Integer publisherIsAdmin;
+    private Integer classificationId;
     private Long time;
+
+    public Integer getClassificationId() {
+        return classificationId;
+    }
+
+    public void setClassificationId(Integer classificationId) {
+        this.classificationId = classificationId;
+    }
 
     public Integer getPublisherIsAdmin() {
         return publisherIsAdmin;
