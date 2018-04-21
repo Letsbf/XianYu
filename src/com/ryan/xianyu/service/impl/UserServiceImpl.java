@@ -381,9 +381,10 @@ public class UserServiceImpl implements UserService {
     public JSONObject timeShopping(Long start, Long end, Integer userId) {
         List<Deal> dealList = dealDao.getDealsByTime(start, end, userId);
         if (dealList == null || dealList.size() == 0) {
-            Map res = new HashMap();
-            res.put("尚未购买", 1);
-            return Util.constructResponse(1, "您并没买过东西", res);
+            JSONObject data = new JSONObject();
+            data.put("name", "尚未购买");
+            data.put("value", 1);
+            return Util.constructResponse(1, "您并没买过东西", data);
         }
         List<Integer> commodityIdList = new ArrayList<>();
         for (Deal deal : dealList) {
@@ -401,7 +402,15 @@ public class UserServiceImpl implements UserService {
                     1 + (Integer) classId2CountMap.getOrDefault(commodity.getClassification(), 0));
         }
 
-        return Util.constructResponse(1, "获取购物分类详情成功！", classId2CountMap);
+        JSONArray ja = new JSONArray();
+        for (Object o : classId2CountMap.keySet()) {
+            JSONObject data = new JSONObject();
+            data.put("name", o);
+            data.put("value", classId2CountMap.get(o));
+            ja.add(data);
+        }
+
+        return Util.constructResponse(1, "获取购物分类详情成功！", ja);
     }
 
     @Override
