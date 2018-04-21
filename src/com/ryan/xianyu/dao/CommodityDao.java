@@ -30,7 +30,7 @@ public interface CommodityDao {
 
     Integer deleteCommodity(Integer commodityId);
 
-    List<Commodity> getCommoditiesByIds(String commodityStr);
+    List<Commodity> getCommoditiesByIds(List commodityStr);
 
     List<Commodity> getCommoditiesByIdList(List commodityIdList);
 

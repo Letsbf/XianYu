@@ -32,8 +32,6 @@ public interface UserService {
 
     JSONObject publishNotice(String title, String text, Integer userId);
 
-    JSONObject bought(Integer userId, PageInfo pageInfo);
-
     JSONObject getBoughtPages(Integer userId, Integer pageSize);
 
     JSONObject addAdmin(Integer adminId, Integer userId);

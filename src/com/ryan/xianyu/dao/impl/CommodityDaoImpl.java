@@ -107,9 +107,9 @@ public class CommodityDaoImpl implements CommodityDao {
     }
 
     @Override
-    public List<Commodity> getCommoditiesByIds(String commodityStr) {
+    public List<Commodity> getCommoditiesByIds(List commodityList) {
         SqlSession sqlSession = SQLFactory.getSession();
-        List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIds", commodityStr);
+        List<Commodity> l = sqlSession.selectList("commodity.getCommoditiesByIds", commodityList);
         return l;
     }
 

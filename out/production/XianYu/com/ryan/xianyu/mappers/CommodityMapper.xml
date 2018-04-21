@@ -104,8 +104,11 @@
         DELETE FROM commodity WHERE id = #{id}
     </delete>
 
-    <select id="getCommoditiesByIds" parameterType="java.lang.String" resultType="com.ryan.xianyu.domain.Commodity">
-        SELECT * FROM commodity WHERE id IN (#{id})
+    <select id="getCommoditiesByIds" parameterType="java.util.List" resultType="com.ryan.xianyu.domain.Commodity">
+        SELECT * FROM commodity WHERE id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
     <select id="getCommoditiesByIdList" parameterType="java.util.List" resultType="com.ryan.xianyu.domain.Commodity">

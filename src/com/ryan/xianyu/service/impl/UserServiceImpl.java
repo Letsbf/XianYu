@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         JSONObject data = new JSONObject();
         data.put("sessionId", session.getId());
         try {
-            data.put("avatar", Util.readImages(user.getAvatar()));
+            data.put("avatar", Util.readAvatar(user.getAvatar()));
         } catch (Exception e) {
             logger.error("读取头像出现异常", e);
         }
@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService {
         }
 
         try {
-            user.setAvatar(Util.readImages(user.getAvatar()));
+            user.setAvatar(Util.readAvatar(user.getAvatar()));
         } catch (Exception e) {
             logger.error("获取头像失败，用户ID:{}", userId, e);
             user.setAvatar("");
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
         UserVo userVo = new UserVo();
         userVo.setId(user.getId());
         try {
-            userVo.setAvatar(Util.readImages(user.getAvatar()));
+            userVo.setAvatar(Util.readAvatar(user.getAvatar()));
         } catch (Exception e) {
             logger.error("读取头像失败,用户id:{}", userId, e);
         }
@@ -241,7 +241,7 @@ public class UserServiceImpl implements UserService {
         }
         for (User user : users) {
             try {
-                user.setAvatar(Util.readImages(user.getAvatar()));
+                user.setAvatar(Util.readAvatar(user.getAvatar()));
             } catch (Exception e) {
                 logger.error("读取头像失败", e);
             }
@@ -260,32 +260,6 @@ public class UserServiceImpl implements UserService {
         return Util.constructResponse(1, "发布公告成功！", "");
     }
 
-    @Override
-    public JSONObject bought(Integer userId, PageInfo pageInfo) {
-        logger.error("userId:{},pageInfo:{}", userId, pageInfo);
-        List<Deal> dealList = dealDao.getDealsByUserIdByPage(userId, pageInfo);
-        if (dealList == null || dealList.size() == 0) {
-            return Util.constructResponse(0, "获取已购买列表失败", "");
-        }
-        StringBuilder commodityIdsStr = new StringBuilder("");
-        for (Deal deal : dealList) {
-            commodityIdsStr.append(deal.getCommodityId() + ",");
-        }
-        if (commodityIdsStr.length() > 0) {
-            commodityIdsStr.deleteCharAt(commodityIdsStr.length() - 1);
-        }
-        List<Commodity> l = commodityDao.getCommoditiesByIds(commodityIdsStr.toString());
-        JSONArray jsonArray = new JSONArray();
-        for (int i = 0; i < l.size(); i++) {
-            JSONObject data = new JSONObject();
-            data.put("id", l.get(i).getId());
-            data.put("title", l.get(i).getTitle());
-            data.put("price", l.get(i).getPrice());
-            data.put("description", l.get(i).getDescription());
-            jsonArray.add(data);
-        }
-        return Util.constructResponse(1, "分页获取已购买商品成功", jsonArray);
-    }
 
     @Override
     public JSONObject getBoughtPages(Integer userId, Integer pageSize) {
@@ -441,7 +415,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userDao.selectByIds(userIdList);
         Map userId2UserName = new HashMap();
         for (User user : users) {
-            userId2UserName.put(user.getId(), user.getUsername());
+            userId2UserName.put(user.getId(), user);
         }
 
         List pml = new ArrayList<PrivateMessageVo>();
@@ -450,9 +424,16 @@ public class UserServiceImpl implements UserService {
             pmVo.setId(privateMessage.getId());
             pmVo.setTime(privateMessage.getTime());
             pmVo.setFromId(privateMessage.getFromId());
+
+            try {
+                pmVo.setFromUserAvatar(Util.readAvatar(((User) userId2UserName.get(privateMessage.getFromId())).getAvatar()));
+            } catch (Exception e) {
+                logger.error("读取头像失败", e);
+            }
+
             pmVo.setStatus(privateMessage.getStatus());
             pmVo.setMessage(privateMessage.getMessage());
-            pmVo.setFromUserName((String) userId2UserName.get(privateMessage.getFromId()));
+            pmVo.setFromUserName(((User) userId2UserName.get(privateMessage.getFromId())).getUsername());
             pml.add(pmVo);
         }
 

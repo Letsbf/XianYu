@@ -10,6 +10,7 @@ import com.ryan.xianyu.dao.DealDao;
 import com.ryan.xianyu.dao.PostDao;
 import com.ryan.xianyu.dao.UserDao;
 import com.ryan.xianyu.domain.Commodity;
+import com.ryan.xianyu.domain.Deal;
 import com.ryan.xianyu.domain.User;
 import com.ryan.xianyu.service.CommodityService;
 import com.ryan.xianyu.vo.CommodityVo;
@@ -165,6 +166,7 @@ public class CommodityServiceImpl implements CommodityService {
 
         List<CommodityVo> res = convertCommodityList2VoList(commodityList);
 
+        //各个帖子的回复总数
         List commodityIds = new ArrayList();
         for (CommodityVo re : res) {
             commodityIds.add(re.getId());
@@ -172,7 +174,6 @@ public class CommodityServiceImpl implements CommodityService {
         if (commodityIds.size() == 0) {
             return res;
         }
-        //各个帖子的回复总数
         Map cId2Rc = postDao.selectReplyByIds(commodityIds);
 
         if (cId2Rc == null || cId2Rc.size() == 0) {
@@ -189,8 +190,25 @@ public class CommodityServiceImpl implements CommodityService {
             }
         }
 
-
         return res;
+    }
+
+
+    @Override
+    public JSONObject bought(Integer userId, PageInfo pageInfo) {
+        logger.error("userId:{},pageInfo:{}", userId, pageInfo);
+        List<Deal> dealList = dealDao.getDealsByUserIdByPage(userId, pageInfo);
+        if (dealList == null || dealList.size() == 0) {
+            return Util.constructResponse(0, "获取已购买列表失败", "");
+        }
+        List commodityIdList = new ArrayList();
+        for (Deal deal : dealList) {
+            commodityIdList.add(deal.getCommodityId());
+        }
+        List<Commodity> l = commodityDao.getCommoditiesByIds(commodityIdList);
+        List<CommodityVo> commodityVoList = convertCommodityList2VoList(l);
+
+        return Util.constructResponse(1, "分页获取已购买商品成功", commodityVoList);
     }
 
     @Override
@@ -214,7 +232,7 @@ public class CommodityServiceImpl implements CommodityService {
         if (s <= 0) {
             dealDao.deleteDeal(purchaserId, commodityId);
         }
-        return Util.constructResponse(1, "够买成功", "");
+        return Util.constructResponse(1, "够买成功,已为您锁定商品,请与卖家联系！", "");
     }
 
     @Override
@@ -283,7 +301,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     // TODO: 2018/4/16 验证一下
-    private List<CommodityVo> convertCommodityList2VoList(List<Commodity> s){
+    public List<CommodityVo> convertCommodityList2VoList(List<Commodity> s){
         List<Integer> idList = new ArrayList<>();
         for (Commodity commodity : s) {
             idList.add(commodity.getPublisher());
@@ -303,7 +321,7 @@ public class CommodityServiceImpl implements CommodityService {
         return res;
     }
 
-    private boolean validateUserAndCommodity(Integer commodityId, Integer userId) {
+    public boolean validateUserAndCommodity(Integer commodityId, Integer userId) {
         Commodity commodity = commodityDao.getCommodityById(commodityId);
         if (commodity == null) {
             return false;
@@ -318,7 +336,7 @@ public class CommodityServiceImpl implements CommodityService {
         return true;
     }
 
-    private CommodityVo convertCommodity2Vo(Commodity commodity,Map id2Name) {
+    public CommodityVo convertCommodity2Vo(Commodity commodity,Map id2Name) {
         CommodityVo commodityVo = new CommodityVo();
         commodityVo.setId(commodity.getId());
         commodityVo.setTitle(commodity.getTitle());
@@ -335,10 +353,11 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setPublisherName((String) id2Name.get(commodity.getPublisher()));
         commodityVo.setPublisherId(commodity.getPublisher());
         commodityVo.setBrowse(commodity.getBrowse());
+        commodityVo.setReply(0);
         return commodityVo;
     }
 
-    private List convertString2IntList(String str) {
+    public List convertString2IntList(String str) {
         if (Util.isEmpty(str)) {
             return null;
         }

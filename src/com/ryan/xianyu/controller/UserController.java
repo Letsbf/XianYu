@@ -324,7 +324,7 @@ public class UserController {
         }
 
         PageInfo pageInfo = new PageInfo(pageStart, pageSize, -1);
-        return userService.bought(userId,pageInfo);
+        return commodityService.bought(userId,pageInfo);
     }
 
     /**

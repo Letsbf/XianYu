@@ -54,7 +54,7 @@ public class PostServiceImpl implements PostService {
             id2Name.put(user.getId(), user.getUsername());
             id2Admin.put(user.getId(), user.isAdmin() ? 1 : 0);
             try {
-                user.setAvatar(Util.readImages(user.getAvatar()));
+                user.setAvatar(Util.readAvatar(user.getAvatar()));
             } catch (Exception e) {
                 logger.error("加载头像失败", e);
             }

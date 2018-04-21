@@ -29,6 +29,9 @@ public class Util {
         return isEmpty(phone) ? false : phone.matches("^\\d{11}$");
     }
 
+    public static String readAvatar(String avatarPath) throws Exception {
+        return readImages(isEmpty(avatarPath) ? (System.getProperty("user.dir") + "/default_avatar") : avatarPath);
+    }
 
     public static String saveAvatar(User user) throws Exception{
         String path = System.getProperty("user.dir");

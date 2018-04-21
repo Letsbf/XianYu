@@ -5,9 +5,18 @@ public class PrivateMessageVo {
     private Integer id;
     private Integer fromId;
     private String fromUserName;
+    private String fromUserAvatar;
     private Integer status;
     private String message;
     private Long time;
+
+    public String getFromUserAvatar() {
+        return fromUserAvatar;
+    }
+
+    public void setFromUserAvatar(String fromUserAvatar) {
+        this.fromUserAvatar = fromUserAvatar;
+    }
 
     public Integer getId() {
         return id;

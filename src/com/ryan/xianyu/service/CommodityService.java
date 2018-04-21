@@ -21,6 +21,8 @@ public interface CommodityService {
 
     Integer getPagesByUserId(Integer userId, Integer pageSize);
 
+    JSONObject bought(Integer userId, PageInfo pageInfo);
+
     /**
      * 分页获取"已发布的商品"
      * @param userId 用户ID
