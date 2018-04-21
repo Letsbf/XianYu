@@ -342,7 +342,7 @@ public class UserController {
             return Util.constructResponse(0, "用户ID不正确", "");
         }
 
-        if (start <= 0 || end <= 0 || start > end) {
+        if (start < 0 || end <= 0 || start > end) {
             return Util.constructResponse(0, "时间错误", "");
         }
 

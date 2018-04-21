@@ -381,16 +381,23 @@ public class UserServiceImpl implements UserService {
     public JSONObject timeShopping(Long start, Long end, Integer userId) {
         List<Deal> dealList = dealDao.getDealsByTime(start, end, userId);
         if (dealList == null || dealList.size() == 0) {
-            return Util.constructResponse(1, "您并没买过东西", "");
+            Map res = new HashMap();
+            res.put("尚未购买", 1);
+            return Util.constructResponse(1, "您并没买过东西", res);
         }
         List<Integer> commodityIdList = new ArrayList<>();
         for (Deal deal : dealList) {
             commodityIdList.add(deal.getCommodityId());
         }
         List<Commodity> commodityList = commodityDao.getCommoditiesByIdList(commodityIdList);
-        Map classId2CountMap = new HashMap<Integer, Integer>();
+        List<Classification> classificationList = indexDao.getClassification();
+        Map classificationId2NameMap = new HashMap<Integer, String>();
+        for (Classification classification : classificationList) {
+            classificationId2NameMap.put(classification.getId(), classification.getName());
+        }
+        Map classId2CountMap = new HashMap<String, Integer>();
         for (Commodity commodity : commodityList) {
-            classId2CountMap.put(commodity.getClassification(),
+            classId2CountMap.put(classificationId2NameMap.get(commodity.getClassification()),
                     1 + (Integer) classId2CountMap.getOrDefault(commodity.getClassification(), 0));
         }
 
