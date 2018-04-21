@@ -121,8 +121,8 @@ public class IndexServiceImpl implements IndexService{
             if (images.size() != 5) {
                 int w = 5 - images.size();
                 for (int i = 0; i < w; i++) {
-                    images.add("");
-                    commodityId.add("");
+                    images.add(null);
+                    commodityId.add(null);
                 }
             }
             vo.setImages(images);
