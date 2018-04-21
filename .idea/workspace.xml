@@ -2,21 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cb1ae4-2211-44a2-9827-e7960123fb56" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/jsp/test.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/test.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/index.jsp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/DealDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/DealDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/IndexDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/IndexDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/NoticeDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/NoticeDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/PostDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/PostDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/dao/impl/UserDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/DealDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/DealDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/IndexDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/IndexDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/NoticeDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/NoticeDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/PostDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/PostDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/UserDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/service/impl/CommodityServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/config/springmvc.xml" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/config/springmvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/CommodityDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/DealDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/DealDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/IndexDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/NoticeDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/NoticeDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PostDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/PrivateMessageDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/dao/impl/UserDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/config/springmvc.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/classes/com/ryan/xianyu/config/springmvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/XianYu_war_exploded/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/config/springmvc.xml" afterPath="$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/config/springmvc.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,12 +88,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommodityServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommodityServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ryan/xianyu/service/impl/CommodityServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="96">
               <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommodityDaoImpl.class" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#4976#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1179,12 +1196,20 @@
       <workItem from="1524139784275" duration="3630000" />
       <workItem from="1524204976798" duration="5772000" />
       <workItem from="1524244679738" duration="6222000" />
-      <workItem from="1524330177741" duration="8485000" />
+      <workItem from="1524330177741" duration="8578000" />
     </task>
+    <task id="LOCAL-00001" summary="hotfix">
+      <created>1524341254042</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1524341254042</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198298000" />
+    <option name="totallyTimeSpent" value="198391000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1275,6 +1300,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hotfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="hotfix" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="43" />
@@ -1286,17 +1315,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="130">
-            <caret line="216" column="15" lean-forward="false" selection-start-line="216" selection-start-column="15" selection-end-line="216" selection-end-column="15" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1781,6 +1799,16 @@
         <state relative-caret-position="96">
           <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/XianYu/com/ryan/xianyu/dao/impl/CommodityDaoImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#4976#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
