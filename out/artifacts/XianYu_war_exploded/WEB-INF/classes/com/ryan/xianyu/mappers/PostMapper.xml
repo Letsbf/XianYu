@@ -36,8 +36,12 @@
         SELECT count(*) FROM post WHERE commodity_id = #{id}
     </select>
 
-    <select id="selectReplyByIds" parameterType="java.lang.String" resultType="java.util.Map">
-        SELECT commodity_id,count(*) FROM post WHERE commodity_id IN (#{commodityIds}) GROUP BY commodity_id;
+    <select id="selectReplyByIds" parameterType="java.util.List" resultType="java.util.Map">
+        SELECT commodity_id,count(*) FROM post WHERE commodity_id IN
+         <foreach collection="list" open="(" separator="," close=")" index="index" item="item">
+             #{item}
+         </foreach>
+         GROUP BY commodity_id;
     </select>
 
     <select id="countUnread" parameterType="java.lang.String" resultType="java.lang.Integer">

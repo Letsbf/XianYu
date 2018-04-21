@@ -22,7 +22,7 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public Map selectReplyByIds(String commodityIds) {
+    public Map selectReplyByIds(List commodityIds) {
         SqlSession sqlSession = SQLFactory.getSession();
         Map l = sqlSession.selectMap("post.selectReplyByIds", commodityIds,"commodity_id");
         return l;

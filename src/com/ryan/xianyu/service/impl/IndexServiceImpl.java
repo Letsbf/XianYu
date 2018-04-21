@@ -89,7 +89,7 @@ public class IndexServiceImpl implements IndexService{
         if (l == null || l.size() == 0) {
             return Util.constructResponse(0, "获取分类失败", "");
         }
-        PageInfo pageInfo = new PageInfo(0, 6, -1);
+        PageInfo pageInfo = new PageInfo(0, 5, -1);
 
         List<ClassificationVo> ll = new ArrayList<>();
         for (Classification classification : l) {
@@ -118,8 +118,8 @@ public class IndexServiceImpl implements IndexService{
                 commodityId.add(commodity.getId());
             }
 
-            if (images.size() != 6) {
-                int w = 6 - images.size();
+            if (images.size() != 5) {
+                int w = 5 - images.size();
                 for (int i = 0; i < w; i++) {
                     images.add("");
                     commodityId.add("");

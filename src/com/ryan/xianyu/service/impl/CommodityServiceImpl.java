@@ -165,22 +165,31 @@ public class CommodityServiceImpl implements CommodityService {
 
         List<CommodityVo> res = convertCommodityList2VoList(commodityList);
 
-        StringBuilder sb = new StringBuilder("");
+        List commodityIds = new ArrayList();
         for (CommodityVo re : res) {
-            sb.append(re.getId() + ",");
+            commodityIds.add(re.getId());
         }
-        if (sb.length() == 0) {
+        if (commodityIds.size() == 0) {
             return res;
         }
-        sb.deleteCharAt(sb.length() - 1);
-        String commodityIds = sb.toString();
+        //各个帖子的回复总数
         Map cId2Rc = postDao.selectReplyByIds(commodityIds);
 
-        logger.error("cId2Rc:{}", cId2Rc);
-
-        for (CommodityVo re : res) {
-            re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
+        if (cId2Rc == null || cId2Rc.size() == 0) {
+            for (CommodityVo re : res) {
+                re.setReply(0);
+            }
+        } else {
+            for (CommodityVo re : res) {
+                if (cId2Rc.containsKey(re.getId())) {
+                    re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
+                } else {
+                    re.setReply(0);
+                }
+            }
         }
+
+
         return res;
     }
 
