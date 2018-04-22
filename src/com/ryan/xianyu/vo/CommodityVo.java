@@ -15,8 +15,17 @@ public class CommodityVo {
     private Integer reply;
     private Integer publisherIsAdmin;
     private Integer classificationId;
+    private String classificationName;
     private String publisherAvatar;
     private Long time;
+
+    public String getClassificationName() {
+        return classificationName;
+    }
+
+    public void setClassificationName(String classificationName) {
+        this.classificationName = classificationName;
+    }
 
     public String getPublisherAvatar() {
         return publisherAvatar;

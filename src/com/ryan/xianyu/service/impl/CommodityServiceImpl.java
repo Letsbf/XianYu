@@ -5,10 +5,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.xianyu.common.PageInfo;
 import com.ryan.xianyu.common.Util;
-import com.ryan.xianyu.dao.CommodityDao;
-import com.ryan.xianyu.dao.DealDao;
-import com.ryan.xianyu.dao.PostDao;
-import com.ryan.xianyu.dao.UserDao;
+import com.ryan.xianyu.dao.*;
+import com.ryan.xianyu.domain.Classification;
 import com.ryan.xianyu.domain.Commodity;
 import com.ryan.xianyu.domain.Deal;
 import com.ryan.xianyu.domain.User;
@@ -38,6 +36,9 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private DealDao dealDao;
 
+    @Autowired
+    private IndexDao indexDao;
+
     @Override
     public JSONObject getCommodityById(Integer commodityId, Integer pageSize) {
         Commodity commodity = commodityDao.getCommodityById(commodityId);
@@ -64,6 +65,10 @@ public class CommodityServiceImpl implements CommodityService {
         commodityVo.setBrowse(commodity.getBrowse());
         commodityVo.setPublisherId(user.getId());
         commodityVo.setClassificationId(commodity.getClassification());
+
+        Classification classification = indexDao.selectClassificationById(commodityVo.getClassificationId());
+        commodityVo.setClassificationName(classification.getName());
+
         try {
             commodityVo.setPublisherAvatar(Util.readAvatar(user.getAvatar()));
         } catch (Exception e) {
