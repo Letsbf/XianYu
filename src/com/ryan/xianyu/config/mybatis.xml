@@ -6,9 +6,9 @@
 
     </properties>
 
-    <settings>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
-    </settings>
+    <!--<settings>-->
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+    <!--</settings>-->
 
     <!-- 对象别名 -->
     <typeAliases>
