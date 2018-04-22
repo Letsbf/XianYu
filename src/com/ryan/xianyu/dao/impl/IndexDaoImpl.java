@@ -48,12 +48,18 @@ public class IndexDaoImpl implements IndexDao {
 
     @Override
     public Integer addInstitute(String name) {
-        return SQLFactory.getSession().insert("index.addInstitute", name);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.insert("index.addInstitute", name);
+        sqlSession.close();
+        return i;
     }
 
     @Override
     public Integer deleteInstitute(Integer instituteId) {
-        return SQLFactory.getSession().delete("index.deleteInstitute", instituteId);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.delete("index.deleteInstitute", instituteId);
+        sqlSession.close();
+        return i;
     }
 
     @Override
@@ -61,17 +67,26 @@ public class IndexDaoImpl implements IndexDao {
         Map params = new HashMap();
         params.put("instituteId", instituteId);
         params.put("newName", newName);
-        return SQLFactory.getSession().update("index.renameInstitute", params);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("index.renameInstitute", params);
+        sqlSession.close();
+        return i;
     }
 
     @Override
     public Integer addClassification(Classification classification) {
-        return SQLFactory.getSession().insert("index.addClassification", classification);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.insert("index.addClassification", classification);
+        sqlSession.close();
+        return i;
     }
 
     @Override
     public Integer deleteClassification(Integer classificationId) {
-        return SQLFactory.getSession().delete("index.deleteClassification", classificationId);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.delete("index.deleteClassification", classificationId);
+        sqlSession.close();
+        return i;
     }
 
     @Override
@@ -79,6 +94,9 @@ public class IndexDaoImpl implements IndexDao {
         Map params = new HashMap();
         params.put("classificationId", classificationId);
         params.put("newName", newName);
-        return SQLFactory.getSession().update("index.renameClassification", params);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.update("index.renameClassification", params);
+        sqlSession.close();
+        return i;
     }
 }

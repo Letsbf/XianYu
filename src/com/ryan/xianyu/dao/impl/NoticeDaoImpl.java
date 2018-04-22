@@ -27,12 +27,18 @@ public class NoticeDaoImpl implements NoticeDao{
 
     @Override
     public List<Notice> getSixNotice() {
-        return SQLFactory.getSession().selectList("notice.getSixNotice");
+        SqlSession sqlSession = SQLFactory.getSession();
+        List<Notice> l = sqlSession.selectList("notice.getSixNotice");
+        sqlSession.close();
+        return l;
     }
 
     @Override
     public Integer deleteNotice(Integer noticeId) {
-        return SQLFactory.getSession().delete("notice.deleteNotice", noticeId);
+        SqlSession sqlSession = SQLFactory.getSession();
+        Integer i = sqlSession.delete("notice.deleteNotice", noticeId);
+        sqlSession.close();
+        return i;
     }
 
 }

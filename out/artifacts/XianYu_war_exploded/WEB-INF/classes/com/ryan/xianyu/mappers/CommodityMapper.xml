@@ -6,7 +6,7 @@
 <mapper namespace="commodity">
 
     <select id="selectByPage" resultType="com.ryan.xianyu.domain.Commodity" parameterType="java.util.Map">
-        SELECT * FROM commodity WHERE classification = #{classificationId} AND status=0
+        SELECT * FROM commodity WHERE classification = #{classificationId} AND status = 0
         ORDER BY time DESC LIMIT #{pageInfo.start},#{pageInfo.pageSize}
     </select>
 
@@ -119,6 +119,6 @@
     </select>
 
     <select id="countCommodityByClassification" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
-        SELECT count(*) FROM commodity WHERE classification = #{id}
+        SELECT count(*) FROM commodity WHERE classification = #{id} AND status = 0;
     </select>
 </mapper>

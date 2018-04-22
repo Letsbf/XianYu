@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
         UserVo userVo = new UserVo();
         userVo.setId(user.getId());
         try {
-            userVo.setAvatar(Util.readAvatar(user.getAvatar()));
+            userVo.setAvatar(user.getAvatar());
         } catch (Exception e) {
             logger.error("读取头像失败,用户id:{}", userId, e);
         }
