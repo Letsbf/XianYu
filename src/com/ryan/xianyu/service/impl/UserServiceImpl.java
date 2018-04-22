@@ -374,10 +374,10 @@ public class UserServiceImpl implements UserService {
         for (Classification classification : classificationList) {
             classificationId2NameMap.put(classification.getId(), classification.getName());
         }
-        Map classId2CountMap = new HashMap<String, Integer>();
+        Map classId2CountMap = new HashMap<Integer, Integer>();
         for (Commodity commodity : commodityList) {
             classId2CountMap.put(classificationId2NameMap.get(commodity.getClassification()),
-                    1 + (Integer) classId2CountMap.getOrDefault(commodity.getClassification(), 0));
+                    1 + (Integer) classId2CountMap.getOrDefault(classificationId2NameMap.get(commodity.getClassification()), 0));
         }
 
         JSONArray ja = new JSONArray();

@@ -120,38 +120,35 @@ public class CommodityServiceImpl implements CommodityService {
         List instituteList = this.convertString2IntList(institute);
 
         List<Commodity> l = commodityDao.searchCommodity(search, classList, instituteList, pageInfo);
-        List publisherIds = new ArrayList();
-        for (Commodity commodity : l) {
-            publisherIds.add(commodity.getPublisher());
-            try {
-                commodity.setImages(Util.readImages(commodity.getImages()));
-            } catch (Exception e) {
-                logger.error("读取图片异常", e);
+
+        List<CommodityVo> res = convertCommodityList2VoList(l);
+
+        this.setReply(res);
+
+        return Util.constructResponse(1, "搜索成功", res);
+    }
+
+    private void setReply(List<CommodityVo> res) {
+        List commodityIds = new ArrayList();
+        for (CommodityVo re : res) {
+            commodityIds.add(re.getId());
+        }
+
+        Map cId2Rc = postDao.selectReplyByIds(commodityIds);
+
+        if (cId2Rc == null || cId2Rc.size() == 0) {
+            for (CommodityVo re : res) {
+                re.setReply(0);
+            }
+        } else {
+            for (CommodityVo re : res) {
+                if (cId2Rc.containsKey(re.getId())) {
+                    re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
+                } else {
+                    re.setReply(0);
+                }
             }
         }
-        List<User> userList = userDao.selectByIds(publisherIds);
-        Map id2User = new HashMap();
-        for (User user : userList) {
-            id2User.put(user.getId(), user);
-        }
-
-        JSONArray dataArray = new JSONArray();
-
-        for (Commodity commodity : l) {
-            JSONObject data = (JSONObject) JSON.toJSON(commodity);
-            try {
-                User user = (User) id2User.get(commodity.getPublisher());
-                data.put("publisherAvatar", Util.readAvatar(user.getAvatar()));
-                data.put("publisherName", user.getName());
-            } catch (Exception e) {
-                logger.error("搜索结果设置卖家头像出错", e);
-            }
-            dataArray.add(data);
-        }
-
-        logger.error("----------- l长度:{} -----------", l.size());
-        return Util.constructResponse(1, "搜索成功", dataArray);
-//        return Util.constructResponse(1, "搜索成功", JSONArray.toJSON(l));
     }
 
     @Override
@@ -209,21 +206,8 @@ public class CommodityServiceImpl implements CommodityService {
         if (commodityIds.size() == 0) {
             return res;
         }
-        Map cId2Rc = postDao.selectReplyByIds(commodityIds);
 
-        if (cId2Rc == null || cId2Rc.size() == 0) {
-            for (CommodityVo re : res) {
-                re.setReply(0);
-            }
-        } else {
-            for (CommodityVo re : res) {
-                if (cId2Rc.containsKey(re.getId())) {
-                    re.setReply(((Long) (((Map) cId2Rc.get(re.getId())).get("count(*)"))).intValue());
-                } else {
-                    re.setReply(0);
-                }
-            }
-        }
+        this.setReply(res);
 
         return res;
     }
