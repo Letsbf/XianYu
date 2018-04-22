@@ -60,4 +60,8 @@
         UPDATE classification SET name = #{newName} WHERE id = #{classificationId}
     </update>
 
+    <select id="selectClassificationById" parameterType="java.lang.Integer" resultType="com.ryan.xianyu.domain.Classification">
+        SELECT * FROM classification WHERE id = #{id}
+    </select>
+
 </mapper>

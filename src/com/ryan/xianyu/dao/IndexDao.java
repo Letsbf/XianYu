@@ -30,4 +30,6 @@ public interface IndexDao {
 
     Integer renameClassification(Integer classification, String newName);
 
+    Classification selectClassificationById(Integer classificationId);
+
 }

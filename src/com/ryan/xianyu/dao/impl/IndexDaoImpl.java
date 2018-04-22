@@ -15,6 +15,14 @@ import java.util.Map;
 public class IndexDaoImpl implements IndexDao {
 
     @Override
+    public Classification selectClassificationById(Integer classificationId) {
+        SqlSession sqlSession = SQLFactory.getSession();
+        Classification classification = sqlSession.selectOne("index.selectClassificationById", classificationId);
+        sqlSession.close();
+        return classification;
+    }
+
+    @Override
     public Map<Integer,String> getInstitute() {
         SqlSession sqlSession = SQLFactory.getSession();
         Map s = sqlSession.selectMap("index.selectInstitute", "id");
